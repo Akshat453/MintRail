@@ -1,0 +1,27 @@
+{
+  "name": "@mintrail/conductor",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Conductor — MintRail's payment risk checks",
+  "exports": {
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@mintrail/shared": "workspace:*",
+    "drizzle-orm": "0.45.4"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "typescript": "5.9.3",
+    "vitest": "5.1.0"
+  }
+}

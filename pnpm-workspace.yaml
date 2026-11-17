@@ -1,0 +1,32 @@
+packages:
+  - packages/*
+  - ledger
+  - conductor
+  - junction
+  - api
+  - depot
+  - signal
+  - sdk-node
+  - dashboard
+  - railyard
+  - tests/parity
+
+minimumReleaseAgeExclude:
+  - "@typescript-eslint/eslint-plugin@8.73.0"
+  - "@typescript-eslint/parser@8.73.0"
+  - "@typescript-eslint/project-service@8.73.0"
+  - "@typescript-eslint/scope-manager@8.73.0"
+  - "@typescript-eslint/tsconfig-utils@8.73.0"
+  - "@typescript-eslint/type-utils@8.73.0"
+  - "@typescript-eslint/types@8.73.0"
+  - "@typescript-eslint/typescript-estree@8.73.0"
+  - "@typescript-eslint/utils@8.73.0"
+  - "@typescript-eslint/visitor-keys@8.73.0"
+  - typescript-eslint@8.73.0
+
+# pnpm 12 runs dependency build scripts only when listed here.
+allowBuilds:
+  esbuild: true # tsx / vite / drizzle-kit binaries
+  cpu-features: false # optional native addon of ssh2 (Testcontainers' Docker client)
+  ssh2: false
+  protobufjs: false

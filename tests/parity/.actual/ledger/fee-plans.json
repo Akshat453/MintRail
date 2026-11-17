@@ -1,0 +1,3682 @@
+{
+  "steps": [],
+  "notes": {
+    "enterprise/card": {
+      "amount": 123457,
+      "authorized_at": "<ts>",
+      "bank_code": null,
+      "capture_mode": "automatic",
+      "captured_at": "<ts>",
+      "card": {
+        "bin": "411111",
+        "expiry_month": 12,
+        "expiry_year": 2030,
+        "last4": "1111",
+        "network": "visa"
+      },
+      "created_at": "<ts>",
+      "currency": "INR",
+      "email": null,
+      "error_code": null,
+      "error_description": null,
+      "failed_at": null,
+      "fee": 1852,
+      "id": "<pay:1>",
+      "livemode": false,
+      "method": "card",
+      "object": "payment",
+      "order_id": "<ord:1>",
+      "risk": {
+        "decision": "allow",
+        "reasons": [],
+        "review_status": "not_required",
+        "score": 0
+      },
+      "status": "captured",
+      "tax": 333,
+      "vpa": null
+    },
+    "enterprise/netbanking": {
+      "amount": 123457,
+      "authorized_at": "<ts>",
+      "bank_code": "MRTEST",
+      "capture_mode": "automatic",
+      "captured_at": "<ts>",
+      "card": null,
+      "created_at": "<ts>",
+      "currency": "INR",
+      "email": null,
+      "error_code": null,
+      "error_description": null,
+      "failed_at": null,
+      "fee": 1852,
+      "id": "<pay:2>",
+      "livemode": false,
+      "method": "netbanking",
+      "object": "payment",
+      "order_id": "<ord:2>",
+      "risk": {
+        "decision": "allow",
+        "reasons": [],
+        "review_status": "not_required",
+        "score": 0
+      },
+      "status": "captured",
+      "tax": 333,
+      "vpa": null
+    },
+    "enterprise/upi": {
+      "amount": 123457,
+      "authorized_at": "<ts>",
+      "bank_code": null,
+      "capture_mode": "automatic",
+      "captured_at": "<ts>",
+      "card": null,
+      "created_at": "<ts>",
+      "currency": "INR",
+      "email": null,
+      "error_code": null,
+      "error_description": null,
+      "failed_at": null,
+      "fee": 617,
+      "id": "<pay:3>",
+      "livemode": false,
+      "method": "upi",
+      "object": "payment",
+      "order_id": "<ord:3>",
+      "risk": {
+        "decision": "allow",
+        "reasons": [],
+        "review_status": "not_required",
+        "score": 0
+      },
+      "status": "captured",
+      "tax": 111,
+      "vpa": "success@mintrail"
+    },
+    "growth/card": {
+      "amount": 123457,
+      "authorized_at": "<ts>",
+      "bank_code": null,
+      "capture_mode": "automatic",
+      "captured_at": "<ts>",
+      "card": {
+        "bin": "411111",
+        "expiry_month": 12,
+        "expiry_year": 2030,
+        "last4": "1111",
+        "network": "visa"
+      },
+      "created_at": "<ts>",
+      "currency": "INR",
+      "email": null,
+      "error_code": null,
+      "error_description": null,
+      "failed_at": null,
+      "fee": 2222,
+      "id": "<pay:4>",
+      "livemode": false,
+      "method": "card",
+      "object": "payment",
+      "order_id": "<ord:4>",
+      "risk": {
+        "decision": "allow",
+        "reasons": [],
+        "review_status": "not_required",
+        "score": 0
+      },
+      "status": "captured",
+      "tax": 400,
+      "vpa": null
+    },
+    "growth/netbanking": {
+      "amount": 123457,
+      "authorized_at": "<ts>",
+      "bank_code": "MRTEST",
+      "capture_mode": "automatic",
+      "captured_at": "<ts>",
+      "card": null,
+      "created_at": "<ts>",
+      "currency": "INR",
+      "email": null,
+      "error_code": null,
+      "error_description": null,
+      "failed_at": null,
+      "fee": 2099,
+      "id": "<pay:5>",
+      "livemode": false,
+      "method": "netbanking",
+      "object": "payment",
+      "order_id": "<ord:5>",
+      "risk": {
+        "decision": "allow",
+        "reasons": [],
+        "review_status": "not_required",
+        "score": 0
+      },
+      "status": "captured",
+      "tax": 378,
+      "vpa": null
+    },
+    "growth/upi": {
+      "amount": 123457,
+      "authorized_at": "<ts>",
+      "bank_code": null,
+      "capture_mode": "automatic",
+      "captured_at": "<ts>",
+      "card": null,
+      "created_at": "<ts>",
+      "currency": "INR",
+      "email": null,
+      "error_code": null,
+      "error_description": null,
+      "failed_at": null,
+      "fee": 988,
+      "id": "<pay:6>",
+      "livemode": false,
+      "method": "upi",
+      "object": "payment",
+      "order_id": "<ord:6>",
+      "risk": {
+        "decision": "allow",
+        "reasons": [],
+        "review_status": "not_required",
+        "score": 0
+      },
+      "status": "captured",
+      "tax": 178,
+      "vpa": "success@mintrail"
+    },
+    "standard/card": {
+      "amount": 123457,
+      "authorized_at": "<ts>",
+      "bank_code": null,
+      "capture_mode": "automatic",
+      "captured_at": "<ts>",
+      "card": {
+        "bin": "411111",
+        "expiry_month": 12,
+        "expiry_year": 2030,
+        "last4": "1111",
+        "network": "visa"
+      },
+      "created_at": "<ts>",
+      "currency": "INR",
+      "email": null,
+      "error_code": null,
+      "error_description": null,
+      "failed_at": null,
+      "fee": 2469,
+      "id": "<pay:7>",
+      "livemode": false,
+      "method": "card",
+      "object": "payment",
+      "order_id": "<ord:7>",
+      "risk": {
+        "decision": "allow",
+        "reasons": [],
+        "review_status": "not_required",
+        "score": 0
+      },
+      "status": "captured",
+      "tax": 444,
+      "vpa": null
+    },
+    "standard/netbanking": {
+      "amount": 123457,
+      "authorized_at": "<ts>",
+      "bank_code": "MRTEST",
+      "capture_mode": "automatic",
+      "captured_at": "<ts>",
+      "card": null,
+      "created_at": "<ts>",
+      "currency": "INR",
+      "email": null,
+      "error_code": null,
+      "error_description": null,
+      "failed_at": null,
+      "fee": 2346,
+      "id": "<pay:8>",
+      "livemode": false,
+      "method": "netbanking",
+      "object": "payment",
+      "order_id": "<ord:8>",
+      "risk": {
+        "decision": "allow",
+        "reasons": [],
+        "review_status": "not_required",
+        "score": 0
+      },
+      "status": "captured",
+      "tax": 422,
+      "vpa": null
+    },
+    "standard/upi": {
+      "amount": 123457,
+      "authorized_at": "<ts>",
+      "bank_code": null,
+      "capture_mode": "automatic",
+      "captured_at": "<ts>",
+      "card": null,
+      "created_at": "<ts>",
+      "currency": "INR",
+      "email": null,
+      "error_code": null,
+      "error_description": null,
+      "failed_at": null,
+      "fee": 1235,
+      "id": "<pay:9>",
+      "livemode": false,
+      "method": "upi",
+      "object": "payment",
+      "order_id": "<ord:9>",
+      "risk": {
+        "decision": "allow",
+        "reasons": [],
+        "review_status": "not_required",
+        "score": 0
+      },
+      "status": "captured",
+      "tax": 222,
+      "vpa": "success@mintrail"
+    }
+  },
+  "db": {
+    "stations": [
+      {
+        "auto_capture": true,
+        "business_category": "5814",
+        "country": "IN",
+        "default_currency": "INR",
+        "display_name": "Kaveri Coffee 1",
+        "email": "finance-1@kaveri.example",
+        "fee_plan": "standard",
+        "id": "<mer:?>",
+        "kyc_rejection_reason": null,
+        "kyc_reviewed": false,
+        "kyc_reviewed_by": null,
+        "kyc_status": "pending",
+        "legal_name": "Kaveri Coffee Roasters 1 Pvt Ltd",
+        "max_payment_amount": null,
+        "rate_limit_burst": 50,
+        "rate_limit_per_sec": 25,
+        "settlement_schedule": "T+2",
+        "status": "active",
+        "suspended_reason": null,
+        "webhook_url": null
+      },
+      {
+        "auto_capture": true,
+        "business_category": "5814",
+        "country": "IN",
+        "default_currency": "INR",
+        "display_name": "Kaveri Coffee 2",
+        "email": "finance-2@kaveri.example",
+        "fee_plan": "growth",
+        "id": "<mer:?>",
+        "kyc_rejection_reason": null,
+        "kyc_reviewed": false,
+        "kyc_reviewed_by": null,
+        "kyc_status": "pending",
+        "legal_name": "Kaveri Coffee Roasters 2 Pvt Ltd",
+        "max_payment_amount": null,
+        "rate_limit_burst": 50,
+        "rate_limit_per_sec": 25,
+        "settlement_schedule": "T+2",
+        "status": "active",
+        "suspended_reason": null,
+        "webhook_url": null
+      },
+      {
+        "auto_capture": true,
+        "business_category": "5814",
+        "country": "IN",
+        "default_currency": "INR",
+        "display_name": "Kaveri Coffee 3",
+        "email": "finance-3@kaveri.example",
+        "fee_plan": "enterprise",
+        "id": "<mer:?>",
+        "kyc_rejection_reason": null,
+        "kyc_reviewed": false,
+        "kyc_reviewed_by": null,
+        "kyc_status": "pending",
+        "legal_name": "Kaveri Coffee Roasters 3 Pvt Ltd",
+        "max_payment_amount": null,
+        "rate_limit_burst": 50,
+        "rate_limit_per_sec": 25,
+        "settlement_schedule": "T+2",
+        "status": "active",
+        "suspended_reason": null,
+        "webhook_url": null
+      }
+    ],
+    "api_keys": [
+      {
+        "has_signing_key": true,
+        "hint": "mr_test_…****",
+        "id": "<key:?>",
+        "label": "Default test key",
+        "mode": "test",
+        "revoked": false,
+        "scopes": [
+          "*"
+        ],
+        "station_id": "<mer:?>",
+        "status": "active",
+        "used": true
+      },
+      {
+        "has_signing_key": true,
+        "hint": "mr_test_…****",
+        "id": "<key:?>",
+        "label": "Default test key",
+        "mode": "test",
+        "revoked": false,
+        "scopes": [
+          "*"
+        ],
+        "station_id": "<mer:?>",
+        "status": "active",
+        "used": true
+      },
+      {
+        "has_signing_key": true,
+        "hint": "mr_test_…****",
+        "id": "<key:?>",
+        "label": "Default test key",
+        "mode": "test",
+        "revoked": false,
+        "scopes": [
+          "*"
+        ],
+        "station_id": "<mer:?>",
+        "status": "active",
+        "used": true
+      }
+    ],
+    "staff_users": [
+      {
+        "email": "admin@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": true,
+        "role": "admin",
+        "status": "active"
+      },
+      {
+        "email": "finance@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "finance",
+        "status": "active"
+      },
+      {
+        "email": "ops@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "ops",
+        "status": "active"
+      },
+      {
+        "email": "security@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "security",
+        "status": "active"
+      }
+    ],
+    "staff_sessions": [
+      {
+        "live": true,
+        "revoked": false,
+        "staff_id": "stf_00000000000000000000000004"
+      }
+    ],
+    "staff_audit_log": [
+      {
+        "action": "staff.login",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "admin@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000004",
+        "target_id": "stf_00000000000000000000000004",
+        "target_type": "staff"
+      },
+      {
+        "action": "station.create",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "admin@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000004",
+        "target_id": "<mer:?>",
+        "target_type": "station"
+      },
+      {
+        "action": "station.create",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "admin@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000004",
+        "target_id": "<mer:?>",
+        "target_type": "station"
+      },
+      {
+        "action": "station.create",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "admin@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000004",
+        "target_id": "<mer:?>",
+        "target_type": "station"
+      }
+    ],
+    "orders": [
+      {
+        "amount": "123457",
+        "amount_paid": "123457",
+        "attempts": 1,
+        "currency": "INR",
+        "id": "<ord:1>",
+        "livemode": false,
+        "notes": {},
+        "receipt": null,
+        "station_id": "<mer:?>",
+        "status": "paid"
+      },
+      {
+        "amount": "123457",
+        "amount_paid": "123457",
+        "attempts": 1,
+        "currency": "INR",
+        "id": "<ord:2>",
+        "livemode": false,
+        "notes": {},
+        "receipt": null,
+        "station_id": "<mer:?>",
+        "status": "paid"
+      },
+      {
+        "amount": "123457",
+        "amount_paid": "123457",
+        "attempts": 1,
+        "currency": "INR",
+        "id": "<ord:3>",
+        "livemode": false,
+        "notes": {},
+        "receipt": null,
+        "station_id": "<mer:?>",
+        "status": "paid"
+      },
+      {
+        "amount": "123457",
+        "amount_paid": "123457",
+        "attempts": 1,
+        "currency": "INR",
+        "id": "<ord:4>",
+        "livemode": false,
+        "notes": {},
+        "receipt": null,
+        "station_id": "<mer:?>",
+        "status": "paid"
+      },
+      {
+        "amount": "123457",
+        "amount_paid": "123457",
+        "attempts": 1,
+        "currency": "INR",
+        "id": "<ord:5>",
+        "livemode": false,
+        "notes": {},
+        "receipt": null,
+        "station_id": "<mer:?>",
+        "status": "paid"
+      },
+      {
+        "amount": "123457",
+        "amount_paid": "123457",
+        "attempts": 1,
+        "currency": "INR",
+        "id": "<ord:6>",
+        "livemode": false,
+        "notes": {},
+        "receipt": null,
+        "station_id": "<mer:?>",
+        "status": "paid"
+      },
+      {
+        "amount": "123457",
+        "amount_paid": "123457",
+        "attempts": 1,
+        "currency": "INR",
+        "id": "<ord:7>",
+        "livemode": false,
+        "notes": {},
+        "receipt": null,
+        "station_id": "<mer:?>",
+        "status": "paid"
+      },
+      {
+        "amount": "123457",
+        "amount_paid": "123457",
+        "attempts": 1,
+        "currency": "INR",
+        "id": "<ord:8>",
+        "livemode": false,
+        "notes": {},
+        "receipt": null,
+        "station_id": "<mer:?>",
+        "status": "paid"
+      },
+      {
+        "amount": "123457",
+        "amount_paid": "123457",
+        "attempts": 1,
+        "currency": "INR",
+        "id": "<ord:9>",
+        "livemode": false,
+        "notes": {},
+        "receipt": null,
+        "station_id": "<mer:?>",
+        "status": "paid"
+      }
+    ],
+    "payments": [
+      {
+        "amount": "123457",
+        "authorized": true,
+        "bank_code": "MRTEST",
+        "capture_mode": "automatic",
+        "captured": true,
+        "card_bin": null,
+        "card_expiry_month": null,
+        "card_expiry_year": null,
+        "card_last4": null,
+        "card_network": null,
+        "currency": "INR",
+        "customer_email": null,
+        "error_code": null,
+        "error_description": null,
+        "failed": false,
+        "fee": "1852",
+        "id": "<pay:2>",
+        "junction_ref": "<JN:?>",
+        "junction_sequence": 2,
+        "livemode": false,
+        "method": "netbanking",
+        "order_id": "<ord:2>",
+        "risk_decision": "allow",
+        "risk_reasons": [],
+        "risk_review_status": "not_required",
+        "risk_reviewed_by": null,
+        "risk_score": 0,
+        "station_id": "<mer:?>",
+        "status": "captured",
+        "tax": "333",
+        "test_scenario": null,
+        "vpa": null
+      },
+      {
+        "amount": "123457",
+        "authorized": true,
+        "bank_code": "MRTEST",
+        "capture_mode": "automatic",
+        "captured": true,
+        "card_bin": null,
+        "card_expiry_month": null,
+        "card_expiry_year": null,
+        "card_last4": null,
+        "card_network": null,
+        "currency": "INR",
+        "customer_email": null,
+        "error_code": null,
+        "error_description": null,
+        "failed": false,
+        "fee": "2099",
+        "id": "<pay:5>",
+        "junction_ref": "<JN:?>",
+        "junction_sequence": 2,
+        "livemode": false,
+        "method": "netbanking",
+        "order_id": "<ord:5>",
+        "risk_decision": "allow",
+        "risk_reasons": [],
+        "risk_review_status": "not_required",
+        "risk_reviewed_by": null,
+        "risk_score": 0,
+        "station_id": "<mer:?>",
+        "status": "captured",
+        "tax": "378",
+        "test_scenario": null,
+        "vpa": null
+      },
+      {
+        "amount": "123457",
+        "authorized": true,
+        "bank_code": "MRTEST",
+        "capture_mode": "automatic",
+        "captured": true,
+        "card_bin": null,
+        "card_expiry_month": null,
+        "card_expiry_year": null,
+        "card_last4": null,
+        "card_network": null,
+        "currency": "INR",
+        "customer_email": null,
+        "error_code": null,
+        "error_description": null,
+        "failed": false,
+        "fee": "2346",
+        "id": "<pay:8>",
+        "junction_ref": "<JN:?>",
+        "junction_sequence": 2,
+        "livemode": false,
+        "method": "netbanking",
+        "order_id": "<ord:8>",
+        "risk_decision": "allow",
+        "risk_reasons": [],
+        "risk_review_status": "not_required",
+        "risk_reviewed_by": null,
+        "risk_score": 0,
+        "station_id": "<mer:?>",
+        "status": "captured",
+        "tax": "422",
+        "test_scenario": null,
+        "vpa": null
+      },
+      {
+        "amount": "123457",
+        "authorized": true,
+        "bank_code": null,
+        "capture_mode": "automatic",
+        "captured": true,
+        "card_bin": "411111",
+        "card_expiry_month": 12,
+        "card_expiry_year": 2030,
+        "card_last4": "1111",
+        "card_network": "visa",
+        "currency": "INR",
+        "customer_email": null,
+        "error_code": null,
+        "error_description": null,
+        "failed": false,
+        "fee": "1852",
+        "id": "<pay:1>",
+        "junction_ref": "<JN:?>",
+        "junction_sequence": 2,
+        "livemode": false,
+        "method": "card",
+        "order_id": "<ord:1>",
+        "risk_decision": "allow",
+        "risk_reasons": [],
+        "risk_review_status": "not_required",
+        "risk_reviewed_by": null,
+        "risk_score": 0,
+        "station_id": "<mer:?>",
+        "status": "captured",
+        "tax": "333",
+        "test_scenario": null,
+        "vpa": null
+      },
+      {
+        "amount": "123457",
+        "authorized": true,
+        "bank_code": null,
+        "capture_mode": "automatic",
+        "captured": true,
+        "card_bin": "411111",
+        "card_expiry_month": 12,
+        "card_expiry_year": 2030,
+        "card_last4": "1111",
+        "card_network": "visa",
+        "currency": "INR",
+        "customer_email": null,
+        "error_code": null,
+        "error_description": null,
+        "failed": false,
+        "fee": "2222",
+        "id": "<pay:4>",
+        "junction_ref": "<JN:?>",
+        "junction_sequence": 2,
+        "livemode": false,
+        "method": "card",
+        "order_id": "<ord:4>",
+        "risk_decision": "allow",
+        "risk_reasons": [],
+        "risk_review_status": "not_required",
+        "risk_reviewed_by": null,
+        "risk_score": 0,
+        "station_id": "<mer:?>",
+        "status": "captured",
+        "tax": "400",
+        "test_scenario": null,
+        "vpa": null
+      },
+      {
+        "amount": "123457",
+        "authorized": true,
+        "bank_code": null,
+        "capture_mode": "automatic",
+        "captured": true,
+        "card_bin": "411111",
+        "card_expiry_month": 12,
+        "card_expiry_year": 2030,
+        "card_last4": "1111",
+        "card_network": "visa",
+        "currency": "INR",
+        "customer_email": null,
+        "error_code": null,
+        "error_description": null,
+        "failed": false,
+        "fee": "2469",
+        "id": "<pay:7>",
+        "junction_ref": "<JN:?>",
+        "junction_sequence": 2,
+        "livemode": false,
+        "method": "card",
+        "order_id": "<ord:7>",
+        "risk_decision": "allow",
+        "risk_reasons": [],
+        "risk_review_status": "not_required",
+        "risk_reviewed_by": null,
+        "risk_score": 0,
+        "station_id": "<mer:?>",
+        "status": "captured",
+        "tax": "444",
+        "test_scenario": null,
+        "vpa": null
+      },
+      {
+        "amount": "123457",
+        "authorized": true,
+        "bank_code": null,
+        "capture_mode": "automatic",
+        "captured": true,
+        "card_bin": null,
+        "card_expiry_month": null,
+        "card_expiry_year": null,
+        "card_last4": null,
+        "card_network": null,
+        "currency": "INR",
+        "customer_email": null,
+        "error_code": null,
+        "error_description": null,
+        "failed": false,
+        "fee": "1235",
+        "id": "<pay:9>",
+        "junction_ref": "<JN:?>",
+        "junction_sequence": 2,
+        "livemode": false,
+        "method": "upi",
+        "order_id": "<ord:9>",
+        "risk_decision": "allow",
+        "risk_reasons": [],
+        "risk_review_status": "not_required",
+        "risk_reviewed_by": null,
+        "risk_score": 0,
+        "station_id": "<mer:?>",
+        "status": "captured",
+        "tax": "222",
+        "test_scenario": null,
+        "vpa": "success@mintrail"
+      },
+      {
+        "amount": "123457",
+        "authorized": true,
+        "bank_code": null,
+        "capture_mode": "automatic",
+        "captured": true,
+        "card_bin": null,
+        "card_expiry_month": null,
+        "card_expiry_year": null,
+        "card_last4": null,
+        "card_network": null,
+        "currency": "INR",
+        "customer_email": null,
+        "error_code": null,
+        "error_description": null,
+        "failed": false,
+        "fee": "617",
+        "id": "<pay:3>",
+        "junction_ref": "<JN:?>",
+        "junction_sequence": 2,
+        "livemode": false,
+        "method": "upi",
+        "order_id": "<ord:3>",
+        "risk_decision": "allow",
+        "risk_reasons": [],
+        "risk_review_status": "not_required",
+        "risk_reviewed_by": null,
+        "risk_score": 0,
+        "station_id": "<mer:?>",
+        "status": "captured",
+        "tax": "111",
+        "test_scenario": null,
+        "vpa": "success@mintrail"
+      },
+      {
+        "amount": "123457",
+        "authorized": true,
+        "bank_code": null,
+        "capture_mode": "automatic",
+        "captured": true,
+        "card_bin": null,
+        "card_expiry_month": null,
+        "card_expiry_year": null,
+        "card_last4": null,
+        "card_network": null,
+        "currency": "INR",
+        "customer_email": null,
+        "error_code": null,
+        "error_description": null,
+        "failed": false,
+        "fee": "988",
+        "id": "<pay:6>",
+        "junction_ref": "<JN:?>",
+        "junction_sequence": 2,
+        "livemode": false,
+        "method": "upi",
+        "order_id": "<ord:6>",
+        "risk_decision": "allow",
+        "risk_reasons": [],
+        "risk_review_status": "not_required",
+        "risk_reviewed_by": null,
+        "risk_score": 0,
+        "station_id": "<mer:?>",
+        "status": "captured",
+        "tax": "178",
+        "test_scenario": null,
+        "vpa": "success@mintrail"
+      }
+    ],
+    "payment_events": {
+      "<pay:1>": [
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "risk": []
+          },
+          "payment_id": "<pay:1>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.created"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "ref": "<JN:?>"
+          },
+          "payment_id": "<pay:1>",
+          "sequence": null,
+          "source": "junction",
+          "type": "submit.accepted"
+        },
+        {
+          "applied": true,
+          "junction_event_id": "jev_<JN:?>_2",
+          "note": null,
+          "payload": {
+            "amount": 123457,
+            "currency": "INR",
+            "decline_code": null,
+            "decline_reason": null,
+            "id": "jev_<JN:?>_2",
+            "occurred_at": "<ts>",
+            "payment_id": "<pay:1>",
+            "ref": "<JN:?>",
+            "sequence": 2,
+            "type": "authorization.succeeded"
+          },
+          "payment_id": "<pay:1>",
+          "sequence": 2,
+          "source": "junction",
+          "type": "junction.authorization.succeeded"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "fee": 1852,
+            "tax": 333
+          },
+          "payment_id": "<pay:1>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.captured"
+        }
+      ],
+      "<pay:2>": [
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "risk": []
+          },
+          "payment_id": "<pay:2>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.created"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "ref": "<JN:?>"
+          },
+          "payment_id": "<pay:2>",
+          "sequence": null,
+          "source": "junction",
+          "type": "submit.accepted"
+        },
+        {
+          "applied": true,
+          "junction_event_id": "jev_<JN:?>_2",
+          "note": null,
+          "payload": {
+            "amount": 123457,
+            "currency": "INR",
+            "decline_code": null,
+            "decline_reason": null,
+            "id": "jev_<JN:?>_2",
+            "occurred_at": "<ts>",
+            "payment_id": "<pay:2>",
+            "ref": "<JN:?>",
+            "sequence": 2,
+            "type": "authorization.succeeded"
+          },
+          "payment_id": "<pay:2>",
+          "sequence": 2,
+          "source": "junction",
+          "type": "junction.authorization.succeeded"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "fee": 1852,
+            "tax": 333
+          },
+          "payment_id": "<pay:2>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.captured"
+        }
+      ],
+      "<pay:3>": [
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "risk": []
+          },
+          "payment_id": "<pay:3>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.created"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "ref": "<JN:?>"
+          },
+          "payment_id": "<pay:3>",
+          "sequence": null,
+          "source": "junction",
+          "type": "submit.accepted"
+        },
+        {
+          "applied": false,
+          "junction_event_id": "jev_<JN:?>_1",
+          "note": "no-op: payment is pending",
+          "payload": {
+            "amount": 123457,
+            "currency": "INR",
+            "decline_code": null,
+            "decline_reason": null,
+            "id": "jev_<JN:?>_1",
+            "occurred_at": "<ts>",
+            "payment_id": "<pay:3>",
+            "ref": "<JN:?>",
+            "sequence": 1,
+            "type": "authorization.pending"
+          },
+          "payment_id": "<pay:3>",
+          "sequence": 1,
+          "source": "junction",
+          "type": "junction.authorization.pending"
+        },
+        {
+          "applied": true,
+          "junction_event_id": "jev_<JN:?>_2",
+          "note": null,
+          "payload": {
+            "amount": 123457,
+            "currency": "INR",
+            "decline_code": null,
+            "decline_reason": null,
+            "id": "jev_<JN:?>_2",
+            "occurred_at": "<ts>",
+            "payment_id": "<pay:3>",
+            "ref": "<JN:?>",
+            "sequence": 2,
+            "type": "authorization.succeeded"
+          },
+          "payment_id": "<pay:3>",
+          "sequence": 2,
+          "source": "junction",
+          "type": "junction.authorization.succeeded"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "fee": 617,
+            "tax": 111
+          },
+          "payment_id": "<pay:3>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.captured"
+        }
+      ],
+      "<pay:4>": [
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "risk": []
+          },
+          "payment_id": "<pay:4>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.created"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "ref": "<JN:?>"
+          },
+          "payment_id": "<pay:4>",
+          "sequence": null,
+          "source": "junction",
+          "type": "submit.accepted"
+        },
+        {
+          "applied": true,
+          "junction_event_id": "jev_<JN:?>_2",
+          "note": null,
+          "payload": {
+            "amount": 123457,
+            "currency": "INR",
+            "decline_code": null,
+            "decline_reason": null,
+            "id": "jev_<JN:?>_2",
+            "occurred_at": "<ts>",
+            "payment_id": "<pay:4>",
+            "ref": "<JN:?>",
+            "sequence": 2,
+            "type": "authorization.succeeded"
+          },
+          "payment_id": "<pay:4>",
+          "sequence": 2,
+          "source": "junction",
+          "type": "junction.authorization.succeeded"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "fee": 2222,
+            "tax": 400
+          },
+          "payment_id": "<pay:4>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.captured"
+        }
+      ],
+      "<pay:5>": [
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "risk": []
+          },
+          "payment_id": "<pay:5>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.created"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "ref": "<JN:?>"
+          },
+          "payment_id": "<pay:5>",
+          "sequence": null,
+          "source": "junction",
+          "type": "submit.accepted"
+        },
+        {
+          "applied": true,
+          "junction_event_id": "jev_<JN:?>_2",
+          "note": null,
+          "payload": {
+            "amount": 123457,
+            "currency": "INR",
+            "decline_code": null,
+            "decline_reason": null,
+            "id": "jev_<JN:?>_2",
+            "occurred_at": "<ts>",
+            "payment_id": "<pay:5>",
+            "ref": "<JN:?>",
+            "sequence": 2,
+            "type": "authorization.succeeded"
+          },
+          "payment_id": "<pay:5>",
+          "sequence": 2,
+          "source": "junction",
+          "type": "junction.authorization.succeeded"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "fee": 2099,
+            "tax": 378
+          },
+          "payment_id": "<pay:5>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.captured"
+        }
+      ],
+      "<pay:6>": [
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "risk": []
+          },
+          "payment_id": "<pay:6>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.created"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "ref": "<JN:?>"
+          },
+          "payment_id": "<pay:6>",
+          "sequence": null,
+          "source": "junction",
+          "type": "submit.accepted"
+        },
+        {
+          "applied": false,
+          "junction_event_id": "jev_<JN:?>_1",
+          "note": "no-op: payment is pending",
+          "payload": {
+            "amount": 123457,
+            "currency": "INR",
+            "decline_code": null,
+            "decline_reason": null,
+            "id": "jev_<JN:?>_1",
+            "occurred_at": "<ts>",
+            "payment_id": "<pay:6>",
+            "ref": "<JN:?>",
+            "sequence": 1,
+            "type": "authorization.pending"
+          },
+          "payment_id": "<pay:6>",
+          "sequence": 1,
+          "source": "junction",
+          "type": "junction.authorization.pending"
+        },
+        {
+          "applied": true,
+          "junction_event_id": "jev_<JN:?>_2",
+          "note": null,
+          "payload": {
+            "amount": 123457,
+            "currency": "INR",
+            "decline_code": null,
+            "decline_reason": null,
+            "id": "jev_<JN:?>_2",
+            "occurred_at": "<ts>",
+            "payment_id": "<pay:6>",
+            "ref": "<JN:?>",
+            "sequence": 2,
+            "type": "authorization.succeeded"
+          },
+          "payment_id": "<pay:6>",
+          "sequence": 2,
+          "source": "junction",
+          "type": "junction.authorization.succeeded"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "fee": 988,
+            "tax": 178
+          },
+          "payment_id": "<pay:6>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.captured"
+        }
+      ],
+      "<pay:7>": [
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "risk": []
+          },
+          "payment_id": "<pay:7>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.created"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "ref": "<JN:?>"
+          },
+          "payment_id": "<pay:7>",
+          "sequence": null,
+          "source": "junction",
+          "type": "submit.accepted"
+        },
+        {
+          "applied": true,
+          "junction_event_id": "jev_<JN:?>_2",
+          "note": null,
+          "payload": {
+            "amount": 123457,
+            "currency": "INR",
+            "decline_code": null,
+            "decline_reason": null,
+            "id": "jev_<JN:?>_2",
+            "occurred_at": "<ts>",
+            "payment_id": "<pay:7>",
+            "ref": "<JN:?>",
+            "sequence": 2,
+            "type": "authorization.succeeded"
+          },
+          "payment_id": "<pay:7>",
+          "sequence": 2,
+          "source": "junction",
+          "type": "junction.authorization.succeeded"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "fee": 2469,
+            "tax": 444
+          },
+          "payment_id": "<pay:7>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.captured"
+        }
+      ],
+      "<pay:8>": [
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "risk": []
+          },
+          "payment_id": "<pay:8>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.created"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "ref": "<JN:?>"
+          },
+          "payment_id": "<pay:8>",
+          "sequence": null,
+          "source": "junction",
+          "type": "submit.accepted"
+        },
+        {
+          "applied": true,
+          "junction_event_id": "jev_<JN:?>_2",
+          "note": null,
+          "payload": {
+            "amount": 123457,
+            "currency": "INR",
+            "decline_code": null,
+            "decline_reason": null,
+            "id": "jev_<JN:?>_2",
+            "occurred_at": "<ts>",
+            "payment_id": "<pay:8>",
+            "ref": "<JN:?>",
+            "sequence": 2,
+            "type": "authorization.succeeded"
+          },
+          "payment_id": "<pay:8>",
+          "sequence": 2,
+          "source": "junction",
+          "type": "junction.authorization.succeeded"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "fee": 2346,
+            "tax": 422
+          },
+          "payment_id": "<pay:8>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.captured"
+        }
+      ],
+      "<pay:9>": [
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "risk": []
+          },
+          "payment_id": "<pay:9>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.created"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "ref": "<JN:?>"
+          },
+          "payment_id": "<pay:9>",
+          "sequence": null,
+          "source": "junction",
+          "type": "submit.accepted"
+        },
+        {
+          "applied": false,
+          "junction_event_id": "jev_<JN:?>_1",
+          "note": "no-op: payment is pending",
+          "payload": {
+            "amount": 123457,
+            "currency": "INR",
+            "decline_code": null,
+            "decline_reason": null,
+            "id": "jev_<JN:?>_1",
+            "occurred_at": "<ts>",
+            "payment_id": "<pay:9>",
+            "ref": "<JN:?>",
+            "sequence": 1,
+            "type": "authorization.pending"
+          },
+          "payment_id": "<pay:9>",
+          "sequence": 1,
+          "source": "junction",
+          "type": "junction.authorization.pending"
+        },
+        {
+          "applied": true,
+          "junction_event_id": "jev_<JN:?>_2",
+          "note": null,
+          "payload": {
+            "amount": 123457,
+            "currency": "INR",
+            "decline_code": null,
+            "decline_reason": null,
+            "id": "jev_<JN:?>_2",
+            "occurred_at": "<ts>",
+            "payment_id": "<pay:9>",
+            "ref": "<JN:?>",
+            "sequence": 2,
+            "type": "authorization.succeeded"
+          },
+          "payment_id": "<pay:9>",
+          "sequence": 2,
+          "source": "junction",
+          "type": "junction.authorization.succeeded"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "fee": 1235,
+            "tax": 222
+          },
+          "payment_id": "<pay:9>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.captured"
+        }
+      ]
+    },
+    "idempotency_keys": [
+      {
+        "key": "parity-1",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/orders",
+        "response_body": {
+          "amount": 123457,
+          "amount_paid": 0,
+          "attempts": 0,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "id": "<ord:9>",
+          "livemode": false,
+          "notes": {},
+          "object": "order",
+          "receipt": null,
+          "status": "created"
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-10",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/payments",
+        "response_body": {
+          "amount": 123457,
+          "authorized_at": null,
+          "bank_code": null,
+          "capture_mode": "automatic",
+          "captured_at": null,
+          "card": {
+            "bin": "411111",
+            "expiry_month": 12,
+            "expiry_year": 2030,
+            "last4": "1111",
+            "network": "visa"
+          },
+          "created_at": "<ts>",
+          "currency": "INR",
+          "email": null,
+          "error_code": null,
+          "error_description": null,
+          "failed_at": null,
+          "fee": null,
+          "id": "<pay:4>",
+          "livemode": false,
+          "method": "card",
+          "object": "payment",
+          "order_id": "<ord:4>",
+          "risk": {
+            "decision": "allow",
+            "reasons": [],
+            "review_status": "not_required",
+            "score": 0
+          },
+          "status": "created",
+          "tax": null,
+          "vpa": null
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-11",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/orders",
+        "response_body": {
+          "amount": 123457,
+          "amount_paid": 0,
+          "attempts": 0,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "id": "<ord:5>",
+          "livemode": false,
+          "notes": {},
+          "object": "order",
+          "receipt": null,
+          "status": "created"
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-12",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/payments",
+        "response_body": {
+          "amount": 123457,
+          "authorized_at": null,
+          "bank_code": "MRTEST",
+          "capture_mode": "automatic",
+          "captured_at": null,
+          "card": null,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "email": null,
+          "error_code": null,
+          "error_description": null,
+          "failed_at": null,
+          "fee": null,
+          "id": "<pay:5>",
+          "livemode": false,
+          "method": "netbanking",
+          "object": "payment",
+          "order_id": "<ord:5>",
+          "risk": {
+            "decision": "allow",
+            "reasons": [],
+            "review_status": "not_required",
+            "score": 0
+          },
+          "status": "created",
+          "tax": null,
+          "vpa": null
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-13",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/orders",
+        "response_body": {
+          "amount": 123457,
+          "amount_paid": 0,
+          "attempts": 0,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "id": "<ord:3>",
+          "livemode": false,
+          "notes": {},
+          "object": "order",
+          "receipt": null,
+          "status": "created"
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-14",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/payments",
+        "response_body": {
+          "amount": 123457,
+          "authorized_at": null,
+          "bank_code": null,
+          "capture_mode": "automatic",
+          "captured_at": null,
+          "card": null,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "email": null,
+          "error_code": null,
+          "error_description": null,
+          "failed_at": null,
+          "fee": null,
+          "id": "<pay:3>",
+          "livemode": false,
+          "method": "upi",
+          "object": "payment",
+          "order_id": "<ord:3>",
+          "risk": {
+            "decision": "allow",
+            "reasons": [],
+            "review_status": "not_required",
+            "score": 0
+          },
+          "status": "created",
+          "tax": null,
+          "vpa": "success@mintrail"
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-15",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/orders",
+        "response_body": {
+          "amount": 123457,
+          "amount_paid": 0,
+          "attempts": 0,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "id": "<ord:1>",
+          "livemode": false,
+          "notes": {},
+          "object": "order",
+          "receipt": null,
+          "status": "created"
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-16",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/payments",
+        "response_body": {
+          "amount": 123457,
+          "authorized_at": null,
+          "bank_code": null,
+          "capture_mode": "automatic",
+          "captured_at": null,
+          "card": {
+            "bin": "411111",
+            "expiry_month": 12,
+            "expiry_year": 2030,
+            "last4": "1111",
+            "network": "visa"
+          },
+          "created_at": "<ts>",
+          "currency": "INR",
+          "email": null,
+          "error_code": null,
+          "error_description": null,
+          "failed_at": null,
+          "fee": null,
+          "id": "<pay:1>",
+          "livemode": false,
+          "method": "card",
+          "object": "payment",
+          "order_id": "<ord:1>",
+          "risk": {
+            "decision": "allow",
+            "reasons": [],
+            "review_status": "not_required",
+            "score": 0
+          },
+          "status": "created",
+          "tax": null,
+          "vpa": null
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-17",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/orders",
+        "response_body": {
+          "amount": 123457,
+          "amount_paid": 0,
+          "attempts": 0,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "id": "<ord:2>",
+          "livemode": false,
+          "notes": {},
+          "object": "order",
+          "receipt": null,
+          "status": "created"
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-18",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/payments",
+        "response_body": {
+          "amount": 123457,
+          "authorized_at": null,
+          "bank_code": "MRTEST",
+          "capture_mode": "automatic",
+          "captured_at": null,
+          "card": null,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "email": null,
+          "error_code": null,
+          "error_description": null,
+          "failed_at": null,
+          "fee": null,
+          "id": "<pay:2>",
+          "livemode": false,
+          "method": "netbanking",
+          "object": "payment",
+          "order_id": "<ord:2>",
+          "risk": {
+            "decision": "allow",
+            "reasons": [],
+            "review_status": "not_required",
+            "score": 0
+          },
+          "status": "created",
+          "tax": null,
+          "vpa": null
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-2",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/payments",
+        "response_body": {
+          "amount": 123457,
+          "authorized_at": null,
+          "bank_code": null,
+          "capture_mode": "automatic",
+          "captured_at": null,
+          "card": null,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "email": null,
+          "error_code": null,
+          "error_description": null,
+          "failed_at": null,
+          "fee": null,
+          "id": "<pay:9>",
+          "livemode": false,
+          "method": "upi",
+          "object": "payment",
+          "order_id": "<ord:9>",
+          "risk": {
+            "decision": "allow",
+            "reasons": [],
+            "review_status": "not_required",
+            "score": 0
+          },
+          "status": "created",
+          "tax": null,
+          "vpa": "success@mintrail"
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-3",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/orders",
+        "response_body": {
+          "amount": 123457,
+          "amount_paid": 0,
+          "attempts": 0,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "id": "<ord:7>",
+          "livemode": false,
+          "notes": {},
+          "object": "order",
+          "receipt": null,
+          "status": "created"
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-4",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/payments",
+        "response_body": {
+          "amount": 123457,
+          "authorized_at": null,
+          "bank_code": null,
+          "capture_mode": "automatic",
+          "captured_at": null,
+          "card": {
+            "bin": "411111",
+            "expiry_month": 12,
+            "expiry_year": 2030,
+            "last4": "1111",
+            "network": "visa"
+          },
+          "created_at": "<ts>",
+          "currency": "INR",
+          "email": null,
+          "error_code": null,
+          "error_description": null,
+          "failed_at": null,
+          "fee": null,
+          "id": "<pay:7>",
+          "livemode": false,
+          "method": "card",
+          "object": "payment",
+          "order_id": "<ord:7>",
+          "risk": {
+            "decision": "allow",
+            "reasons": [],
+            "review_status": "not_required",
+            "score": 0
+          },
+          "status": "created",
+          "tax": null,
+          "vpa": null
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-5",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/orders",
+        "response_body": {
+          "amount": 123457,
+          "amount_paid": 0,
+          "attempts": 0,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "id": "<ord:8>",
+          "livemode": false,
+          "notes": {},
+          "object": "order",
+          "receipt": null,
+          "status": "created"
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-6",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/payments",
+        "response_body": {
+          "amount": 123457,
+          "authorized_at": null,
+          "bank_code": "MRTEST",
+          "capture_mode": "automatic",
+          "captured_at": null,
+          "card": null,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "email": null,
+          "error_code": null,
+          "error_description": null,
+          "failed_at": null,
+          "fee": null,
+          "id": "<pay:8>",
+          "livemode": false,
+          "method": "netbanking",
+          "object": "payment",
+          "order_id": "<ord:8>",
+          "risk": {
+            "decision": "allow",
+            "reasons": [],
+            "review_status": "not_required",
+            "score": 0
+          },
+          "status": "created",
+          "tax": null,
+          "vpa": null
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-7",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/orders",
+        "response_body": {
+          "amount": 123457,
+          "amount_paid": 0,
+          "attempts": 0,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "id": "<ord:6>",
+          "livemode": false,
+          "notes": {},
+          "object": "order",
+          "receipt": null,
+          "status": "created"
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-8",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/payments",
+        "response_body": {
+          "amount": 123457,
+          "authorized_at": null,
+          "bank_code": null,
+          "capture_mode": "automatic",
+          "captured_at": null,
+          "card": null,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "email": null,
+          "error_code": null,
+          "error_description": null,
+          "failed_at": null,
+          "fee": null,
+          "id": "<pay:6>",
+          "livemode": false,
+          "method": "upi",
+          "object": "payment",
+          "order_id": "<ord:6>",
+          "risk": {
+            "decision": "allow",
+            "reasons": [],
+            "review_status": "not_required",
+            "score": 0
+          },
+          "status": "created",
+          "tax": null,
+          "vpa": "success@mintrail"
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-9",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/orders",
+        "response_body": {
+          "amount": 123457,
+          "amount_paid": 0,
+          "attempts": 0,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "id": "<ord:4>",
+          "livemode": false,
+          "notes": {},
+          "object": "order",
+          "receipt": null,
+          "status": "created"
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      }
+    ],
+    "rate_limit_state": [
+      {
+        "bucket": "station:<mer:?>:test"
+      },
+      {
+        "bucket": "station:<mer:?>:test"
+      },
+      {
+        "bucket": "station:<mer:?>:test"
+      }
+    ],
+    "conductor_blocklist": [],
+    "junction_authorizations": [
+      {
+        "amount": "123457",
+        "currency": "INR",
+        "decline_code": null,
+        "instrument": "card:411111:1111",
+        "livemode": false,
+        "merchant_ref": "<mer:?>",
+        "method": "card",
+        "payment_id": "<pay:1>",
+        "plan": {
+          "decline_code": null,
+          "duplicates": 0,
+          "final": "authorized",
+          "latency_s": 0,
+          "out_of_order": false,
+          "pending_first": false,
+          "source": "magic_instrument",
+          "unavailable_attempts": 0
+        },
+        "ref": "<JN:?>",
+        "requests_seen": 1,
+        "scenario": null,
+        "sequence": 2,
+        "status": "captured"
+      },
+      {
+        "amount": "123457",
+        "currency": "INR",
+        "decline_code": null,
+        "instrument": "card:411111:1111",
+        "livemode": false,
+        "merchant_ref": "<mer:?>",
+        "method": "card",
+        "payment_id": "<pay:4>",
+        "plan": {
+          "decline_code": null,
+          "duplicates": 0,
+          "final": "authorized",
+          "latency_s": 0,
+          "out_of_order": false,
+          "pending_first": false,
+          "source": "magic_instrument",
+          "unavailable_attempts": 0
+        },
+        "ref": "<JN:?>",
+        "requests_seen": 1,
+        "scenario": null,
+        "sequence": 2,
+        "status": "captured"
+      },
+      {
+        "amount": "123457",
+        "currency": "INR",
+        "decline_code": null,
+        "instrument": "card:411111:1111",
+        "livemode": false,
+        "merchant_ref": "<mer:?>",
+        "method": "card",
+        "payment_id": "<pay:7>",
+        "plan": {
+          "decline_code": null,
+          "duplicates": 0,
+          "final": "authorized",
+          "latency_s": 0,
+          "out_of_order": false,
+          "pending_first": false,
+          "source": "magic_instrument",
+          "unavailable_attempts": 0
+        },
+        "ref": "<JN:?>",
+        "requests_seen": 1,
+        "scenario": null,
+        "sequence": 2,
+        "status": "captured"
+      },
+      {
+        "amount": "123457",
+        "currency": "INR",
+        "decline_code": null,
+        "instrument": "netbanking:MRTEST",
+        "livemode": false,
+        "merchant_ref": "<mer:?>",
+        "method": "netbanking",
+        "payment_id": "<pay:2>",
+        "plan": {
+          "decline_code": null,
+          "duplicates": 0,
+          "final": "authorized",
+          "latency_s": 0,
+          "out_of_order": false,
+          "pending_first": false,
+          "source": "magic_instrument",
+          "unavailable_attempts": 0
+        },
+        "ref": "<JN:?>",
+        "requests_seen": 1,
+        "scenario": null,
+        "sequence": 2,
+        "status": "captured"
+      },
+      {
+        "amount": "123457",
+        "currency": "INR",
+        "decline_code": null,
+        "instrument": "netbanking:MRTEST",
+        "livemode": false,
+        "merchant_ref": "<mer:?>",
+        "method": "netbanking",
+        "payment_id": "<pay:5>",
+        "plan": {
+          "decline_code": null,
+          "duplicates": 0,
+          "final": "authorized",
+          "latency_s": 0,
+          "out_of_order": false,
+          "pending_first": false,
+          "source": "magic_instrument",
+          "unavailable_attempts": 0
+        },
+        "ref": "<JN:?>",
+        "requests_seen": 1,
+        "scenario": null,
+        "sequence": 2,
+        "status": "captured"
+      },
+      {
+        "amount": "123457",
+        "currency": "INR",
+        "decline_code": null,
+        "instrument": "netbanking:MRTEST",
+        "livemode": false,
+        "merchant_ref": "<mer:?>",
+        "method": "netbanking",
+        "payment_id": "<pay:8>",
+        "plan": {
+          "decline_code": null,
+          "duplicates": 0,
+          "final": "authorized",
+          "latency_s": 0,
+          "out_of_order": false,
+          "pending_first": false,
+          "source": "magic_instrument",
+          "unavailable_attempts": 0
+        },
+        "ref": "<JN:?>",
+        "requests_seen": 1,
+        "scenario": null,
+        "sequence": 2,
+        "status": "captured"
+      },
+      {
+        "amount": "123457",
+        "currency": "INR",
+        "decline_code": null,
+        "instrument": "upi:success@mintrail",
+        "livemode": false,
+        "merchant_ref": "<mer:?>",
+        "method": "upi",
+        "payment_id": "<pay:3>",
+        "plan": {
+          "decline_code": null,
+          "duplicates": 0,
+          "final": "authorized",
+          "latency_s": 0,
+          "out_of_order": false,
+          "pending_first": true,
+          "source": "magic_instrument",
+          "unavailable_attempts": 0
+        },
+        "ref": "<JN:?>",
+        "requests_seen": 1,
+        "scenario": null,
+        "sequence": 2,
+        "status": "captured"
+      },
+      {
+        "amount": "123457",
+        "currency": "INR",
+        "decline_code": null,
+        "instrument": "upi:success@mintrail",
+        "livemode": false,
+        "merchant_ref": "<mer:?>",
+        "method": "upi",
+        "payment_id": "<pay:6>",
+        "plan": {
+          "decline_code": null,
+          "duplicates": 0,
+          "final": "authorized",
+          "latency_s": 0,
+          "out_of_order": false,
+          "pending_first": true,
+          "source": "magic_instrument",
+          "unavailable_attempts": 0
+        },
+        "ref": "<JN:?>",
+        "requests_seen": 1,
+        "scenario": null,
+        "sequence": 2,
+        "status": "captured"
+      },
+      {
+        "amount": "123457",
+        "currency": "INR",
+        "decline_code": null,
+        "instrument": "upi:success@mintrail",
+        "livemode": false,
+        "merchant_ref": "<mer:?>",
+        "method": "upi",
+        "payment_id": "<pay:9>",
+        "plan": {
+          "decline_code": null,
+          "duplicates": 0,
+          "final": "authorized",
+          "latency_s": 0,
+          "out_of_order": false,
+          "pending_first": true,
+          "source": "magic_instrument",
+          "unavailable_attempts": 0
+        },
+        "ref": "<JN:?>",
+        "requests_seen": 1,
+        "scenario": null,
+        "sequence": 2,
+        "status": "captured"
+      }
+    ],
+    "jobs": [
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:expire:<pay:1>",
+        "errored": false,
+        "kind": "payments.expire_authorization",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:1>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:expire:<pay:2>",
+        "errored": false,
+        "kind": "payments.expire_authorization",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:2>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:expire:<pay:3>",
+        "errored": false,
+        "kind": "payments.expire_authorization",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:3>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:expire:<pay:4>",
+        "errored": false,
+        "kind": "payments.expire_authorization",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:4>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:expire:<pay:5>",
+        "errored": false,
+        "kind": "payments.expire_authorization",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:5>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:expire:<pay:6>",
+        "errored": false,
+        "kind": "payments.expire_authorization",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:6>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:expire:<pay:7>",
+        "errored": false,
+        "kind": "payments.expire_authorization",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:7>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:expire:<pay:8>",
+        "errored": false,
+        "kind": "payments.expire_authorization",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:8>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:expire:<pay:9>",
+        "errored": false,
+        "kind": "payments.expire_authorization",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:9>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:status_check:<pay:1>:1",
+        "errored": false,
+        "kind": "payments.status_check",
+        "max_attempts": 10,
+        "payload": {
+          "attempt": 1,
+          "payment_id": "<pay:1>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:status_check:<pay:2>:1",
+        "errored": false,
+        "kind": "payments.status_check",
+        "max_attempts": 10,
+        "payload": {
+          "attempt": 1,
+          "payment_id": "<pay:2>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:status_check:<pay:3>:1",
+        "errored": false,
+        "kind": "payments.status_check",
+        "max_attempts": 10,
+        "payload": {
+          "attempt": 1,
+          "payment_id": "<pay:3>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:status_check:<pay:4>:1",
+        "errored": false,
+        "kind": "payments.status_check",
+        "max_attempts": 10,
+        "payload": {
+          "attempt": 1,
+          "payment_id": "<pay:4>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:status_check:<pay:5>:1",
+        "errored": false,
+        "kind": "payments.status_check",
+        "max_attempts": 10,
+        "payload": {
+          "attempt": 1,
+          "payment_id": "<pay:5>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:status_check:<pay:6>:1",
+        "errored": false,
+        "kind": "payments.status_check",
+        "max_attempts": 10,
+        "payload": {
+          "attempt": 1,
+          "payment_id": "<pay:6>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:status_check:<pay:7>:1",
+        "errored": false,
+        "kind": "payments.status_check",
+        "max_attempts": 10,
+        "payload": {
+          "attempt": 1,
+          "payment_id": "<pay:7>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:status_check:<pay:8>:1",
+        "errored": false,
+        "kind": "payments.status_check",
+        "max_attempts": 10,
+        "payload": {
+          "attempt": 1,
+          "payment_id": "<pay:8>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:status_check:<pay:9>:1",
+        "errored": false,
+        "kind": "payments.status_check",
+        "max_attempts": 10,
+        "payload": {
+          "attempt": 1,
+          "payment_id": "<pay:9>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:decide:<JN:?>",
+        "errored": false,
+        "kind": "junction.decide",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:decide:<JN:?>",
+        "errored": false,
+        "kind": "junction.decide",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:decide:<JN:?>",
+        "errored": false,
+        "kind": "junction.decide",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:decide:<JN:?>",
+        "errored": false,
+        "kind": "junction.decide",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:decide:<JN:?>",
+        "errored": false,
+        "kind": "junction.decide",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:decide:<JN:?>",
+        "errored": false,
+        "kind": "junction.decide",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:decide:<JN:?>",
+        "errored": false,
+        "kind": "junction.decide",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:decide:<JN:?>",
+        "errored": false,
+        "kind": "junction.decide",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:decide:<JN:?>",
+        "errored": false,
+        "kind": "junction.decide",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:deliver:jev_<JN:?>_1:0",
+        "errored": false,
+        "kind": "junction.deliver_callback",
+        "max_attempts": 8,
+        "payload": {
+          "amount": 123457,
+          "currency": "INR",
+          "decline_code": null,
+          "decline_reason": null,
+          "id": "jev_<JN:?>_1",
+          "occurred_at": "<ts>",
+          "payment_id": "<pay:3>",
+          "ref": "<JN:?>",
+          "sequence": 1,
+          "type": "authorization.pending"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:deliver:jev_<JN:?>_1:0",
+        "errored": false,
+        "kind": "junction.deliver_callback",
+        "max_attempts": 8,
+        "payload": {
+          "amount": 123457,
+          "currency": "INR",
+          "decline_code": null,
+          "decline_reason": null,
+          "id": "jev_<JN:?>_1",
+          "occurred_at": "<ts>",
+          "payment_id": "<pay:6>",
+          "ref": "<JN:?>",
+          "sequence": 1,
+          "type": "authorization.pending"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:deliver:jev_<JN:?>_1:0",
+        "errored": false,
+        "kind": "junction.deliver_callback",
+        "max_attempts": 8,
+        "payload": {
+          "amount": 123457,
+          "currency": "INR",
+          "decline_code": null,
+          "decline_reason": null,
+          "id": "jev_<JN:?>_1",
+          "occurred_at": "<ts>",
+          "payment_id": "<pay:9>",
+          "ref": "<JN:?>",
+          "sequence": 1,
+          "type": "authorization.pending"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:deliver:jev_<JN:?>_2:0",
+        "errored": false,
+        "kind": "junction.deliver_callback",
+        "max_attempts": 8,
+        "payload": {
+          "amount": 123457,
+          "currency": "INR",
+          "decline_code": null,
+          "decline_reason": null,
+          "id": "jev_<JN:?>_2",
+          "occurred_at": "<ts>",
+          "payment_id": "<pay:1>",
+          "ref": "<JN:?>",
+          "sequence": 2,
+          "type": "authorization.succeeded"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:deliver:jev_<JN:?>_2:0",
+        "errored": false,
+        "kind": "junction.deliver_callback",
+        "max_attempts": 8,
+        "payload": {
+          "amount": 123457,
+          "currency": "INR",
+          "decline_code": null,
+          "decline_reason": null,
+          "id": "jev_<JN:?>_2",
+          "occurred_at": "<ts>",
+          "payment_id": "<pay:2>",
+          "ref": "<JN:?>",
+          "sequence": 2,
+          "type": "authorization.succeeded"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:deliver:jev_<JN:?>_2:0",
+        "errored": false,
+        "kind": "junction.deliver_callback",
+        "max_attempts": 8,
+        "payload": {
+          "amount": 123457,
+          "currency": "INR",
+          "decline_code": null,
+          "decline_reason": null,
+          "id": "jev_<JN:?>_2",
+          "occurred_at": "<ts>",
+          "payment_id": "<pay:3>",
+          "ref": "<JN:?>",
+          "sequence": 2,
+          "type": "authorization.succeeded"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:deliver:jev_<JN:?>_2:0",
+        "errored": false,
+        "kind": "junction.deliver_callback",
+        "max_attempts": 8,
+        "payload": {
+          "amount": 123457,
+          "currency": "INR",
+          "decline_code": null,
+          "decline_reason": null,
+          "id": "jev_<JN:?>_2",
+          "occurred_at": "<ts>",
+          "payment_id": "<pay:4>",
+          "ref": "<JN:?>",
+          "sequence": 2,
+          "type": "authorization.succeeded"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:deliver:jev_<JN:?>_2:0",
+        "errored": false,
+        "kind": "junction.deliver_callback",
+        "max_attempts": 8,
+        "payload": {
+          "amount": 123457,
+          "currency": "INR",
+          "decline_code": null,
+          "decline_reason": null,
+          "id": "jev_<JN:?>_2",
+          "occurred_at": "<ts>",
+          "payment_id": "<pay:5>",
+          "ref": "<JN:?>",
+          "sequence": 2,
+          "type": "authorization.succeeded"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:deliver:jev_<JN:?>_2:0",
+        "errored": false,
+        "kind": "junction.deliver_callback",
+        "max_attempts": 8,
+        "payload": {
+          "amount": 123457,
+          "currency": "INR",
+          "decline_code": null,
+          "decline_reason": null,
+          "id": "jev_<JN:?>_2",
+          "occurred_at": "<ts>",
+          "payment_id": "<pay:6>",
+          "ref": "<JN:?>",
+          "sequence": 2,
+          "type": "authorization.succeeded"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:deliver:jev_<JN:?>_2:0",
+        "errored": false,
+        "kind": "junction.deliver_callback",
+        "max_attempts": 8,
+        "payload": {
+          "amount": 123457,
+          "currency": "INR",
+          "decline_code": null,
+          "decline_reason": null,
+          "id": "jev_<JN:?>_2",
+          "occurred_at": "<ts>",
+          "payment_id": "<pay:7>",
+          "ref": "<JN:?>",
+          "sequence": 2,
+          "type": "authorization.succeeded"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:deliver:jev_<JN:?>_2:0",
+        "errored": false,
+        "kind": "junction.deliver_callback",
+        "max_attempts": 8,
+        "payload": {
+          "amount": 123457,
+          "currency": "INR",
+          "decline_code": null,
+          "decline_reason": null,
+          "id": "jev_<JN:?>_2",
+          "occurred_at": "<ts>",
+          "payment_id": "<pay:8>",
+          "ref": "<JN:?>",
+          "sequence": 2,
+          "type": "authorization.succeeded"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:deliver:jev_<JN:?>_2:0",
+        "errored": false,
+        "kind": "junction.deliver_callback",
+        "max_attempts": 8,
+        "payload": {
+          "amount": 123457,
+          "currency": "INR",
+          "decline_code": null,
+          "decline_reason": null,
+          "id": "jev_<JN:?>_2",
+          "occurred_at": "<ts>",
+          "payment_id": "<pay:9>",
+          "ref": "<JN:?>",
+          "sequence": 2,
+          "type": "authorization.succeeded"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:resolve:<JN:?>",
+        "errored": false,
+        "kind": "junction.resolve",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:resolve:<JN:?>",
+        "errored": false,
+        "kind": "junction.resolve",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:resolve:<JN:?>",
+        "errored": false,
+        "kind": "junction.resolve",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:resolve:<JN:?>",
+        "errored": false,
+        "kind": "junction.resolve",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:resolve:<JN:?>",
+        "errored": false,
+        "kind": "junction.resolve",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:resolve:<JN:?>",
+        "errored": false,
+        "kind": "junction.resolve",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:resolve:<JN:?>",
+        "errored": false,
+        "kind": "junction.resolve",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:resolve:<JN:?>",
+        "errored": false,
+        "kind": "junction.resolve",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:resolve:<JN:?>",
+        "errored": false,
+        "kind": "junction.resolve",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:capture:<pay:1>",
+        "errored": false,
+        "kind": "payments.capture",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:1>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:capture:<pay:2>",
+        "errored": false,
+        "kind": "payments.capture",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:2>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:capture:<pay:3>",
+        "errored": false,
+        "kind": "payments.capture",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:3>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:capture:<pay:4>",
+        "errored": false,
+        "kind": "payments.capture",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:4>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:capture:<pay:5>",
+        "errored": false,
+        "kind": "payments.capture",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:5>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:capture:<pay:6>",
+        "errored": false,
+        "kind": "payments.capture",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:6>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:capture:<pay:7>",
+        "errored": false,
+        "kind": "payments.capture",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:7>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:capture:<pay:8>",
+        "errored": false,
+        "kind": "payments.capture",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:8>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:capture:<pay:9>",
+        "errored": false,
+        "kind": "payments.capture",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:9>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:submit:<pay:1>",
+        "errored": false,
+        "kind": "payments.submit",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:1>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:submit:<pay:2>",
+        "errored": false,
+        "kind": "payments.submit",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:2>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:submit:<pay:3>",
+        "errored": false,
+        "kind": "payments.submit",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:3>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:submit:<pay:4>",
+        "errored": false,
+        "kind": "payments.submit",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:4>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:submit:<pay:5>",
+        "errored": false,
+        "kind": "payments.submit",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:5>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:submit:<pay:6>",
+        "errored": false,
+        "kind": "payments.submit",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:6>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:submit:<pay:7>",
+        "errored": false,
+        "kind": "payments.submit",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:7>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:submit:<pay:8>",
+        "errored": false,
+        "kind": "payments.submit",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:8>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:submit:<pay:9>",
+        "errored": false,
+        "kind": "payments.submit",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:9>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      }
+    ],
+    "ledger_accounts": [
+      {
+        "allow_negative": false,
+        "code": "platform:test:customer_funds:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "1111113",
+        "livemode": false,
+        "name": "Platform customer funds (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "asset",
+        "version": 9
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:gst_payable:INR",
+        "credits_total": "2821",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform gst payable (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "liability",
+        "version": 9
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:mintrail_fees:INR",
+        "credits_total": "15680",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform mintrail fees (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "revenue",
+        "version": 9
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:refunds_payable:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform refunds payable (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:settlement_clearing:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform settlement clearing (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "station:<mer:?>:test:merchant_balance:INR",
+        "credits_total": "363233",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "<mer:?> merchant_balance (INR, test)",
+        "owner_id": "<mer:?>",
+        "status": "active",
+        "type": "liability",
+        "version": 3
+      },
+      {
+        "allow_negative": false,
+        "code": "station:<mer:?>:test:merchant_balance:INR",
+        "credits_total": "364106",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "<mer:?> merchant_balance (INR, test)",
+        "owner_id": "<mer:?>",
+        "status": "active",
+        "type": "liability",
+        "version": 3
+      },
+      {
+        "allow_negative": false,
+        "code": "station:<mer:?>:test:merchant_balance:INR",
+        "credits_total": "365273",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "<mer:?> merchant_balance (INR, test)",
+        "owner_id": "<mer:?>",
+        "status": "active",
+        "type": "liability",
+        "version": 3
+      }
+    ],
+    "ledger_transactions": [
+      {
+        "description": "Capture <pay:1>",
+        "idempotency_key": "capture:<pay:1>",
+        "is_reversal": false,
+        "livemode": false,
+        "metadata": {
+          "fee": 1852,
+          "gross": 123457,
+          "station_id": "<mer:?>",
+          "tax": 333
+        },
+        "postings": [
+          {
+            "account": "platform:test:customer_funds:INR",
+            "amount": "123457",
+            "currency": "INR",
+            "direction": "debit"
+          },
+          {
+            "account": "platform:test:gst_payable:INR",
+            "amount": "333",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "platform:test:mintrail_fees:INR",
+            "amount": "1852",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "station:<mer:?>:test:merchant_balance:INR",
+            "amount": "121272",
+            "currency": "INR",
+            "direction": "credit"
+          }
+        ],
+        "reference_id": "<pay:1>",
+        "reference_type": "payment"
+      },
+      {
+        "description": "Capture <pay:2>",
+        "idempotency_key": "capture:<pay:2>",
+        "is_reversal": false,
+        "livemode": false,
+        "metadata": {
+          "fee": 1852,
+          "gross": 123457,
+          "station_id": "<mer:?>",
+          "tax": 333
+        },
+        "postings": [
+          {
+            "account": "platform:test:customer_funds:INR",
+            "amount": "123457",
+            "currency": "INR",
+            "direction": "debit"
+          },
+          {
+            "account": "platform:test:gst_payable:INR",
+            "amount": "333",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "platform:test:mintrail_fees:INR",
+            "amount": "1852",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "station:<mer:?>:test:merchant_balance:INR",
+            "amount": "121272",
+            "currency": "INR",
+            "direction": "credit"
+          }
+        ],
+        "reference_id": "<pay:2>",
+        "reference_type": "payment"
+      },
+      {
+        "description": "Capture <pay:3>",
+        "idempotency_key": "capture:<pay:3>",
+        "is_reversal": false,
+        "livemode": false,
+        "metadata": {
+          "fee": 617,
+          "gross": 123457,
+          "station_id": "<mer:?>",
+          "tax": 111
+        },
+        "postings": [
+          {
+            "account": "platform:test:customer_funds:INR",
+            "amount": "123457",
+            "currency": "INR",
+            "direction": "debit"
+          },
+          {
+            "account": "platform:test:gst_payable:INR",
+            "amount": "111",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "platform:test:mintrail_fees:INR",
+            "amount": "617",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "station:<mer:?>:test:merchant_balance:INR",
+            "amount": "122729",
+            "currency": "INR",
+            "direction": "credit"
+          }
+        ],
+        "reference_id": "<pay:3>",
+        "reference_type": "payment"
+      },
+      {
+        "description": "Capture <pay:4>",
+        "idempotency_key": "capture:<pay:4>",
+        "is_reversal": false,
+        "livemode": false,
+        "metadata": {
+          "fee": 2222,
+          "gross": 123457,
+          "station_id": "<mer:?>",
+          "tax": 400
+        },
+        "postings": [
+          {
+            "account": "platform:test:customer_funds:INR",
+            "amount": "123457",
+            "currency": "INR",
+            "direction": "debit"
+          },
+          {
+            "account": "platform:test:gst_payable:INR",
+            "amount": "400",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "platform:test:mintrail_fees:INR",
+            "amount": "2222",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "station:<mer:?>:test:merchant_balance:INR",
+            "amount": "120835",
+            "currency": "INR",
+            "direction": "credit"
+          }
+        ],
+        "reference_id": "<pay:4>",
+        "reference_type": "payment"
+      },
+      {
+        "description": "Capture <pay:5>",
+        "idempotency_key": "capture:<pay:5>",
+        "is_reversal": false,
+        "livemode": false,
+        "metadata": {
+          "fee": 2099,
+          "gross": 123457,
+          "station_id": "<mer:?>",
+          "tax": 378
+        },
+        "postings": [
+          {
+            "account": "platform:test:customer_funds:INR",
+            "amount": "123457",
+            "currency": "INR",
+            "direction": "debit"
+          },
+          {
+            "account": "platform:test:gst_payable:INR",
+            "amount": "378",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "platform:test:mintrail_fees:INR",
+            "amount": "2099",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "station:<mer:?>:test:merchant_balance:INR",
+            "amount": "120980",
+            "currency": "INR",
+            "direction": "credit"
+          }
+        ],
+        "reference_id": "<pay:5>",
+        "reference_type": "payment"
+      },
+      {
+        "description": "Capture <pay:6>",
+        "idempotency_key": "capture:<pay:6>",
+        "is_reversal": false,
+        "livemode": false,
+        "metadata": {
+          "fee": 988,
+          "gross": 123457,
+          "station_id": "<mer:?>",
+          "tax": 178
+        },
+        "postings": [
+          {
+            "account": "platform:test:customer_funds:INR",
+            "amount": "123457",
+            "currency": "INR",
+            "direction": "debit"
+          },
+          {
+            "account": "platform:test:gst_payable:INR",
+            "amount": "178",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "platform:test:mintrail_fees:INR",
+            "amount": "988",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "station:<mer:?>:test:merchant_balance:INR",
+            "amount": "122291",
+            "currency": "INR",
+            "direction": "credit"
+          }
+        ],
+        "reference_id": "<pay:6>",
+        "reference_type": "payment"
+      },
+      {
+        "description": "Capture <pay:7>",
+        "idempotency_key": "capture:<pay:7>",
+        "is_reversal": false,
+        "livemode": false,
+        "metadata": {
+          "fee": 2469,
+          "gross": 123457,
+          "station_id": "<mer:?>",
+          "tax": 444
+        },
+        "postings": [
+          {
+            "account": "platform:test:customer_funds:INR",
+            "amount": "123457",
+            "currency": "INR",
+            "direction": "debit"
+          },
+          {
+            "account": "platform:test:gst_payable:INR",
+            "amount": "444",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "platform:test:mintrail_fees:INR",
+            "amount": "2469",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "station:<mer:?>:test:merchant_balance:INR",
+            "amount": "120544",
+            "currency": "INR",
+            "direction": "credit"
+          }
+        ],
+        "reference_id": "<pay:7>",
+        "reference_type": "payment"
+      },
+      {
+        "description": "Capture <pay:8>",
+        "idempotency_key": "capture:<pay:8>",
+        "is_reversal": false,
+        "livemode": false,
+        "metadata": {
+          "fee": 2346,
+          "gross": 123457,
+          "station_id": "<mer:?>",
+          "tax": 422
+        },
+        "postings": [
+          {
+            "account": "platform:test:customer_funds:INR",
+            "amount": "123457",
+            "currency": "INR",
+            "direction": "debit"
+          },
+          {
+            "account": "platform:test:gst_payable:INR",
+            "amount": "422",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "platform:test:mintrail_fees:INR",
+            "amount": "2346",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "station:<mer:?>:test:merchant_balance:INR",
+            "amount": "120689",
+            "currency": "INR",
+            "direction": "credit"
+          }
+        ],
+        "reference_id": "<pay:8>",
+        "reference_type": "payment"
+      },
+      {
+        "description": "Capture <pay:9>",
+        "idempotency_key": "capture:<pay:9>",
+        "is_reversal": false,
+        "livemode": false,
+        "metadata": {
+          "fee": 1235,
+          "gross": 123457,
+          "station_id": "<mer:?>",
+          "tax": 222
+        },
+        "postings": [
+          {
+            "account": "platform:test:customer_funds:INR",
+            "amount": "123457",
+            "currency": "INR",
+            "direction": "debit"
+          },
+          {
+            "account": "platform:test:gst_payable:INR",
+            "amount": "222",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "platform:test:mintrail_fees:INR",
+            "amount": "1235",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "station:<mer:?>:test:merchant_balance:INR",
+            "amount": "122000",
+            "currency": "INR",
+            "direction": "credit"
+          }
+        ],
+        "reference_id": "<pay:9>",
+        "reference_type": "payment"
+      }
+    ]
+  }
+}

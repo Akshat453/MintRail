@@ -1,0 +1,76 @@
+{
+  "steps": [
+    {
+      "body": {
+        "error": {
+          "code": "MR_INVALID_API_KEY",
+          "message": "API key is malformed; expected mr_test_… or mr_live_…",
+          "request_id": "<req:1>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "www-authenticate": "Bearer",
+        "x-request-id": "<req:1>"
+      },
+      "request": {
+        "method": "GET",
+        "path": "/v1/station"
+      },
+      "status": 401,
+      "step": "short-key"
+    }
+  ],
+  "notes": {},
+  "db": {
+    "stations": [],
+    "api_keys": [],
+    "staff_users": [
+      {
+        "email": "admin@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "admin",
+        "status": "active"
+      },
+      {
+        "email": "finance@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "finance",
+        "status": "active"
+      },
+      {
+        "email": "ops@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "ops",
+        "status": "active"
+      },
+      {
+        "email": "security@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "security",
+        "status": "active"
+      }
+    ],
+    "staff_sessions": [],
+    "staff_audit_log": [],
+    "orders": [],
+    "payments": [],
+    "payment_events": {},
+    "idempotency_keys": [],
+    "rate_limit_state": [],
+    "conductor_blocklist": [],
+    "junction_authorizations": [],
+    "jobs": [],
+    "ledger_accounts": [],
+    "ledger_transactions": []
+  }
+}

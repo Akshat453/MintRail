@@ -1,0 +1,391 @@
+{
+ "rows": {
+  "api_keys": [
+   {
+    "created_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "hint": "mr_test_\u20260BM1",
+    "id": "key_01m7kwb2m2wb327043pwm0f0na",
+    "label": "Default test key",
+    "last_used_at": null,
+    "mode": "test",
+    "revoked_at": null,
+    "scopes": [
+     "*"
+    ],
+    "secret_hash": "220fd77554f08e36bb5e32dfb9557965b3e0750ddaf351c31c491815e4c5e083",
+    "signing_key_enc": {
+     "$bytes": "0123628a0d45590627a6c8d9ef4e732b1077538dc4c050e62e9c713f736e0e62cd45e14d10bdc20e318a2f7c090dfc1857333aabde720eb2e802425cf7"
+    },
+    "station_id": "mer_01m7kwb2ke5bhwz1ta13qw742c",
+    "status": "active"
+   },
+   {
+    "created_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "hint": "mr_live_\u2026caNI",
+    "id": "key_01m7kwb2mmwdjwfyzze48aw11w",
+    "label": "legacy live",
+    "last_used_at": null,
+    "mode": "live",
+    "revoked_at": null,
+    "scopes": [
+     "orders:read",
+     "station:read"
+    ],
+    "secret_hash": "fa95ff1e1d04b072b689ee2da0ff15e357e769040e5251f7d5d4019319b7657e",
+    "signing_key_enc": {
+     "$bytes": "01810334c8538152864ae74035e3678e1caf117370606708c665fa1456679490b3551b5a06e0393b67ac37267016b0b0d4d79d67533c9752486b0225cf"
+    },
+    "station_id": "mer_01m7kwb2ke5bhwz1ta13qw742c",
+    "status": "active"
+   }
+  ],
+  "ledger_accounts": [
+   {
+    "allow_negative": false,
+    "code": "platform:test:customer_funds:INR",
+    "created_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "currency": "INR",
+    "id": "lac_01m7kwb2kk5vkwzxydncgn9spn",
+    "livemode": false,
+    "name": "Platform customer funds (INR, test)",
+    "owner_id": null,
+    "status": "active",
+    "type": "asset"
+   },
+   {
+    "allow_negative": false,
+    "code": "platform:test:mintrail_fees:INR",
+    "created_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "currency": "INR",
+    "id": "lac_01m7kwb2ksxbg1yzp3pqqt4e06",
+    "livemode": false,
+    "name": "Platform mintrail fees (INR, test)",
+    "owner_id": null,
+    "status": "active",
+    "type": "revenue"
+   },
+   {
+    "allow_negative": false,
+    "code": "platform:test:gst_payable:INR",
+    "created_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "currency": "INR",
+    "id": "lac_01m7kwb2kv96182n8spar1gxk7",
+    "livemode": false,
+    "name": "Platform gst payable (INR, test)",
+    "owner_id": null,
+    "status": "active",
+    "type": "liability"
+   },
+   {
+    "allow_negative": false,
+    "code": "platform:test:refunds_payable:INR",
+    "created_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "currency": "INR",
+    "id": "lac_01m7kwb2kxjjqa69brt0cm9wgc",
+    "livemode": false,
+    "name": "Platform refunds payable (INR, test)",
+    "owner_id": null,
+    "status": "active",
+    "type": "liability"
+   },
+   {
+    "allow_negative": false,
+    "code": "platform:test:settlement_clearing:INR",
+    "created_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "currency": "INR",
+    "id": "lac_01m7kwb2ky0e6knahr6fmjwyrd",
+    "livemode": false,
+    "name": "Platform settlement clearing (INR, test)",
+    "owner_id": null,
+    "status": "active",
+    "type": "liability"
+   },
+   {
+    "allow_negative": false,
+    "code": "station:mer_01m7kwb2ke5bhwz1ta13qw742c:test:merchant_balance:INR",
+    "created_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "currency": "INR",
+    "id": "lac_01m7kwb2m1z77tmwgezfazbmmt",
+    "livemode": false,
+    "name": "mer_01m7kwb2ke5bhwz1ta13qw742c merchant_balance (INR, test)",
+    "owner_id": "mer_01m7kwb2ke5bhwz1ta13qw742c",
+    "status": "active",
+    "type": "liability"
+   },
+   {
+    "allow_negative": false,
+    "code": "platform:live:customer_funds:INR",
+    "created_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "currency": "INR",
+    "id": "lac_01m7kwb2m5bfxhxzrs04sv12b2",
+    "livemode": true,
+    "name": "Platform customer funds (INR, live)",
+    "owner_id": null,
+    "status": "active",
+    "type": "asset"
+   },
+   {
+    "allow_negative": false,
+    "code": "platform:live:mintrail_fees:INR",
+    "created_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "currency": "INR",
+    "id": "lac_01m7kwb2m7bbhqk8jmchnnpemr",
+    "livemode": true,
+    "name": "Platform mintrail fees (INR, live)",
+    "owner_id": null,
+    "status": "active",
+    "type": "revenue"
+   },
+   {
+    "allow_negative": false,
+    "code": "platform:live:gst_payable:INR",
+    "created_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "currency": "INR",
+    "id": "lac_01m7kwb2mambm4we6njha3gy9f",
+    "livemode": true,
+    "name": "Platform gst payable (INR, live)",
+    "owner_id": null,
+    "status": "active",
+    "type": "liability"
+   },
+   {
+    "allow_negative": false,
+    "code": "platform:live:refunds_payable:INR",
+    "created_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "currency": "INR",
+    "id": "lac_01m7kwb2mc1e0vw8j4waqmkr3t",
+    "livemode": true,
+    "name": "Platform refunds payable (INR, live)",
+    "owner_id": null,
+    "status": "active",
+    "type": "liability"
+   },
+   {
+    "allow_negative": false,
+    "code": "platform:live:settlement_clearing:INR",
+    "created_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "currency": "INR",
+    "id": "lac_01m7kwb2mf372krnsq5bm21ekq",
+    "livemode": true,
+    "name": "Platform settlement clearing (INR, live)",
+    "owner_id": null,
+    "status": "active",
+    "type": "liability"
+   },
+   {
+    "allow_negative": false,
+    "code": "station:mer_01m7kwb2ke5bhwz1ta13qw742c:live:merchant_balance:INR",
+    "created_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "currency": "INR",
+    "id": "lac_01m7kwb2mgz3grjsfs3g96gzsh",
+    "livemode": true,
+    "name": "mer_01m7kwb2ke5bhwz1ta13qw742c merchant_balance (INR, live)",
+    "owner_id": "mer_01m7kwb2ke5bhwz1ta13qw742c",
+    "status": "active",
+    "type": "liability"
+   }
+  ],
+  "ledger_balances": [
+   {
+    "account_id": "lac_01m7kwb2kk5vkwzxydncgn9spn",
+    "credits_total": 0,
+    "debits_total": 0,
+    "updated_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "version": 0
+   },
+   {
+    "account_id": "lac_01m7kwb2ksxbg1yzp3pqqt4e06",
+    "credits_total": 0,
+    "debits_total": 0,
+    "updated_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "version": 0
+   },
+   {
+    "account_id": "lac_01m7kwb2kv96182n8spar1gxk7",
+    "credits_total": 0,
+    "debits_total": 0,
+    "updated_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "version": 0
+   },
+   {
+    "account_id": "lac_01m7kwb2kxjjqa69brt0cm9wgc",
+    "credits_total": 0,
+    "debits_total": 0,
+    "updated_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "version": 0
+   },
+   {
+    "account_id": "lac_01m7kwb2ky0e6knahr6fmjwyrd",
+    "credits_total": 0,
+    "debits_total": 0,
+    "updated_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "version": 0
+   },
+   {
+    "account_id": "lac_01m7kwb2m1z77tmwgezfazbmmt",
+    "credits_total": 0,
+    "debits_total": 0,
+    "updated_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "version": 0
+   },
+   {
+    "account_id": "lac_01m7kwb2m5bfxhxzrs04sv12b2",
+    "credits_total": 0,
+    "debits_total": 0,
+    "updated_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "version": 0
+   },
+   {
+    "account_id": "lac_01m7kwb2m7bbhqk8jmchnnpemr",
+    "credits_total": 0,
+    "debits_total": 0,
+    "updated_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "version": 0
+   },
+   {
+    "account_id": "lac_01m7kwb2mambm4we6njha3gy9f",
+    "credits_total": 0,
+    "debits_total": 0,
+    "updated_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "version": 0
+   },
+   {
+    "account_id": "lac_01m7kwb2mc1e0vw8j4waqmkr3t",
+    "credits_total": 0,
+    "debits_total": 0,
+    "updated_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "version": 0
+   },
+   {
+    "account_id": "lac_01m7kwb2mf372krnsq5bm21ekq",
+    "credits_total": 0,
+    "debits_total": 0,
+    "updated_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "version": 0
+   },
+   {
+    "account_id": "lac_01m7kwb2mgz3grjsfs3g96gzsh",
+    "credits_total": 0,
+    "debits_total": 0,
+    "updated_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "version": 0
+   }
+  ],
+  "staff_users": [
+   {
+    "created_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "email": "legacy-admin@mintrail.example",
+    "failed_logins": 0,
+    "full_name": "Legacy Admin",
+    "id": "stf_01m7kwb2j96bxd9p873syfxw82",
+    "last_login_at": null,
+    "locked_until": null,
+    "password_hash": "scrypt$16384$8$1$T9+ETYw1V3A/Z2qYswlqoQ==$igO8+nDMAgMasMmvxcTmujwZIuboUaaPpFAvzJlXZVc=",
+    "role": "admin",
+    "status": "active",
+    "updated_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    }
+   }
+  ],
+  "stations": [
+   {
+    "auto_capture": true,
+    "business_category": "5814",
+    "country": "IN",
+    "created_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "default_currency": "INR",
+    "display_name": "Legacy Chai",
+    "email": "legacy@chai.example",
+    "fee_plan": "standard",
+    "id": "mer_01m7kwb2ke5bhwz1ta13qw742c",
+    "kyc_rejection_reason": null,
+    "kyc_reviewed_at": {
+     "$ts": "2026-11-17T04:30:45.380814+00:00"
+    },
+    "kyc_reviewed_by": "stf_01m7kwb2j96bxd9p873syfxw82",
+    "kyc_status": "verified",
+    "legal_name": "Legacy Chai Co",
+    "max_payment_amount": null,
+    "rate_limit_burst": 50,
+    "rate_limit_per_sec": 25,
+    "settlement_schedule": "T+2",
+    "status": "active",
+    "suspended_reason": null,
+    "updated_at": {
+     "$ts": "2026-11-17T04:30:45.317968+00:00"
+    },
+    "webhook_url": null
+   }
+  ]
+ },
+ "secrets": {
+  "live_key": "mr_live_4VZmmeqd6r3H9egcCnJrcdhF4lgzdNAWPdO6caNI",
+  "live_key_id": "key_01m7kwb2mmwdjwfyzze48aw11w",
+  "staff_email": "legacy-admin@mintrail.example",
+  "staff_password": "legacy-admin-password-123",
+  "station_id": "mer_01m7kwb2ke5bhwz1ta13qw742c",
+  "test_key": "mr_test_DsdniU5iDKaanqKcPVSR1jzDLkV29EXuUdLh0BM1",
+  "test_key_id": "key_01m7kwb2m2wb327043pwm0f0na"
+ },
+ "settings": {
+  "api_key_pepper": "test-pepper-not-a-secret",
+  "secrets_key": "ZGV2LW9ubHktbm90LWEtc2VjcmV0LWtleS0zMmJ5dGU="
+ }
+}

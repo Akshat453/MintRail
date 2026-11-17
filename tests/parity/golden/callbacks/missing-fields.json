@@ -1,0 +1,75 @@
+{
+  "steps": [
+    {
+      "body": {
+        "error": {
+          "code": "MR_INVALID_REQUEST",
+          "message": "callback missing fields: ['type', 'sequence', 'ref', 'payment_id']",
+          "request_id": "<req:1>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:1>"
+      },
+      "request": {
+        "method": "POST",
+        "path": "/internal/junction/v1/callbacks"
+      },
+      "status": 400,
+      "step": "missing fields"
+    }
+  ],
+  "notes": {},
+  "db": {
+    "stations": [],
+    "api_keys": [],
+    "staff_users": [
+      {
+        "email": "admin@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "admin",
+        "status": "active"
+      },
+      {
+        "email": "finance@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "finance",
+        "status": "active"
+      },
+      {
+        "email": "ops@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "ops",
+        "status": "active"
+      },
+      {
+        "email": "security@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "security",
+        "status": "active"
+      }
+    ],
+    "staff_sessions": [],
+    "staff_audit_log": [],
+    "orders": [],
+    "payments": [],
+    "payment_events": {},
+    "idempotency_keys": [],
+    "rate_limit_state": [],
+    "conductor_blocklist": [],
+    "junction_authorizations": [],
+    "jobs": [],
+    "ledger_accounts": [],
+    "ledger_transactions": []
+  }
+}

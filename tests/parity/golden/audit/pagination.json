@@ -1,0 +1,449 @@
+{
+  "steps": [
+    {
+      "body": {
+        "data": [
+          {
+            "action": "station.create",
+            "created_at": "<ts>",
+            "details": {},
+            "id": 4,
+            "ip": "<ip>",
+            "object": "audit_entry",
+            "request_id": "<req:1>",
+            "staff_email": "admin@parity.mintrail.example",
+            "staff_id": "stf_00000000000000000000000004",
+            "target_id": "<mer:1>",
+            "target_type": "station"
+          },
+          {
+            "action": "station.create",
+            "created_at": "<ts>",
+            "details": {},
+            "id": 3,
+            "ip": "<ip>",
+            "object": "audit_entry",
+            "request_id": "<req:2>",
+            "staff_email": "admin@parity.mintrail.example",
+            "staff_id": "stf_00000000000000000000000004",
+            "target_id": "<mer:2>",
+            "target_type": "station"
+          }
+        ],
+        "has_more": true,
+        "object": "list"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:3>"
+      },
+      "request": {
+        "method": "GET",
+        "path": "/internal/v1/audit_log?limit=2"
+      },
+      "status": 200,
+      "step": "page 1"
+    },
+    {
+      "body": {
+        "data": [
+          {
+            "action": "station.create",
+            "created_at": "<ts>",
+            "details": {},
+            "id": 2,
+            "ip": "<ip>",
+            "object": "audit_entry",
+            "request_id": "<req:4>",
+            "staff_email": "admin@parity.mintrail.example",
+            "staff_id": "stf_00000000000000000000000004",
+            "target_id": "<mer:3>",
+            "target_type": "station"
+          },
+          {
+            "action": "staff.login",
+            "created_at": "<ts>",
+            "details": {},
+            "id": 1,
+            "ip": "<ip>",
+            "object": "audit_entry",
+            "request_id": "<req:5>",
+            "staff_email": "admin@parity.mintrail.example",
+            "staff_id": "stf_00000000000000000000000004",
+            "target_id": "stf_00000000000000000000000004",
+            "target_type": "staff"
+          }
+        ],
+        "has_more": false,
+        "object": "list"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:6>"
+      },
+      "request": {
+        "method": "GET",
+        "path": "/internal/v1/audit_log?limit=50&starting_after=3"
+      },
+      "status": 200,
+      "step": "page 2"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "MR_VALIDATION_FAILED",
+          "message": "<validation message>",
+          "param": "limit",
+          "request_id": "<req:7>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:7>"
+      },
+      "request": {
+        "method": "GET",
+        "path": "/internal/v1/audit_log?limit=500"
+      },
+      "status": 422,
+      "step": "bad limit"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "MR_VALIDATION_FAILED",
+          "message": "<validation message>",
+          "param": "starting_after",
+          "request_id": "<req:8>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:8>"
+      },
+      "request": {
+        "method": "GET",
+        "path": "/internal/v1/audit_log?starting_after=abc"
+      },
+      "status": 422,
+      "step": "bad cursor"
+    }
+  ],
+  "notes": {},
+  "db": {
+    "stations": [
+      {
+        "auto_capture": true,
+        "business_category": "5814",
+        "country": "IN",
+        "default_currency": "INR",
+        "display_name": "Kaveri Coffee 1",
+        "email": "finance-1@kaveri.example",
+        "fee_plan": "standard",
+        "id": "<mer:3>",
+        "kyc_rejection_reason": null,
+        "kyc_reviewed": false,
+        "kyc_reviewed_by": null,
+        "kyc_status": "pending",
+        "legal_name": "Kaveri Coffee Roasters 1 Pvt Ltd",
+        "max_payment_amount": null,
+        "rate_limit_burst": 50,
+        "rate_limit_per_sec": 25,
+        "settlement_schedule": "T+2",
+        "status": "active",
+        "suspended_reason": null,
+        "webhook_url": null
+      },
+      {
+        "auto_capture": true,
+        "business_category": "5814",
+        "country": "IN",
+        "default_currency": "INR",
+        "display_name": "Kaveri Coffee 2",
+        "email": "finance-2@kaveri.example",
+        "fee_plan": "standard",
+        "id": "<mer:2>",
+        "kyc_rejection_reason": null,
+        "kyc_reviewed": false,
+        "kyc_reviewed_by": null,
+        "kyc_status": "pending",
+        "legal_name": "Kaveri Coffee Roasters 2 Pvt Ltd",
+        "max_payment_amount": null,
+        "rate_limit_burst": 50,
+        "rate_limit_per_sec": 25,
+        "settlement_schedule": "T+2",
+        "status": "active",
+        "suspended_reason": null,
+        "webhook_url": null
+      },
+      {
+        "auto_capture": true,
+        "business_category": "5814",
+        "country": "IN",
+        "default_currency": "INR",
+        "display_name": "Kaveri Coffee 3",
+        "email": "finance-3@kaveri.example",
+        "fee_plan": "standard",
+        "id": "<mer:1>",
+        "kyc_rejection_reason": null,
+        "kyc_reviewed": false,
+        "kyc_reviewed_by": null,
+        "kyc_status": "pending",
+        "legal_name": "Kaveri Coffee Roasters 3 Pvt Ltd",
+        "max_payment_amount": null,
+        "rate_limit_burst": 50,
+        "rate_limit_per_sec": 25,
+        "settlement_schedule": "T+2",
+        "status": "active",
+        "suspended_reason": null,
+        "webhook_url": null
+      }
+    ],
+    "api_keys": [
+      {
+        "has_signing_key": true,
+        "hint": "mr_test_\u2026****",
+        "id": "<key:?>",
+        "label": "Default test key",
+        "mode": "test",
+        "revoked": false,
+        "scopes": [
+          "*"
+        ],
+        "station_id": "<mer:1>",
+        "status": "active",
+        "used": false
+      },
+      {
+        "has_signing_key": true,
+        "hint": "mr_test_\u2026****",
+        "id": "<key:?>",
+        "label": "Default test key",
+        "mode": "test",
+        "revoked": false,
+        "scopes": [
+          "*"
+        ],
+        "station_id": "<mer:2>",
+        "status": "active",
+        "used": false
+      },
+      {
+        "has_signing_key": true,
+        "hint": "mr_test_\u2026****",
+        "id": "<key:?>",
+        "label": "Default test key",
+        "mode": "test",
+        "revoked": false,
+        "scopes": [
+          "*"
+        ],
+        "station_id": "<mer:3>",
+        "status": "active",
+        "used": false
+      }
+    ],
+    "staff_users": [
+      {
+        "email": "admin@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": true,
+        "role": "admin",
+        "status": "active"
+      },
+      {
+        "email": "finance@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "finance",
+        "status": "active"
+      },
+      {
+        "email": "ops@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "ops",
+        "status": "active"
+      },
+      {
+        "email": "security@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "security",
+        "status": "active"
+      }
+    ],
+    "staff_sessions": [
+      {
+        "live": true,
+        "revoked": false,
+        "staff_id": "stf_00000000000000000000000004"
+      }
+    ],
+    "staff_audit_log": [
+      {
+        "action": "staff.login",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "admin@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000004",
+        "target_id": "stf_00000000000000000000000004",
+        "target_type": "staff"
+      },
+      {
+        "action": "station.create",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "admin@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000004",
+        "target_id": "<mer:3>",
+        "target_type": "station"
+      },
+      {
+        "action": "station.create",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "admin@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000004",
+        "target_id": "<mer:2>",
+        "target_type": "station"
+      },
+      {
+        "action": "station.create",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "admin@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000004",
+        "target_id": "<mer:1>",
+        "target_type": "station"
+      }
+    ],
+    "orders": [],
+    "payments": [],
+    "payment_events": {},
+    "idempotency_keys": [],
+    "rate_limit_state": [],
+    "conductor_blocklist": [],
+    "junction_authorizations": [],
+    "jobs": [],
+    "ledger_accounts": [
+      {
+        "allow_negative": false,
+        "code": "platform:test:customer_funds:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform customer funds (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "asset",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:gst_payable:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform gst payable (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:mintrail_fees:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform mintrail fees (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "revenue",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:refunds_payable:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform refunds payable (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:settlement_clearing:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform settlement clearing (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "station:<mer:1>:test:merchant_balance:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "<mer:1> merchant_balance (INR, test)",
+        "owner_id": "<mer:1>",
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "station:<mer:2>:test:merchant_balance:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "<mer:2> merchant_balance (INR, test)",
+        "owner_id": "<mer:2>",
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "station:<mer:3>:test:merchant_balance:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "<mer:3> merchant_balance (INR, test)",
+        "owner_id": "<mer:3>",
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      }
+    ],
+    "ledger_transactions": []
+  }
+}

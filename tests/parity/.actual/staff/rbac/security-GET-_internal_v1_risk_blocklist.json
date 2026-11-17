@@ -1,0 +1,90 @@
+{
+  "steps": [
+    {
+      "body": {
+        "data": [],
+        "has_more": false,
+        "object": "list"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:1>"
+      },
+      "request": {
+        "method": "GET",
+        "path": "/internal/v1/risk/blocklist"
+      },
+      "status": 200,
+      "step": "security GET /internal/v1/risk/blocklist"
+    }
+  ],
+  "notes": {},
+  "db": {
+    "stations": [],
+    "api_keys": [],
+    "staff_users": [
+      {
+        "email": "admin@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "admin",
+        "status": "active"
+      },
+      {
+        "email": "finance@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "finance",
+        "status": "active"
+      },
+      {
+        "email": "ops@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "ops",
+        "status": "active"
+      },
+      {
+        "email": "security@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": true,
+        "role": "security",
+        "status": "active"
+      }
+    ],
+    "staff_sessions": [
+      {
+        "live": true,
+        "revoked": false,
+        "staff_id": "stf_00000000000000000000000003"
+      }
+    ],
+    "staff_audit_log": [
+      {
+        "action": "staff.login",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "security@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000003",
+        "target_id": "stf_00000000000000000000000003",
+        "target_type": "staff"
+      }
+    ],
+    "orders": [],
+    "payments": [],
+    "payment_events": {},
+    "idempotency_keys": [],
+    "rate_limit_state": [],
+    "conductor_blocklist": [],
+    "junction_authorizations": [],
+    "jobs": [],
+    "ledger_accounts": [],
+    "ledger_transactions": []
+  }
+}

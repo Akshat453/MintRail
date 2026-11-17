@@ -1,0 +1,19 @@
+# Node
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.next/
+out/
+playwright-report/
+test-results/
+
+# Env / secrets
+.mintrail/
+.env
+.env.*
+!.env.example
+
+# OS / editors
+.DS_Store
+.idea/

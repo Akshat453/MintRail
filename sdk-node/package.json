@@ -1,0 +1,29 @@
+{
+  "name": "@mintrail/node",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Official Node.js client for the MintRail payments API (fictional) — typed, signed, retrying, bigint money",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "exports": {
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "example": "node --conditions=development --import tsx examples/payment-refund-webhook.ts"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "vitest": "5.1.0"
+  }
+}

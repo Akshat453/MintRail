@@ -1,0 +1,20 @@
+{
+  "name": "@mintrail/parity",
+  "private": true,
+  "type": "module",
+  "description": "Black-box parity harness: replays M1 HTTP scenarios and compares against golden files",
+  "scripts": {
+    "parity": "vitest run --config vitest.config.ts",
+    "record": "PARITY_RECORD=1 vitest run --config vitest.config.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "pg": "8.23.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "@types/pg": "8.23.1",
+    "typescript": "5.9.3",
+    "vitest": "5.1.0"
+  }
+}

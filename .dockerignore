@@ -1,0 +1,8 @@
+**/node_modules
+**/dist
+**/coverage
+.git
+.env
+.mintrail
+tests/parity/.actual
+docs

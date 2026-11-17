@@ -1,0 +1,335 @@
+{
+  "steps": [
+    {
+      "body": {
+        "created_at": "<ts>",
+        "hint": "mr_test_…****",
+        "id": "<key:1>",
+        "label": "Default test key",
+        "last_used_at": null,
+        "mode": "test",
+        "object": "api_key",
+        "revoked_at": "<ts>",
+        "scopes": [
+          "*"
+        ],
+        "station_id": "<mer:1>",
+        "status": "revoked"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:1>"
+      },
+      "request": {
+        "method": "POST",
+        "path": "/internal/v1/api_keys/<key:1>/revoke"
+      },
+      "status": 200,
+      "step": "revoke"
+    },
+    {
+      "body": {
+        "created_at": "<ts>",
+        "hint": "mr_test_…****",
+        "id": "<key:1>",
+        "label": "Default test key",
+        "last_used_at": null,
+        "mode": "test",
+        "object": "api_key",
+        "revoked_at": "<ts>",
+        "scopes": [
+          "*"
+        ],
+        "station_id": "<mer:1>",
+        "status": "revoked"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:2>"
+      },
+      "request": {
+        "method": "POST",
+        "path": "/internal/v1/api_keys/<key:1>/revoke"
+      },
+      "status": 200,
+      "step": "revoke again"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "MR_API_KEY_REVOKED",
+          "message": "this API key has been revoked",
+          "request_id": "<req:3>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "www-authenticate": "Bearer",
+        "x-request-id": "<req:3>"
+      },
+      "request": {
+        "method": "GET",
+        "path": "/v1/station"
+      },
+      "status": 401,
+      "step": "revoked bearer"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "MR_RESOURCE_NOT_FOUND",
+          "message": "api key <key:2> not found",
+          "request_id": "<req:4>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:4>"
+      },
+      "request": {
+        "method": "POST",
+        "path": "/internal/v1/api_keys/<key:2>/revoke"
+      },
+      "status": 404,
+      "step": "revoke unknown"
+    }
+  ],
+  "notes": {},
+  "db": {
+    "stations": [
+      {
+        "auto_capture": true,
+        "business_category": "5814",
+        "country": "IN",
+        "default_currency": "INR",
+        "display_name": "Kaveri Coffee 1",
+        "email": "finance-1@kaveri.example",
+        "fee_plan": "standard",
+        "id": "<mer:1>",
+        "kyc_rejection_reason": null,
+        "kyc_reviewed": false,
+        "kyc_reviewed_by": null,
+        "kyc_status": "pending",
+        "legal_name": "Kaveri Coffee Roasters 1 Pvt Ltd",
+        "max_payment_amount": null,
+        "rate_limit_burst": 50,
+        "rate_limit_per_sec": 25,
+        "settlement_schedule": "T+2",
+        "status": "active",
+        "suspended_reason": null,
+        "webhook_url": null
+      }
+    ],
+    "api_keys": [
+      {
+        "has_signing_key": true,
+        "hint": "mr_test_…****",
+        "id": "<key:1>",
+        "label": "Default test key",
+        "mode": "test",
+        "revoked": true,
+        "scopes": [
+          "*"
+        ],
+        "station_id": "<mer:1>",
+        "status": "revoked",
+        "used": false
+      }
+    ],
+    "staff_users": [
+      {
+        "email": "admin@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": true,
+        "role": "admin",
+        "status": "active"
+      },
+      {
+        "email": "finance@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "finance",
+        "status": "active"
+      },
+      {
+        "email": "ops@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "ops",
+        "status": "active"
+      },
+      {
+        "email": "security@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": true,
+        "role": "security",
+        "status": "active"
+      }
+    ],
+    "staff_sessions": [
+      {
+        "live": true,
+        "revoked": false,
+        "staff_id": "stf_00000000000000000000000003"
+      },
+      {
+        "live": true,
+        "revoked": false,
+        "staff_id": "stf_00000000000000000000000004"
+      }
+    ],
+    "staff_audit_log": [
+      {
+        "action": "staff.login",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "admin@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000004",
+        "target_id": "stf_00000000000000000000000004",
+        "target_type": "staff"
+      },
+      {
+        "action": "station.create",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "admin@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000004",
+        "target_id": "<mer:1>",
+        "target_type": "station"
+      },
+      {
+        "action": "staff.login",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "security@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000003",
+        "target_id": "stf_00000000000000000000000003",
+        "target_type": "staff"
+      },
+      {
+        "action": "api_key.revoke",
+        "details": {
+          "station_id": "<mer:1>"
+        },
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "security@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000003",
+        "target_id": "<key:1>",
+        "target_type": "api_key"
+      },
+      {
+        "action": "api_key.revoke",
+        "details": {
+          "station_id": "<mer:1>"
+        },
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "security@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000003",
+        "target_id": "<key:1>",
+        "target_type": "api_key"
+      }
+    ],
+    "orders": [],
+    "payments": [],
+    "payment_events": {},
+    "idempotency_keys": [],
+    "rate_limit_state": [],
+    "conductor_blocklist": [],
+    "junction_authorizations": [],
+    "jobs": [],
+    "ledger_accounts": [
+      {
+        "allow_negative": false,
+        "code": "platform:test:customer_funds:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform customer funds (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "asset",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:gst_payable:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform gst payable (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:mintrail_fees:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform mintrail fees (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "revenue",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:refunds_payable:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform refunds payable (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:settlement_clearing:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform settlement clearing (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "station:<mer:1>:test:merchant_balance:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "<mer:1> merchant_balance (INR, test)",
+        "owner_id": "<mer:1>",
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      }
+    ],
+    "ledger_transactions": []
+  }
+}

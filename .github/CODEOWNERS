@@ -1,0 +1,42 @@
+# MintRail code owners (fictional teams). Last matching rule wins.
+*                                         @mintrail/platform
+
+/packages/shared/                         @mintrail/platform
+/packages/shared/src/crypto.ts            @mintrail/security @mintrail/platform
+/packages/shared/src/signatures.ts        @mintrail/security @mintrail/platform
+/packages/shared/src/money.ts             @mintrail/ledger @mintrail/platform
+/packages/shared/src/migrate.ts           @mintrail/ledger @mintrail/platform
+/tools/eslint-plugin-mintrail/            @mintrail/ledger @mintrail/platform
+
+/api/                                     @mintrail/payments
+/api/src/keys.ts                          @mintrail/security @mintrail/payments
+/api/src/signing.ts                       @mintrail/security @mintrail/payments
+/api/src/services/staff.ts                @mintrail/security @mintrail/railyard
+/api/src/routes/railyard.ts               @mintrail/railyard
+/api/src/schema/staff.ts                  @mintrail/railyard @mintrail/security
+
+/ledger/                                  @mintrail/ledger
+/drizzle/                                 @mintrail/ledger @mintrail/platform
+/docs/contract/                           @mintrail/platform @mintrail/ledger
+/tests/parity/                            @mintrail/platform @mintrail/payments
+/conductor/                               @mintrail/payments @mintrail/security
+/junction/                                @mintrail/payments
+/depot/                                   @mintrail/depot @mintrail/ledger
+/signal/                                  @mintrail/signal
+/signal/src/urls.ts                       @mintrail/security @mintrail/signal
+/signal/src/endpoints.ts                  @mintrail/security @mintrail/signal
+/sdk-node/                                @mintrail/payments @mintrail/platform
+/packages/web/                            @mintrail/payments @mintrail/railyard
+/packages/web/src/server.ts               @mintrail/security @mintrail/payments
+/packages/shared/src/fx.ts                @mintrail/ledger @mintrail/platform
+/dashboard/                               @mintrail/payments
+/railyard/                                @mintrail/railyard
+/api/src/services/refunds.ts              @mintrail/payments @mintrail/ledger
+/api/src/services/disputes.ts             @mintrail/payments @mintrail/ledger
+/api/src/services/payouts.ts              @mintrail/payments @mintrail/ledger @mintrail/security
+/api/src/services/dashboard-auth.ts       @mintrail/security @mintrail/payments
+/scripts/seed/                            @mintrail/platform
+
+/docs/adr/                                @mintrail/platform
+/.github/                                 @mintrail/platform
+/infra/                                   @mintrail/platform

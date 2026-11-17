@@ -1,0 +1,1009 @@
+{
+  "steps": [
+    {
+      "body": {
+        "active": true,
+        "created_at": "<ts>",
+        "created_by": "stf_00000000000000000000000003",
+        "id": "<blk:1>",
+        "kind": "vpa",
+        "object": "blocklist_entry",
+        "reason": "money mule",
+        "value": "mule@okbank"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:1>"
+      },
+      "request": {
+        "body": {
+          "kind": "vpa",
+          "reason": "money mule",
+          "value": "Mule@OkBank"
+        },
+        "method": "POST",
+        "path": "/internal/v1/risk/blocklist"
+      },
+      "status": 201,
+      "step": "add"
+    },
+    {
+      "body": {
+        "amount": 49900,
+        "authorized_at": null,
+        "bank_code": null,
+        "capture_mode": "automatic",
+        "captured_at": null,
+        "card": null,
+        "created_at": "<ts>",
+        "currency": "INR",
+        "email": null,
+        "error_code": "risk_blocked",
+        "error_description": "VPA mule@okbank is blocklisted",
+        "failed_at": "<ts>",
+        "fee": null,
+        "id": "<pay:1>",
+        "livemode": false,
+        "method": "upi",
+        "object": "payment",
+        "order_id": "<ord:1>",
+        "risk": {
+          "decision": "block",
+          "reasons": [
+            {
+              "detail": "VPA mule@okbank is blocklisted",
+              "outcome": "block",
+              "rule": "blocked_vpa"
+            }
+          ],
+          "review_status": "not_required",
+          "score": 100
+        },
+        "status": "failed",
+        "tax": null,
+        "vpa": "mule@okbank"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "ratelimit-limit": "50",
+        "ratelimit-remaining": "<present>",
+        "x-request-id": "<req:2>"
+      },
+      "request": {
+        "body": {
+          "method": "upi",
+          "order_id": "<ord:1>",
+          "upi": {
+            "vpa": "mule@okbank"
+          }
+        },
+        "method": "POST",
+        "path": "/v1/payments"
+      },
+      "status": 201,
+      "step": "blocked payment"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "MR_CONFLICT",
+          "message": "vpa mule@okbank is already blocklisted",
+          "request_id": "<req:3>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:3>"
+      },
+      "request": {
+        "body": {
+          "kind": "vpa",
+          "reason": "again",
+          "value": "mule@okbank"
+        },
+        "method": "POST",
+        "path": "/internal/v1/risk/blocklist"
+      },
+      "status": 409,
+      "step": "duplicate entry"
+    },
+    {
+      "body": {
+        "data": [
+          {
+            "active": true,
+            "created_at": "<ts>",
+            "created_by": "stf_00000000000000000000000003",
+            "id": "<blk:1>",
+            "kind": "vpa",
+            "object": "blocklist_entry",
+            "reason": "money mule",
+            "value": "mule@okbank"
+          }
+        ],
+        "has_more": false,
+        "object": "list"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:4>"
+      },
+      "request": {
+        "method": "GET",
+        "path": "/internal/v1/risk/blocklist"
+      },
+      "status": 200,
+      "step": "list"
+    },
+    {
+      "body": {
+        "active": false,
+        "created_at": "<ts>",
+        "created_by": "stf_00000000000000000000000003",
+        "id": "<blk:1>",
+        "kind": "vpa",
+        "object": "blocklist_entry",
+        "reason": "money mule",
+        "value": "mule@okbank"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:5>"
+      },
+      "request": {
+        "method": "POST",
+        "path": "/internal/v1/risk/blocklist/<blk:1>/deactivate"
+      },
+      "status": 200,
+      "step": "deactivate"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "MR_RESOURCE_NOT_FOUND",
+          "message": "blocklist entry <blk:2> not found",
+          "request_id": "<req:6>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:6>"
+      },
+      "request": {
+        "method": "POST",
+        "path": "/internal/v1/risk/blocklist/<blk:2>/deactivate"
+      },
+      "status": 404,
+      "step": "deactivate unknown"
+    },
+    {
+      "body": {
+        "amount": 49900,
+        "authorized_at": null,
+        "bank_code": null,
+        "capture_mode": "automatic",
+        "captured_at": null,
+        "card": null,
+        "created_at": "<ts>",
+        "currency": "INR",
+        "email": null,
+        "error_code": null,
+        "error_description": null,
+        "failed_at": null,
+        "fee": null,
+        "id": "<pay:2>",
+        "livemode": false,
+        "method": "upi",
+        "object": "payment",
+        "order_id": "<ord:2>",
+        "risk": {
+          "decision": "allow",
+          "reasons": [],
+          "review_status": "not_required",
+          "score": 0
+        },
+        "status": "created",
+        "tax": null,
+        "vpa": "mule@okbank"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "ratelimit-limit": "50",
+        "ratelimit-remaining": "<present>",
+        "x-request-id": "<req:7>"
+      },
+      "request": {
+        "body": {
+          "method": "upi",
+          "order_id": "<ord:2>",
+          "upi": {
+            "vpa": "mule@okbank"
+          }
+        },
+        "method": "POST",
+        "path": "/v1/payments"
+      },
+      "status": 201,
+      "step": "allowed again"
+    }
+  ],
+  "notes": {},
+  "db": {
+    "stations": [
+      {
+        "auto_capture": true,
+        "business_category": "5814",
+        "country": "IN",
+        "default_currency": "INR",
+        "display_name": "Kaveri Coffee 1",
+        "email": "finance-1@kaveri.example",
+        "fee_plan": "standard",
+        "id": "<mer:?>",
+        "kyc_rejection_reason": null,
+        "kyc_reviewed": false,
+        "kyc_reviewed_by": null,
+        "kyc_status": "pending",
+        "legal_name": "Kaveri Coffee Roasters 1 Pvt Ltd",
+        "max_payment_amount": null,
+        "rate_limit_burst": 50,
+        "rate_limit_per_sec": 25,
+        "settlement_schedule": "T+2",
+        "status": "active",
+        "suspended_reason": null,
+        "webhook_url": null
+      }
+    ],
+    "api_keys": [
+      {
+        "has_signing_key": true,
+        "hint": "mr_test_…****",
+        "id": "<key:?>",
+        "label": "Default test key",
+        "mode": "test",
+        "revoked": false,
+        "scopes": [
+          "*"
+        ],
+        "station_id": "<mer:?>",
+        "status": "active",
+        "used": true
+      }
+    ],
+    "staff_users": [
+      {
+        "email": "admin@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": true,
+        "role": "admin",
+        "status": "active"
+      },
+      {
+        "email": "finance@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "finance",
+        "status": "active"
+      },
+      {
+        "email": "ops@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "ops",
+        "status": "active"
+      },
+      {
+        "email": "security@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": true,
+        "role": "security",
+        "status": "active"
+      }
+    ],
+    "staff_sessions": [
+      {
+        "live": true,
+        "revoked": false,
+        "staff_id": "stf_00000000000000000000000003"
+      },
+      {
+        "live": true,
+        "revoked": false,
+        "staff_id": "stf_00000000000000000000000004"
+      }
+    ],
+    "staff_audit_log": [
+      {
+        "action": "staff.login",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "security@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000003",
+        "target_id": "stf_00000000000000000000000003",
+        "target_type": "staff"
+      },
+      {
+        "action": "risk.blocklist_add",
+        "details": {
+          "kind": "vpa",
+          "reason": "money mule",
+          "value": "mule@okbank"
+        },
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "security@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000003",
+        "target_id": "<blk:1>",
+        "target_type": "blocklist_entry"
+      },
+      {
+        "action": "staff.login",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "admin@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000004",
+        "target_id": "stf_00000000000000000000000004",
+        "target_type": "staff"
+      },
+      {
+        "action": "station.create",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "admin@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000004",
+        "target_id": "<mer:?>",
+        "target_type": "station"
+      },
+      {
+        "action": "risk.blocklist_remove",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "security@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000003",
+        "target_id": "<blk:1>",
+        "target_type": "blocklist_entry"
+      }
+    ],
+    "orders": [
+      {
+        "amount": "49900",
+        "amount_paid": "0",
+        "attempts": 1,
+        "currency": "INR",
+        "id": "<ord:1>",
+        "livemode": false,
+        "notes": {},
+        "receipt": null,
+        "station_id": "<mer:?>",
+        "status": "attempted"
+      },
+      {
+        "amount": "49900",
+        "amount_paid": "49900",
+        "attempts": 1,
+        "currency": "INR",
+        "id": "<ord:2>",
+        "livemode": false,
+        "notes": {},
+        "receipt": null,
+        "station_id": "<mer:?>",
+        "status": "paid"
+      }
+    ],
+    "payments": [
+      {
+        "amount": "49900",
+        "authorized": false,
+        "bank_code": null,
+        "capture_mode": "automatic",
+        "captured": false,
+        "card_bin": null,
+        "card_expiry_month": null,
+        "card_expiry_year": null,
+        "card_last4": null,
+        "card_network": null,
+        "currency": "INR",
+        "customer_email": null,
+        "error_code": "risk_blocked",
+        "error_description": "VPA mule@okbank is blocklisted",
+        "failed": true,
+        "fee": null,
+        "id": "<pay:1>",
+        "junction_ref": null,
+        "junction_sequence": 0,
+        "livemode": false,
+        "method": "upi",
+        "order_id": "<ord:1>",
+        "risk_decision": "block",
+        "risk_reasons": [
+          {
+            "detail": "VPA mule@okbank is blocklisted",
+            "outcome": "block",
+            "rule": "blocked_vpa"
+          }
+        ],
+        "risk_review_status": "not_required",
+        "risk_reviewed_by": null,
+        "risk_score": 100,
+        "station_id": "<mer:?>",
+        "status": "failed",
+        "tax": null,
+        "test_scenario": null,
+        "vpa": "mule@okbank"
+      },
+      {
+        "amount": "49900",
+        "authorized": true,
+        "bank_code": null,
+        "capture_mode": "automatic",
+        "captured": true,
+        "card_bin": null,
+        "card_expiry_month": null,
+        "card_expiry_year": null,
+        "card_last4": null,
+        "card_network": null,
+        "currency": "INR",
+        "customer_email": null,
+        "error_code": null,
+        "error_description": null,
+        "failed": false,
+        "fee": "499",
+        "id": "<pay:2>",
+        "junction_ref": "<JN:?>",
+        "junction_sequence": 2,
+        "livemode": false,
+        "method": "upi",
+        "order_id": "<ord:2>",
+        "risk_decision": "allow",
+        "risk_reasons": [],
+        "risk_review_status": "not_required",
+        "risk_reviewed_by": null,
+        "risk_score": 0,
+        "station_id": "<mer:?>",
+        "status": "captured",
+        "tax": "90",
+        "test_scenario": "success",
+        "vpa": "mule@okbank"
+      }
+    ],
+    "payment_events": {
+      "<pay:1>": [
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "risk": [
+              {
+                "detail": "VPA mule@okbank is blocklisted",
+                "outcome": "block",
+                "rule": "blocked_vpa"
+              }
+            ]
+          },
+          "payment_id": "<pay:1>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.created"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "score": 100
+          },
+          "payment_id": "<pay:1>",
+          "sequence": null,
+          "source": "conductor",
+          "type": "risk.blocked"
+        }
+      ],
+      "<pay:2>": [
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "risk": []
+          },
+          "payment_id": "<pay:2>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.created"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "ref": "<JN:?>"
+          },
+          "payment_id": "<pay:2>",
+          "sequence": null,
+          "source": "junction",
+          "type": "submit.accepted"
+        },
+        {
+          "applied": false,
+          "junction_event_id": "jev_<JN:?>_1",
+          "note": "no-op: payment is pending",
+          "payload": {
+            "amount": 49900,
+            "currency": "INR",
+            "decline_code": null,
+            "decline_reason": null,
+            "id": "jev_<JN:?>_1",
+            "occurred_at": "<ts>",
+            "payment_id": "<pay:2>",
+            "ref": "<JN:?>",
+            "sequence": 1,
+            "type": "authorization.pending"
+          },
+          "payment_id": "<pay:2>",
+          "sequence": 1,
+          "source": "junction",
+          "type": "junction.authorization.pending"
+        },
+        {
+          "applied": true,
+          "junction_event_id": "jev_<JN:?>_2",
+          "note": null,
+          "payload": {
+            "amount": 49900,
+            "currency": "INR",
+            "decline_code": null,
+            "decline_reason": null,
+            "id": "jev_<JN:?>_2",
+            "occurred_at": "<ts>",
+            "payment_id": "<pay:2>",
+            "ref": "<JN:?>",
+            "sequence": 2,
+            "type": "authorization.succeeded"
+          },
+          "payment_id": "<pay:2>",
+          "sequence": 2,
+          "source": "junction",
+          "type": "junction.authorization.succeeded"
+        },
+        {
+          "applied": true,
+          "junction_event_id": null,
+          "note": null,
+          "payload": {
+            "fee": 499,
+            "tax": 90
+          },
+          "payment_id": "<pay:2>",
+          "sequence": null,
+          "source": "api",
+          "type": "payment.captured"
+        }
+      ]
+    },
+    "idempotency_keys": [
+      {
+        "key": "parity-1",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/orders",
+        "response_body": {
+          "amount": 49900,
+          "amount_paid": 0,
+          "attempts": 0,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "id": "<ord:1>",
+          "livemode": false,
+          "notes": {},
+          "object": "order",
+          "receipt": null,
+          "status": "created"
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-2",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/payments",
+        "response_body": {
+          "amount": 49900,
+          "authorized_at": null,
+          "bank_code": null,
+          "capture_mode": "automatic",
+          "captured_at": null,
+          "card": null,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "email": null,
+          "error_code": "risk_blocked",
+          "error_description": "VPA mule@okbank is blocklisted",
+          "failed_at": "<ts>",
+          "fee": null,
+          "id": "<pay:1>",
+          "livemode": false,
+          "method": "upi",
+          "object": "payment",
+          "order_id": "<ord:1>",
+          "risk": {
+            "decision": "block",
+            "reasons": [
+              {
+                "detail": "VPA mule@okbank is blocklisted",
+                "outcome": "block",
+                "rule": "blocked_vpa"
+              }
+            ],
+            "review_status": "not_required",
+            "score": 100
+          },
+          "status": "failed",
+          "tax": null,
+          "vpa": "mule@okbank"
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-3",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/orders",
+        "response_body": {
+          "amount": 49900,
+          "amount_paid": 0,
+          "attempts": 0,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "id": "<ord:2>",
+          "livemode": false,
+          "notes": {},
+          "object": "order",
+          "receipt": null,
+          "status": "created"
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-4",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/payments",
+        "response_body": {
+          "amount": 49900,
+          "authorized_at": null,
+          "bank_code": null,
+          "capture_mode": "automatic",
+          "captured_at": null,
+          "card": null,
+          "created_at": "<ts>",
+          "currency": "INR",
+          "email": null,
+          "error_code": null,
+          "error_description": null,
+          "failed_at": null,
+          "fee": null,
+          "id": "<pay:2>",
+          "livemode": false,
+          "method": "upi",
+          "object": "payment",
+          "order_id": "<ord:2>",
+          "risk": {
+            "decision": "allow",
+            "reasons": [],
+            "review_status": "not_required",
+            "score": 0
+          },
+          "status": "created",
+          "tax": null,
+          "vpa": "mule@okbank"
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      }
+    ],
+    "rate_limit_state": [
+      {
+        "bucket": "station:<mer:?>:test"
+      }
+    ],
+    "conductor_blocklist": [
+      {
+        "active": false,
+        "created_by": "stf_00000000000000000000000003",
+        "deactivated": true,
+        "id": "<blk:1>",
+        "kind": "vpa",
+        "reason": "money mule",
+        "value": "mule@okbank"
+      }
+    ],
+    "junction_authorizations": [
+      {
+        "amount": "49900",
+        "currency": "INR",
+        "decline_code": null,
+        "instrument": "upi:mule@okbank",
+        "livemode": false,
+        "merchant_ref": "<mer:?>",
+        "method": "upi",
+        "payment_id": "<pay:2>",
+        "plan": {
+          "decline_code": null,
+          "duplicates": 0,
+          "final": "authorized",
+          "latency_s": 0,
+          "out_of_order": false,
+          "pending_first": true,
+          "source": "scenario",
+          "unavailable_attempts": 0
+        },
+        "ref": "<JN:?>",
+        "requests_seen": 1,
+        "scenario": "success",
+        "sequence": 2,
+        "status": "captured"
+      }
+    ],
+    "jobs": [
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:expire:<pay:2>",
+        "errored": false,
+        "kind": "payments.expire_authorization",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:2>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 0,
+        "dedupe_key": "payments:status_check:<pay:2>:1",
+        "errored": false,
+        "kind": "payments.status_check",
+        "max_attempts": 10,
+        "payload": {
+          "attempt": 1,
+          "payment_id": "<pay:2>"
+        },
+        "queue": "payments",
+        "status": "queued"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:decide:<JN:?>",
+        "errored": false,
+        "kind": "junction.decide",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:deliver:jev_<JN:?>_1:0",
+        "errored": false,
+        "kind": "junction.deliver_callback",
+        "max_attempts": 8,
+        "payload": {
+          "amount": 49900,
+          "currency": "INR",
+          "decline_code": null,
+          "decline_reason": null,
+          "id": "jev_<JN:?>_1",
+          "occurred_at": "<ts>",
+          "payment_id": "<pay:2>",
+          "ref": "<JN:?>",
+          "sequence": 1,
+          "type": "authorization.pending"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:deliver:jev_<JN:?>_2:0",
+        "errored": false,
+        "kind": "junction.deliver_callback",
+        "max_attempts": 8,
+        "payload": {
+          "amount": 49900,
+          "currency": "INR",
+          "decline_code": null,
+          "decline_reason": null,
+          "id": "jev_<JN:?>_2",
+          "occurred_at": "<ts>",
+          "payment_id": "<pay:2>",
+          "ref": "<JN:?>",
+          "sequence": 2,
+          "type": "authorization.succeeded"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:resolve:<JN:?>",
+        "errored": false,
+        "kind": "junction.resolve",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:?>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:capture:<pay:2>",
+        "errored": false,
+        "kind": "payments.capture",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:2>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      },
+      {
+        "attempts": 1,
+        "dedupe_key": "payments:submit:<pay:2>",
+        "errored": false,
+        "kind": "payments.submit",
+        "max_attempts": 10,
+        "payload": {
+          "payment_id": "<pay:2>"
+        },
+        "queue": "payments",
+        "status": "succeeded"
+      }
+    ],
+    "ledger_accounts": [
+      {
+        "allow_negative": false,
+        "code": "platform:test:customer_funds:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "49900",
+        "livemode": false,
+        "name": "Platform customer funds (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "asset",
+        "version": 1
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:gst_payable:INR",
+        "credits_total": "90",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform gst payable (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "liability",
+        "version": 1
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:mintrail_fees:INR",
+        "credits_total": "499",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform mintrail fees (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "revenue",
+        "version": 1
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:refunds_payable:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform refunds payable (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:settlement_clearing:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform settlement clearing (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "station:<mer:?>:test:merchant_balance:INR",
+        "credits_total": "49311",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "<mer:?> merchant_balance (INR, test)",
+        "owner_id": "<mer:?>",
+        "status": "active",
+        "type": "liability",
+        "version": 1
+      }
+    ],
+    "ledger_transactions": [
+      {
+        "description": "Capture <pay:2>",
+        "idempotency_key": "capture:<pay:2>",
+        "is_reversal": false,
+        "livemode": false,
+        "metadata": {
+          "fee": 499,
+          "gross": 49900,
+          "station_id": "<mer:?>",
+          "tax": 90
+        },
+        "postings": [
+          {
+            "account": "platform:test:customer_funds:INR",
+            "amount": "49900",
+            "currency": "INR",
+            "direction": "debit"
+          },
+          {
+            "account": "platform:test:gst_payable:INR",
+            "amount": "90",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "platform:test:mintrail_fees:INR",
+            "amount": "499",
+            "currency": "INR",
+            "direction": "credit"
+          },
+          {
+            "account": "station:<mer:?>:test:merchant_balance:INR",
+            "amount": "49311",
+            "currency": "INR",
+            "direction": "credit"
+          }
+        ],
+        "reference_id": "<pay:2>",
+        "reference_type": "payment"
+      }
+    ]
+  }
+}

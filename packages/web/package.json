@@ -1,0 +1,31 @@
+{
+  "name": "@mintrail/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Shared building blocks for MintRail's Next.js apps (dashboard, railyard): server-side API client, CSRF, formatting, charts, UI",
+  "exports": {
+    ".": "./src/index.ts",
+    "./server": "./src/server.ts",
+    "./ui": "./src/ui.tsx",
+    "./charts": "./src/charts.tsx",
+    "./styles.css": "./src/styles.css"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@mintrail/node": "workspace:*"
+  },
+  "peerDependencies": {
+    "next": "16.4.6",
+    "react": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "@types/react": "19.3.0",
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "typescript": "5.9.3"
+  }
+}

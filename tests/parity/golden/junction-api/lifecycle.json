@@ -1,0 +1,321 @@
+{
+  "steps": [
+    {
+      "body": {
+        "amount": 500,
+        "created_at": "<ts>",
+        "currency": "INR",
+        "decline_code": null,
+        "payment_id": "pay_parity_http",
+        "ref": "<JN:1>",
+        "sequence": 0,
+        "status": "pending"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "request": {
+        "body": {
+          "amount": 500,
+          "currency": "INR",
+          "instrument": "card:411111:1111",
+          "livemode": false,
+          "merchant_ref": "mer_1",
+          "method": "card",
+          "payment_id": "pay_parity_http",
+          "scenario": "timeout"
+        },
+        "method": "POST",
+        "path": "junction:/v1/authorizations"
+      },
+      "status": 202,
+      "step": "authorize"
+    },
+    {
+      "body": {
+        "amount": 500,
+        "created_at": "<ts>",
+        "currency": "INR",
+        "decline_code": null,
+        "payment_id": "pay_parity_http",
+        "ref": "<JN:1>",
+        "sequence": 0,
+        "status": "pending"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "request": {
+        "body": {
+          "amount": 500,
+          "currency": "INR",
+          "instrument": "card:411111:1111",
+          "livemode": false,
+          "merchant_ref": "mer_1",
+          "method": "card",
+          "payment_id": "pay_parity_http",
+          "scenario": "timeout"
+        },
+        "method": "POST",
+        "path": "junction:/v1/authorizations"
+      },
+      "status": 202,
+      "step": "idempotent repeat"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "duplicate_mismatch",
+          "message": "payment_id reused with a different amount"
+        }
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "request": {
+        "body": {
+          "amount": 1,
+          "currency": "INR",
+          "instrument": "card:411111:1111",
+          "livemode": false,
+          "merchant_ref": "mer_1",
+          "method": "card",
+          "payment_id": "pay_parity_http",
+          "scenario": "timeout"
+        },
+        "method": "POST",
+        "path": "junction:/v1/authorizations"
+      },
+      "status": 409,
+      "step": "mismatched repeat"
+    },
+    {
+      "body": {
+        "amount": 500,
+        "created_at": "<ts>",
+        "currency": "INR",
+        "decline_code": null,
+        "payment_id": "pay_parity_http",
+        "ref": "<JN:1>",
+        "sequence": 0,
+        "status": "pending"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "request": {
+        "method": "GET",
+        "path": "junction:/v1/authorizations/<JN:1>"
+      },
+      "status": 200,
+      "step": "get"
+    },
+    {
+      "body": {
+        "amount": 500,
+        "created_at": "<ts>",
+        "currency": "INR",
+        "decline_code": null,
+        "payment_id": "pay_parity_http",
+        "ref": "<JN:1>",
+        "sequence": 0,
+        "status": "pending"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "request": {
+        "method": "GET",
+        "path": "junction:/v1/authorizations?payment_id=pay_parity_http"
+      },
+      "status": 200,
+      "step": "find"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "not_found",
+          "message": "no authorization for nope"
+        }
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "request": {
+        "method": "GET",
+        "path": "junction:/v1/authorizations?payment_id=nope"
+      },
+      "status": 404,
+      "step": "find unknown"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "not_found",
+          "message": "no authorization <JN:2>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "request": {
+        "method": "GET",
+        "path": "junction:/v1/authorizations/<JN:2>"
+      },
+      "status": 404,
+      "step": "get unknown"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "not_capturable",
+          "message": "authorization is pending"
+        }
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "request": {
+        "body": {
+          "amount": 500
+        },
+        "method": "POST",
+        "path": "junction:/v1/authorizations/<JN:1>/capture"
+      },
+      "status": 409,
+      "step": "capture pending"
+    },
+    {
+      "body": {
+        "amount": 500,
+        "created_at": "<ts>",
+        "currency": "INR",
+        "decline_code": null,
+        "payment_id": "pay_parity_http",
+        "ref": "<JN:1>",
+        "sequence": 0,
+        "status": "voided"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "request": {
+        "method": "POST",
+        "path": "junction:/v1/authorizations/<JN:1>/void"
+      },
+      "status": 200,
+      "step": "void"
+    },
+    {
+      "body": {
+        "amount": 500,
+        "created_at": "<ts>",
+        "currency": "INR",
+        "decline_code": null,
+        "payment_id": "pay_parity_http",
+        "ref": "<JN:1>",
+        "sequence": 0,
+        "status": "voided"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "request": {
+        "method": "POST",
+        "path": "junction:/v1/authorizations/<JN:1>/void"
+      },
+      "status": 200,
+      "step": "void again"
+    }
+  ],
+  "notes": {},
+  "db": {
+    "stations": [],
+    "api_keys": [],
+    "staff_users": [
+      {
+        "email": "admin@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "admin",
+        "status": "active"
+      },
+      {
+        "email": "finance@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "finance",
+        "status": "active"
+      },
+      {
+        "email": "ops@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "ops",
+        "status": "active"
+      },
+      {
+        "email": "security@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "security",
+        "status": "active"
+      }
+    ],
+    "staff_sessions": [],
+    "staff_audit_log": [],
+    "orders": [],
+    "payments": [],
+    "payment_events": {},
+    "idempotency_keys": [],
+    "rate_limit_state": [],
+    "conductor_blocklist": [],
+    "junction_authorizations": [
+      {
+        "amount": "500",
+        "currency": "INR",
+        "decline_code": null,
+        "instrument": "card:411111:1111",
+        "livemode": false,
+        "merchant_ref": "mer_1",
+        "method": "card",
+        "payment_id": "pay_parity_http",
+        "plan": {
+          "decline_code": null,
+          "duplicates": 0,
+          "final": "none",
+          "latency_s": 0,
+          "out_of_order": false,
+          "pending_first": false,
+          "source": "scenario",
+          "unavailable_attempts": 0
+        },
+        "ref": "<JN:1>",
+        "requests_seen": 2,
+        "scenario": "timeout",
+        "sequence": 0,
+        "status": "voided"
+      }
+    ],
+    "jobs": [
+      {
+        "attempts": 1,
+        "dedupe_key": "junction:decide:<JN:1>",
+        "errored": false,
+        "kind": "junction.decide",
+        "max_attempts": 10,
+        "payload": {
+          "ref": "<JN:1>"
+        },
+        "queue": "junction",
+        "status": "succeeded"
+      }
+    ],
+    "ledger_accounts": [],
+    "ledger_transactions": []
+  }
+}

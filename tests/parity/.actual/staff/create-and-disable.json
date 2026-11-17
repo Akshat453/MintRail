@@ -1,0 +1,337 @@
+{
+  "steps": [
+    {
+      "body": {
+        "created_at": "<ts>",
+        "email": "meera@mintrail.example",
+        "full_name": "Meera",
+        "id": "<stf:1>",
+        "last_login_at": null,
+        "object": "staff_user",
+        "role": "security",
+        "status": "active"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:1>"
+      },
+      "request": {
+        "body": {
+          "email": "meera@mintrail.example",
+          "full_name": "Meera",
+          "password": "correct-horse-battery-staple",
+          "role": "security"
+        },
+        "method": "POST",
+        "path": "/internal/v1/staff"
+      },
+      "status": 201,
+      "step": "create staff"
+    },
+    {
+      "body": {
+        "expires_in": 28800,
+        "permissions": [
+          "api_keys:manage",
+          "audit:read",
+          "derailments:write",
+          "payments:read",
+          "risk_rules:manage",
+          "stations:read",
+          "stations:suspend",
+          "webhooks:replay"
+        ],
+        "staff": {
+          "created_at": "<ts>",
+          "email": "meera@mintrail.example",
+          "full_name": "Meera",
+          "id": "<stf:1>",
+          "last_login_at": "<ts>",
+          "object": "staff_user",
+          "role": "security",
+          "status": "active"
+        },
+        "token": "<rys:1>"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:2>"
+      },
+      "request": {
+        "body": {
+          "email": "meera@mintrail.example",
+          "password": "correct-horse-battery-staple"
+        },
+        "method": "POST",
+        "path": "/internal/v1/auth/login"
+      },
+      "status": 200,
+      "step": "new staff logs in"
+    },
+    {
+      "body": {
+        "created_at": "<ts>",
+        "email": "meera@mintrail.example",
+        "full_name": "Meera",
+        "id": "<stf:1>",
+        "last_login_at": "<ts>",
+        "object": "staff_user",
+        "role": "security",
+        "status": "disabled"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:3>"
+      },
+      "request": {
+        "method": "POST",
+        "path": "/internal/v1/staff/<stf:1>/disable"
+      },
+      "status": 200,
+      "step": "disable"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "MR_AUTHENTICATION_REQUIRED",
+          "message": "Railyard session is invalid or expired",
+          "request_id": "<req:4>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "www-authenticate": "Bearer",
+        "x-request-id": "<req:4>"
+      },
+      "request": {
+        "method": "GET",
+        "path": "/internal/v1/auth/me"
+      },
+      "status": 401,
+      "step": "session dies with account"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "MR_STAFF_LOGIN_FAILED",
+          "message": "email or password is incorrect",
+          "request_id": "<req:5>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "www-authenticate": "Bearer",
+        "x-request-id": "<req:5>"
+      },
+      "request": {
+        "body": {
+          "email": "meera@mintrail.example",
+          "password": "correct-horse-battery-staple"
+        },
+        "method": "POST",
+        "path": "/internal/v1/auth/login"
+      },
+      "status": 401,
+      "step": "disabled cannot log in"
+    },
+    {
+      "body": {
+        "data": [
+          {
+            "created_at": "<ts>",
+            "email": "admin@parity.mintrail.example",
+            "full_name": "Parity admin",
+            "id": "stf_00000000000000000000000004",
+            "last_login_at": "<ts>",
+            "object": "staff_user",
+            "role": "admin",
+            "status": "active"
+          },
+          {
+            "created_at": "<ts>",
+            "email": "finance@parity.mintrail.example",
+            "full_name": "Parity finance",
+            "id": "stf_00000000000000000000000002",
+            "last_login_at": null,
+            "object": "staff_user",
+            "role": "finance",
+            "status": "active"
+          },
+          {
+            "created_at": "<ts>",
+            "email": "meera@mintrail.example",
+            "full_name": "Meera",
+            "id": "<stf:1>",
+            "last_login_at": "<ts>",
+            "object": "staff_user",
+            "role": "security",
+            "status": "disabled"
+          },
+          {
+            "created_at": "<ts>",
+            "email": "ops@parity.mintrail.example",
+            "full_name": "Parity ops",
+            "id": "stf_00000000000000000000000001",
+            "last_login_at": null,
+            "object": "staff_user",
+            "role": "ops",
+            "status": "active"
+          },
+          {
+            "created_at": "<ts>",
+            "email": "security@parity.mintrail.example",
+            "full_name": "Parity security",
+            "id": "stf_00000000000000000000000003",
+            "last_login_at": null,
+            "object": "staff_user",
+            "role": "security",
+            "status": "active"
+          }
+        ],
+        "has_more": false,
+        "object": "list"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "x-request-id": "<req:6>"
+      },
+      "request": {
+        "method": "GET",
+        "path": "/internal/v1/staff"
+      },
+      "status": 200,
+      "step": "list staff"
+    }
+  ],
+  "notes": {},
+  "db": {
+    "stations": [],
+    "api_keys": [],
+    "staff_users": [
+      {
+        "email": "admin@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": true,
+        "role": "admin",
+        "status": "active"
+      },
+      {
+        "email": "finance@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "finance",
+        "status": "active"
+      },
+      {
+        "email": "meera@mintrail.example",
+        "failed_logins": 1,
+        "locked": false,
+        "logged_in": true,
+        "role": "security",
+        "status": "disabled"
+      },
+      {
+        "email": "ops@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "ops",
+        "status": "active"
+      },
+      {
+        "email": "security@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "security",
+        "status": "active"
+      }
+    ],
+    "staff_sessions": [
+      {
+        "live": true,
+        "revoked": false,
+        "staff_id": "stf_00000000000000000000000004"
+      },
+      {
+        "live": true,
+        "revoked": true,
+        "staff_id": "<stf:1>"
+      }
+    ],
+    "staff_audit_log": [
+      {
+        "action": "staff.login",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "admin@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000004",
+        "target_id": "stf_00000000000000000000000004",
+        "target_type": "staff"
+      },
+      {
+        "action": "staff.create",
+        "details": {
+          "role": "security"
+        },
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "admin@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000004",
+        "target_id": "<stf:1>",
+        "target_type": "staff"
+      },
+      {
+        "action": "staff.login",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "meera@mintrail.example",
+        "staff_id": "<stf:1>",
+        "target_id": "<stf:1>",
+        "target_type": "staff"
+      },
+      {
+        "action": "staff.disable",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "admin@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000004",
+        "target_id": "<stf:1>",
+        "target_type": "staff"
+      },
+      {
+        "action": "staff.login_failed",
+        "details": {
+          "code": "MR_STAFF_LOGIN_FAILED"
+        },
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "meera@mintrail.example",
+        "staff_id": null,
+        "target_id": null,
+        "target_type": null
+      }
+    ],
+    "orders": [],
+    "payments": [],
+    "payment_events": {},
+    "idempotency_keys": [],
+    "rate_limit_state": [],
+    "conductor_blocklist": [],
+    "junction_authorizations": [],
+    "jobs": [],
+    "ledger_accounts": [],
+    "ledger_transactions": []
+  }
+}

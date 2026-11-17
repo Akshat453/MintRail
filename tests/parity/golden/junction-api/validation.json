@@ -1,0 +1,190 @@
+{
+  "steps": [
+    {
+      "body": {
+        "error": {
+          "code": "unknown_scenario",
+          "message": "unknown scenario 'nope'; expected one of ('success', 'decline:<code>', 'timeout', 'delayed:<seconds>', 'duplicate_callbacks', 'out_of_order', 'flaky', 'late_success')"
+        }
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "request": {
+        "body": {
+          "amount": 500,
+          "currency": "INR",
+          "instrument": "card:411111:1111",
+          "livemode": false,
+          "merchant_ref": "mer_1",
+          "method": "card",
+          "payment_id": "pay_parity_http",
+          "scenario": "nope"
+        },
+        "method": "POST",
+        "path": "junction:/v1/authorizations"
+      },
+      "status": 400,
+      "step": "unknown scenario"
+    },
+    {
+      "body": {
+        "detail": [
+          {
+            "input": "500",
+            "loc": [
+              "body",
+              "amount"
+            ],
+            "msg": "Input should be a valid integer",
+            "type": "int_type"
+          }
+        ]
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "request": {
+        "body": {
+          "amount": "500",
+          "currency": "INR",
+          "instrument": "card:411111:1111",
+          "livemode": false,
+          "merchant_ref": "mer_1",
+          "method": "card",
+          "payment_id": "pay_parity_http",
+          "scenario": "timeout"
+        },
+        "method": "POST",
+        "path": "junction:/v1/authorizations"
+      },
+      "status": 422,
+      "step": "string amount"
+    },
+    {
+      "body": {
+        "detail": [
+          {
+            "ctx": {
+              "expected": "'INR' or 'USD'"
+            },
+            "input": "EUR",
+            "loc": [
+              "body",
+              "currency"
+            ],
+            "msg": "Input should be 'INR' or 'USD'",
+            "type": "literal_error"
+          }
+        ]
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "request": {
+        "body": {
+          "amount": 500,
+          "currency": "EUR",
+          "instrument": "card:411111:1111",
+          "livemode": false,
+          "merchant_ref": "mer_1",
+          "method": "card",
+          "payment_id": "pay_parity_http",
+          "scenario": "timeout"
+        },
+        "method": "POST",
+        "path": "junction:/v1/authorizations"
+      },
+      "status": 422,
+      "step": "bad currency"
+    },
+    {
+      "body": {
+        "detail": [
+          {
+            "ctx": {
+              "expected": "'card', 'upi' or 'netbanking'"
+            },
+            "input": "wallet",
+            "loc": [
+              "body",
+              "method"
+            ],
+            "msg": "Input should be 'card', 'upi' or 'netbanking'",
+            "type": "literal_error"
+          }
+        ]
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "request": {
+        "body": {
+          "amount": 500,
+          "currency": "INR",
+          "instrument": "card:411111:1111",
+          "livemode": false,
+          "merchant_ref": "mer_1",
+          "method": "wallet",
+          "payment_id": "pay_parity_http",
+          "scenario": "timeout"
+        },
+        "method": "POST",
+        "path": "junction:/v1/authorizations"
+      },
+      "status": 422,
+      "step": "bad method"
+    }
+  ],
+  "notes": {},
+  "db": {
+    "stations": [],
+    "api_keys": [],
+    "staff_users": [
+      {
+        "email": "admin@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "admin",
+        "status": "active"
+      },
+      {
+        "email": "finance@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "finance",
+        "status": "active"
+      },
+      {
+        "email": "ops@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "ops",
+        "status": "active"
+      },
+      {
+        "email": "security@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "security",
+        "status": "active"
+      }
+    ],
+    "staff_sessions": [],
+    "staff_audit_log": [],
+    "orders": [],
+    "payments": [],
+    "payment_events": {},
+    "idempotency_keys": [],
+    "rate_limit_state": [],
+    "conductor_blocklist": [],
+    "junction_authorizations": [],
+    "jobs": [],
+    "ledger_accounts": [],
+    "ledger_transactions": []
+  }
+}

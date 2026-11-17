@@ -1,0 +1,29 @@
+{
+  "name": "@mintrail/ledger",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Ledger — MintRail's append-only double-entry ledger",
+  "exports": {
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "worker": "node dist/main.js"
+  },
+  "dependencies": {
+    "@mintrail/shared": "workspace:*",
+    "drizzle-orm": "0.45.4"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "fast-check": "4.10.2",
+    "typescript": "5.9.3",
+    "vitest": "5.1.0"
+  }
+}

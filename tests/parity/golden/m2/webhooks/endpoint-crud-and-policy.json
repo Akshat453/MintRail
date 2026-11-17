@@ -1,0 +1,616 @@
+{
+  "steps": [
+    {
+      "body": {
+        "created_at": "<ts>",
+        "description": null,
+        "enabled_events": [
+          "payment.captured",
+          "refund.processed"
+        ],
+        "id": "<whk:1>",
+        "livemode": false,
+        "object": "webhook_endpoint",
+        "previous_secret_expires_at": null,
+        "secret": "<whsec:1>",
+        "secret_hint": "<hint>",
+        "secret_rotated_at": null,
+        "status": "enabled",
+        "url": "https://hooks.kaveri.example/mintrail"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "ratelimit-limit": "50",
+        "ratelimit-remaining": "<present>",
+        "x-request-id": "<req:1>"
+      },
+      "request": {
+        "body": {
+          "enabled_events": [
+            "refund.processed",
+            "payment.captured"
+          ],
+          "url": "https://hooks.kaveri.example/mintrail"
+        },
+        "method": "POST",
+        "path": "/v1/webhook_endpoints"
+      },
+      "status": 201,
+      "step": "create"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "MR_INVALID_REQUEST",
+          "message": "url must use https://",
+          "param": "url",
+          "request_id": "<req:2>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "ratelimit-limit": "50",
+        "ratelimit-remaining": "<present>",
+        "x-request-id": "<req:2>"
+      },
+      "request": {
+        "body": {
+          "url": "ftp://hooks.kaveri.example/x"
+        },
+        "method": "POST",
+        "path": "/v1/webhook_endpoints"
+      },
+      "status": 400,
+      "step": "ftp"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "MR_INVALID_REQUEST",
+          "message": "url must not point at a private or loopback address",
+          "param": "url",
+          "request_id": "<req:3>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "ratelimit-limit": "50",
+        "ratelimit-remaining": "<present>",
+        "x-request-id": "<req:3>"
+      },
+      "request": {
+        "body": {
+          "url": "https://10.1.2.3/x"
+        },
+        "method": "POST",
+        "path": "/v1/webhook_endpoints"
+      },
+      "status": 400,
+      "step": "private ip"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "MR_INVALID_REQUEST",
+          "message": "unknown event type 'payment.exploded'",
+          "param": "enabled_events",
+          "request_id": "<req:4>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "ratelimit-limit": "50",
+        "ratelimit-remaining": "<present>",
+        "x-request-id": "<req:4>"
+      },
+      "request": {
+        "body": {
+          "enabled_events": [
+            "payment.exploded"
+          ],
+          "url": "https://hooks.kaveri.example/y"
+        },
+        "method": "POST",
+        "path": "/v1/webhook_endpoints"
+      },
+      "status": 400,
+      "step": "unknown event"
+    },
+    {
+      "body": {
+        "created_at": "<ts>",
+        "description": null,
+        "enabled_events": [
+          "payment.captured",
+          "refund.processed"
+        ],
+        "id": "<whk:1>",
+        "livemode": false,
+        "object": "webhook_endpoint",
+        "previous_secret_expires_at": null,
+        "secret_hint": "<hint>",
+        "secret_rotated_at": null,
+        "status": "disabled",
+        "url": "https://hooks.kaveri.example/mintrail"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "ratelimit-limit": "50",
+        "ratelimit-remaining": "<present>",
+        "x-request-id": "<req:5>"
+      },
+      "request": {
+        "body": {
+          "status": "disabled"
+        },
+        "method": "PATCH",
+        "path": "/v1/webhook_endpoints/<whk:1>"
+      },
+      "status": 200,
+      "step": "disable"
+    },
+    {
+      "body": {
+        "created_at": "<ts>",
+        "description": null,
+        "enabled_events": [
+          "payment.captured",
+          "refund.processed"
+        ],
+        "id": "<whk:1>",
+        "livemode": false,
+        "object": "webhook_endpoint",
+        "previous_secret_expires_at": "<ts>",
+        "secret": "<whsec:2>",
+        "secret_hint": "<hint>",
+        "secret_rotated_at": "<ts>",
+        "status": "disabled",
+        "url": "https://hooks.kaveri.example/mintrail"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "ratelimit-limit": "50",
+        "ratelimit-remaining": "<present>",
+        "x-request-id": "<req:6>"
+      },
+      "request": {
+        "method": "POST",
+        "path": "/v1/webhook_endpoints/<whk:1>/rotate_secret"
+      },
+      "status": 200,
+      "step": "rotate"
+    },
+    {
+      "body": {
+        "data": [
+          {
+            "created_at": "<ts>",
+            "description": null,
+            "enabled_events": [
+              "payment.captured",
+              "refund.processed"
+            ],
+            "id": "<whk:1>",
+            "livemode": false,
+            "object": "webhook_endpoint",
+            "previous_secret_expires_at": "<ts>",
+            "secret_hint": "<hint>",
+            "secret_rotated_at": "<ts>",
+            "status": "disabled",
+            "url": "https://hooks.kaveri.example/mintrail"
+          }
+        ],
+        "has_more": false,
+        "object": "list"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "ratelimit-limit": "50",
+        "ratelimit-remaining": "<present>",
+        "x-request-id": "<req:7>"
+      },
+      "request": {
+        "method": "GET",
+        "path": "/v1/webhook_endpoints"
+      },
+      "status": 200,
+      "step": "list"
+    },
+    {
+      "body": {
+        "created_at": "<ts>",
+        "description": null,
+        "enabled_events": [
+          "payment.captured",
+          "refund.processed"
+        ],
+        "id": "<whk:1>",
+        "livemode": false,
+        "object": "webhook_endpoint",
+        "previous_secret_expires_at": "<ts>",
+        "secret_hint": "<hint>",
+        "secret_rotated_at": "<ts>",
+        "status": "deleted",
+        "url": "https://hooks.kaveri.example/mintrail"
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "ratelimit-limit": "50",
+        "ratelimit-remaining": "<present>",
+        "x-request-id": "<req:8>"
+      },
+      "request": {
+        "method": "DELETE",
+        "path": "/v1/webhook_endpoints/<whk:1>"
+      },
+      "status": 200,
+      "step": "delete"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "MR_WEBHOOK_ENDPOINT_NOT_FOUND",
+          "message": "webhook endpoint <whk:1> not found",
+          "request_id": "<req:9>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "ratelimit-limit": "50",
+        "ratelimit-remaining": "<present>",
+        "x-request-id": "<req:9>"
+      },
+      "request": {
+        "method": "GET",
+        "path": "/v1/webhook_endpoints/<whk:1>"
+      },
+      "status": 404,
+      "step": "gone"
+    }
+  ],
+  "notes": {},
+  "db": {
+    "stations": [
+      {
+        "auto_capture": true,
+        "business_category": "5814",
+        "country": "IN",
+        "default_currency": "INR",
+        "display_name": "Kaveri Coffee 1",
+        "email": "finance-1@kaveri.example",
+        "fee_plan": "standard",
+        "id": "<mer:?>",
+        "kyc_rejection_reason": null,
+        "kyc_reviewed": false,
+        "kyc_reviewed_by": null,
+        "kyc_status": "pending",
+        "legal_name": "Kaveri Coffee Roasters 1 Pvt Ltd",
+        "max_payment_amount": null,
+        "rate_limit_burst": 50,
+        "rate_limit_per_sec": 25,
+        "settlement_schedule": "T+2",
+        "status": "active",
+        "suspended_reason": null,
+        "webhook_url": null
+      }
+    ],
+    "api_keys": [
+      {
+        "has_signing_key": true,
+        "hint": "mr_test_…****",
+        "id": "<key:?>",
+        "label": "Default test key",
+        "mode": "test",
+        "revoked": false,
+        "scopes": [
+          "*"
+        ],
+        "station_id": "<mer:?>",
+        "status": "active",
+        "used": true
+      }
+    ],
+    "staff_users": [
+      {
+        "email": "admin@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": true,
+        "role": "admin",
+        "status": "active"
+      },
+      {
+        "email": "finance@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "finance",
+        "status": "active"
+      },
+      {
+        "email": "ops@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "ops",
+        "status": "active"
+      },
+      {
+        "email": "security@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "security",
+        "status": "active"
+      }
+    ],
+    "staff_sessions": [
+      {
+        "live": true,
+        "revoked": false,
+        "staff_id": "stf_00000000000000000000000004"
+      }
+    ],
+    "staff_audit_log": [
+      {
+        "action": "staff.login",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "admin@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000004",
+        "target_id": "stf_00000000000000000000000004",
+        "target_type": "staff"
+      },
+      {
+        "action": "station.create",
+        "details": {},
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "admin@parity.mintrail.example",
+        "staff_id": "stf_00000000000000000000000004",
+        "target_id": "<mer:?>",
+        "target_type": "station"
+      }
+    ],
+    "orders": [],
+    "payments": [],
+    "payment_events": {},
+    "idempotency_keys": [
+      {
+        "key": "parity-1",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/webhook_endpoints",
+        "response_body": {
+          "created_at": "<ts>",
+          "description": null,
+          "enabled_events": [
+            "payment.captured",
+            "refund.processed"
+          ],
+          "id": "<whk:1>",
+          "livemode": false,
+          "object": "webhook_endpoint",
+          "previous_secret_expires_at": null,
+          "secret": "<whsec:1>",
+          "secret_hint": "<hint>",
+          "secret_rotated_at": null,
+          "status": "enabled",
+          "url": "https://hooks.kaveri.example/mintrail"
+        },
+        "response_status": 201,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-2",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/webhook_endpoints",
+        "response_body": {
+          "error": {
+            "code": "MR_INVALID_REQUEST",
+            "message": "url must use https://",
+            "param": "url",
+            "request_id": "<req:2>"
+          }
+        },
+        "response_status": 400,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-3",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/webhook_endpoints",
+        "response_body": {
+          "error": {
+            "code": "MR_INVALID_REQUEST",
+            "message": "url must not point at a private or loopback address",
+            "param": "url",
+            "request_id": "<req:3>"
+          }
+        },
+        "response_status": 400,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-4",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/webhook_endpoints",
+        "response_body": {
+          "error": {
+            "code": "MR_INVALID_REQUEST",
+            "message": "unknown event type 'payment.exploded'",
+            "param": "enabled_events",
+            "request_id": "<req:4>"
+          }
+        },
+        "response_status": 400,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      },
+      {
+        "key": "parity-5",
+        "livemode": false,
+        "method": "POST",
+        "path": "/v1/webhook_endpoints/<whk:1>/rotate_secret",
+        "response_body": {
+          "created_at": "<ts>",
+          "description": null,
+          "enabled_events": [
+            "payment.captured",
+            "refund.processed"
+          ],
+          "id": "<whk:1>",
+          "livemode": false,
+          "object": "webhook_endpoint",
+          "previous_secret_expires_at": "<ts>",
+          "secret": "<whsec:2>",
+          "secret_hint": "<hint>",
+          "secret_rotated_at": "<ts>",
+          "status": "disabled",
+          "url": "https://hooks.kaveri.example/mintrail"
+        },
+        "response_status": 200,
+        "station_id": "<mer:?>",
+        "status": "completed"
+      }
+    ],
+    "rate_limit_state": [
+      {
+        "bucket": "station:<mer:?>:test"
+      }
+    ],
+    "conductor_blocklist": [],
+    "junction_authorizations": [],
+    "jobs": [],
+    "ledger_accounts": [
+      {
+        "allow_negative": false,
+        "code": "platform:test:customer_funds:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform customer funds (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "asset",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:gst_payable:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform gst payable (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:mintrail_fees:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform mintrail fees (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "revenue",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:refunds_payable:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform refunds payable (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "platform:test:settlement_clearing:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "Platform settlement clearing (INR, test)",
+        "owner_id": null,
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      },
+      {
+        "allow_negative": false,
+        "code": "station:<mer:?>:test:merchant_balance:INR",
+        "credits_total": "0",
+        "currency": "INR",
+        "debits_total": "0",
+        "livemode": false,
+        "name": "<mer:?> merchant_balance (INR, test)",
+        "owner_id": "<mer:?>",
+        "status": "active",
+        "type": "liability",
+        "version": 0
+      }
+    ],
+    "ledger_transactions": [],
+    "refunds": [],
+    "disputes": [],
+    "dispute_evidence": [],
+    "payouts": [],
+    "payout_batches": [],
+    "settlements": [],
+    "settlement_entries": [],
+    "station_policies": [],
+    "outbox_events": [],
+    "webhook_endpoints": [
+      {
+        "description": null,
+        "enabled_events": [
+          "payment.captured",
+          "refund.processed"
+        ],
+        "id": "<whk:1>",
+        "livemode": false,
+        "rotated": true,
+        "station_id": "<mer:?>",
+        "status": "deleted",
+        "url": "https://hooks.kaveri.example/mintrail"
+      }
+    ],
+    "webhook_deliveries": [],
+    "junction_refunds": [],
+    "junction_disputes": [],
+    "junction_payouts": [],
+    "junction_inbox": [],
+    "dashboard_users": [],
+    "derailments": [],
+    "derailment_notes": [],
+    "reconciliation_reports": []
+  }
+}

@@ -1,0 +1,12 @@
+dist
+coverage
+drizzle
+docs
+pnpm-lock.yaml
+tests/parity/golden
+tests/parity/fixtures
+tests/parity/.actual
+.next
+next-env.d.ts
+test-results
+playwright-report

@@ -1,0 +1,93 @@
+{
+  "steps": [
+    {
+      "body": {
+        "error": {
+          "code": "MR_STAFF_LOGIN_FAILED",
+          "message": "email or password is incorrect",
+          "request_id": "<req:1>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "www-authenticate": "Bearer",
+        "x-request-id": "<req:1>"
+      },
+      "request": {
+        "body": {
+          "email": "nobody@mintrail.example",
+          "password": "wrong-password!!"
+        },
+        "method": "POST",
+        "path": "/internal/v1/auth/login"
+      },
+      "status": 401,
+      "step": "unknown email"
+    }
+  ],
+  "notes": {},
+  "db": {
+    "stations": [],
+    "api_keys": [],
+    "staff_users": [
+      {
+        "email": "admin@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "admin",
+        "status": "active"
+      },
+      {
+        "email": "finance@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "finance",
+        "status": "active"
+      },
+      {
+        "email": "ops@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "ops",
+        "status": "active"
+      },
+      {
+        "email": "security@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "security",
+        "status": "active"
+      }
+    ],
+    "staff_sessions": [],
+    "staff_audit_log": [
+      {
+        "action": "staff.login_failed",
+        "details": {
+          "code": "MR_STAFF_LOGIN_FAILED"
+        },
+        "has_ip": true,
+        "has_request_id": true,
+        "staff_email": "nobody@mintrail.example",
+        "staff_id": null,
+        "target_id": null,
+        "target_type": null
+      }
+    ],
+    "orders": [],
+    "payments": [],
+    "payment_events": {},
+    "idempotency_keys": [],
+    "rate_limit_state": [],
+    "conductor_blocklist": [],
+    "junction_authorizations": [],
+    "jobs": [],
+    "ledger_accounts": [],
+    "ledger_transactions": []
+  }
+}

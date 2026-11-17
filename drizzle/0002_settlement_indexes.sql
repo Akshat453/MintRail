@@ -1,0 +1,1 @@
+CREATE INDEX "ix_payments_station_captured" ON "payments" USING btree ("station_id","livemode","captured_at") WHERE status = 'captured';

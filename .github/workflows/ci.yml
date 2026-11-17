@@ -1,0 +1,121 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: "22.22.2"
+
+jobs:
+  lint:
+    name: Lint (ESLint incl. no-number-money, Prettier)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - run: corepack enable && pnpm install --frozen-lockfile
+      - run: pnpm lint
+
+  typecheck:
+    name: Type check (tsc --noEmit, strict)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - run: corepack enable && pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+
+  unit:
+    name: Unit tests
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - run: corepack enable && pnpm install --frozen-lockfile
+      - run: pnpm test:unit
+
+  integration:
+    name: Integration + e2e (Postgres 16) with 85% coverage gate on api/ and ledger/
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - run: corepack enable && pnpm install --frozen-lockfile
+      # Testcontainers starts Postgres 16 (Docker is available on GitHub runners);
+      # the schema-contract test also needs it to pg_dump fresh and adopted databases.
+      - run: pnpm coverage
+
+  parity:
+    name: Parity harness (211 M1 contract + 18 M2 regression goldens) against the Docker stack
+    runs-on: ubuntu-24.04
+    env:
+      MINTRAIL_JUNCTION_LATENCY_SCALE: "0"
+      # Settlements only when a scenario asks for them; webhooks reach the harness via the host gateway.
+      MINTRAIL_DEPOT_SCHEDULER_ENABLED: "false"
+      PARITY_RECEIVER_HOST: host.docker.internal
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - run: corepack enable && pnpm install --frozen-lockfile
+      - run: cp .env.example .env
+      - run: make up
+      - run: make parity
+      - if: failure()
+        run: docker compose logs --no-color
+
+  ui-build:
+    name: Build Dashboard + Railyard (Next.js, type-checked)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - run: corepack enable && pnpm install --frozen-lockfile
+      - run: pnpm --filter @mintrail/node build
+      - run: pnpm --filter @mintrail/dashboard build
+      - run: pnpm --filter @mintrail/railyard build
+
+  stack:
+    name: Docker stack + seed (timed) + UI smoke (Playwright) + M1/M2 demo
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - run: corepack enable && pnpm install --frozen-lockfile
+      - run: cp .env.example .env
+      - run: make up
+      - run: make migrate
+      - name: Seed (must finish in under 5 minutes)
+        run: timeout 300 make seed
+      - run: make test-ui
+      - run: make demo
+      - if: failure()
+        run: docker compose logs --no-color
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-traces
+          path: "*/test-results/"

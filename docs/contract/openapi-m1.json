@@ -1,0 +1,5308 @@
+{
+  "components": {
+    "schemas": {
+      "ApiKeyCreateIn": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "mode": {
+            "default": "test",
+            "enum": [
+              "test",
+              "live"
+            ],
+            "title": "Mode",
+            "type": "string"
+          },
+          "scopes": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scopes"
+          }
+        },
+        "title": "ApiKeyCreateIn",
+        "type": "object"
+      },
+      "ApiKeyOut": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "hint": {
+            "title": "Hint",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "last_used_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Used At"
+          },
+          "mode": {
+            "title": "Mode",
+            "type": "string"
+          },
+          "object": {
+            "const": "api_key",
+            "default": "api_key",
+            "title": "Object",
+            "type": "string"
+          },
+          "revoked_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revoked At"
+          },
+          "scopes": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Scopes",
+            "type": "array"
+          },
+          "station_id": {
+            "title": "Station Id",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "station_id",
+          "mode",
+          "label",
+          "scopes",
+          "hint",
+          "status",
+          "created_at"
+        ],
+        "title": "ApiKeyOut",
+        "type": "object"
+      },
+      "ApiKeyWithSecretOut": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "hint": {
+            "title": "Hint",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "last_used_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Used At"
+          },
+          "mode": {
+            "title": "Mode",
+            "type": "string"
+          },
+          "object": {
+            "const": "api_key",
+            "default": "api_key",
+            "title": "Object",
+            "type": "string"
+          },
+          "revoked_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revoked At"
+          },
+          "scopes": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Scopes",
+            "type": "array"
+          },
+          "secret": {
+            "description": "Shown exactly once. Store it securely.",
+            "title": "Secret",
+            "type": "string"
+          },
+          "station_id": {
+            "title": "Station Id",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "station_id",
+          "mode",
+          "label",
+          "scopes",
+          "hint",
+          "status",
+          "created_at",
+          "secret"
+        ],
+        "title": "ApiKeyWithSecretOut",
+        "type": "object"
+      },
+      "AuditEntryOut": {
+        "properties": {
+          "action": {
+            "title": "Action",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "details": {
+            "additionalProperties": true,
+            "title": "Details",
+            "type": "object"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "ip": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ip"
+          },
+          "object": {
+            "const": "audit_entry",
+            "default": "audit_entry",
+            "title": "Object",
+            "type": "string"
+          },
+          "request_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Request Id"
+          },
+          "staff_email": {
+            "title": "Staff Email",
+            "type": "string"
+          },
+          "staff_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Staff Id"
+          },
+          "target_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Id"
+          },
+          "target_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Type"
+          }
+        },
+        "required": [
+          "id",
+          "staff_id",
+          "staff_email",
+          "action",
+          "target_type",
+          "target_id",
+          "details",
+          "request_id",
+          "ip",
+          "created_at"
+        ],
+        "title": "AuditEntryOut",
+        "type": "object"
+      },
+      "BalanceOut": {
+        "properties": {
+          "balances": {
+            "items": {
+              "$ref": "#/components/schemas/CurrencyBalance"
+            },
+            "title": "Balances",
+            "type": "array"
+          },
+          "livemode": {
+            "title": "Livemode",
+            "type": "boolean"
+          },
+          "object": {
+            "const": "balance",
+            "default": "balance",
+            "title": "Object",
+            "type": "string"
+          }
+        },
+        "required": [
+          "livemode",
+          "balances"
+        ],
+        "title": "BalanceOut",
+        "type": "object"
+      },
+      "BlocklistIn": {
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "enum": [
+              "card_bin",
+              "vpa"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "reason": {
+            "maxLength": 500,
+            "minLength": 3,
+            "title": "Reason",
+            "type": "string"
+          },
+          "value": {
+            "maxLength": 255,
+            "minLength": 3,
+            "title": "Value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "value",
+          "reason"
+        ],
+        "title": "BlocklistIn",
+        "type": "object"
+      },
+      "BlocklistOut": {
+        "properties": {
+          "active": {
+            "title": "Active",
+            "type": "boolean"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "created_by": {
+            "title": "Created By",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "object": {
+            "const": "blocklist_entry",
+            "default": "blocklist_entry",
+            "title": "Object",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "value": {
+            "title": "Value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "value",
+          "reason",
+          "active",
+          "created_by",
+          "created_at"
+        ],
+        "title": "BlocklistOut",
+        "type": "object"
+      },
+      "CaptureIn": {
+        "additionalProperties": false,
+        "properties": {
+          "amount": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Amount"
+          }
+        },
+        "title": "CaptureIn",
+        "type": "object"
+      },
+      "CardIn": {
+        "additionalProperties": false,
+        "properties": {
+          "cvv": {
+            "maxLength": 4,
+            "minLength": 3,
+            "title": "Cvv",
+            "type": "string"
+          },
+          "expiry_month": {
+            "title": "Expiry Month",
+            "type": "integer"
+          },
+          "expiry_year": {
+            "title": "Expiry Year",
+            "type": "integer"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "number": {
+            "maxLength": 23,
+            "minLength": 12,
+            "title": "Number",
+            "type": "string"
+          }
+        },
+        "required": [
+          "number",
+          "expiry_month",
+          "expiry_year",
+          "cvv"
+        ],
+        "title": "CardIn",
+        "type": "object"
+      },
+      "CardOut": {
+        "properties": {
+          "bin": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bin"
+          },
+          "expiry_month": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expiry Month"
+          },
+          "expiry_year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expiry Year"
+          },
+          "last4": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last4"
+          },
+          "network": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Network"
+          }
+        },
+        "required": [
+          "network",
+          "last4",
+          "bin",
+          "expiry_month",
+          "expiry_year"
+        ],
+        "title": "CardOut",
+        "type": "object"
+      },
+      "Currency": {
+        "enum": [
+          "INR",
+          "USD",
+          "EUR",
+          "GBP",
+          "SGD",
+          "AED",
+          "JPY"
+        ],
+        "title": "Currency",
+        "type": "string"
+      },
+      "CurrencyBalance": {
+        "properties": {
+          "balance": {
+            "title": "Balance",
+            "type": "integer"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          }
+        },
+        "required": [
+          "currency",
+          "balance"
+        ],
+        "title": "CurrencyBalance",
+        "type": "object"
+      },
+      "DiscrepancyOut": {
+        "properties": {
+          "account_id": {
+            "title": "Account Id",
+            "type": "string"
+          },
+          "actual_credits": {
+            "title": "Actual Credits",
+            "type": "integer"
+          },
+          "actual_debits": {
+            "title": "Actual Debits",
+            "type": "integer"
+          },
+          "cached_credits": {
+            "title": "Cached Credits",
+            "type": "integer"
+          },
+          "cached_debits": {
+            "title": "Cached Debits",
+            "type": "integer"
+          },
+          "code": {
+            "title": "Code",
+            "type": "string"
+          }
+        },
+        "required": [
+          "account_id",
+          "code",
+          "cached_debits",
+          "cached_credits",
+          "actual_debits",
+          "actual_credits"
+        ],
+        "title": "DiscrepancyOut",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "HealthOut": {
+        "properties": {
+          "status": {
+            "enum": [
+              "ok",
+              "degraded"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "version"
+        ],
+        "title": "HealthOut",
+        "type": "object"
+      },
+      "InternalPaymentOut": {
+        "properties": {
+          "amount": {
+            "title": "Amount",
+            "type": "integer"
+          },
+          "authorized_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Authorized At"
+          },
+          "bank_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bank Code"
+          },
+          "capture_mode": {
+            "title": "Capture Mode",
+            "type": "string"
+          },
+          "captured_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Captured At"
+          },
+          "card": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CardOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Email"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "error_description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Description"
+          },
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/PaymentEventOut"
+            },
+            "title": "Events",
+            "type": "array"
+          },
+          "failed_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failed At"
+          },
+          "fee": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fee"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "junction_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Junction Ref"
+          },
+          "junction_sequence": {
+            "title": "Junction Sequence",
+            "type": "integer"
+          },
+          "livemode": {
+            "title": "Livemode",
+            "type": "boolean"
+          },
+          "method": {
+            "title": "Method",
+            "type": "string"
+          },
+          "object": {
+            "const": "payment",
+            "default": "payment",
+            "title": "Object",
+            "type": "string"
+          },
+          "order_id": {
+            "title": "Order Id",
+            "type": "string"
+          },
+          "risk": {
+            "$ref": "#/components/schemas/RiskOut"
+          },
+          "station_id": {
+            "title": "Station Id",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "tax": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tax"
+          },
+          "test_scenario": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Test Scenario"
+          },
+          "vpa": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vpa"
+          }
+        },
+        "required": [
+          "id",
+          "order_id",
+          "livemode",
+          "amount",
+          "currency",
+          "method",
+          "status",
+          "capture_mode",
+          "card",
+          "vpa",
+          "bank_code",
+          "email",
+          "fee",
+          "tax",
+          "error_code",
+          "error_description",
+          "risk",
+          "created_at",
+          "authorized_at",
+          "captured_at",
+          "failed_at",
+          "station_id",
+          "junction_ref",
+          "junction_sequence",
+          "test_scenario",
+          "events"
+        ],
+        "title": "InternalPaymentOut",
+        "type": "object"
+      },
+      "InternalStationOut": {
+        "properties": {
+          "business_category": {
+            "title": "Business Category",
+            "type": "string"
+          },
+          "country": {
+            "title": "Country",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "default_currency": {
+            "title": "Default Currency",
+            "type": "string"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "kyc_rejection_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kyc Rejection Reason"
+          },
+          "kyc_reviewed_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kyc Reviewed At"
+          },
+          "kyc_reviewed_by": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kyc Reviewed By"
+          },
+          "kyc_status": {
+            "title": "Kyc Status",
+            "type": "string"
+          },
+          "legal_name": {
+            "title": "Legal Name",
+            "type": "string"
+          },
+          "live_enabled": {
+            "title": "Live Enabled",
+            "type": "boolean"
+          },
+          "object": {
+            "const": "station",
+            "default": "station",
+            "title": "Object",
+            "type": "string"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/StationSettingsOut"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "suspended_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Suspended Reason"
+          }
+        },
+        "required": [
+          "id",
+          "legal_name",
+          "display_name",
+          "email",
+          "business_category",
+          "country",
+          "default_currency",
+          "status",
+          "kyc_status",
+          "live_enabled",
+          "settings",
+          "created_at"
+        ],
+        "title": "InternalStationOut",
+        "type": "object"
+      },
+      "JunctionCallbackAck": {
+        "properties": {
+          "outcome": {
+            "title": "Outcome",
+            "type": "string"
+          },
+          "received": {
+            "title": "Received",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "received",
+          "outcome"
+        ],
+        "title": "JunctionCallbackAck",
+        "type": "object"
+      },
+      "KycStatus": {
+        "enum": [
+          "pending",
+          "verified",
+          "rejected"
+        ],
+        "title": "KycStatus",
+        "type": "string"
+      },
+      "ListResponse_ApiKeyOut_": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/ApiKeyOut"
+            },
+            "title": "Data",
+            "type": "array"
+          },
+          "has_more": {
+            "title": "Has More",
+            "type": "boolean"
+          },
+          "object": {
+            "const": "list",
+            "default": "list",
+            "title": "Object",
+            "type": "string"
+          }
+        },
+        "required": [
+          "data",
+          "has_more"
+        ],
+        "title": "ListResponse[ApiKeyOut]",
+        "type": "object"
+      },
+      "ListResponse_AuditEntryOut_": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/AuditEntryOut"
+            },
+            "title": "Data",
+            "type": "array"
+          },
+          "has_more": {
+            "title": "Has More",
+            "type": "boolean"
+          },
+          "object": {
+            "const": "list",
+            "default": "list",
+            "title": "Object",
+            "type": "string"
+          }
+        },
+        "required": [
+          "data",
+          "has_more"
+        ],
+        "title": "ListResponse[AuditEntryOut]",
+        "type": "object"
+      },
+      "ListResponse_BlocklistOut_": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/BlocklistOut"
+            },
+            "title": "Data",
+            "type": "array"
+          },
+          "has_more": {
+            "title": "Has More",
+            "type": "boolean"
+          },
+          "object": {
+            "const": "list",
+            "default": "list",
+            "title": "Object",
+            "type": "string"
+          }
+        },
+        "required": [
+          "data",
+          "has_more"
+        ],
+        "title": "ListResponse[BlocklistOut]",
+        "type": "object"
+      },
+      "ListResponse_InternalStationOut_": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/InternalStationOut"
+            },
+            "title": "Data",
+            "type": "array"
+          },
+          "has_more": {
+            "title": "Has More",
+            "type": "boolean"
+          },
+          "object": {
+            "const": "list",
+            "default": "list",
+            "title": "Object",
+            "type": "string"
+          }
+        },
+        "required": [
+          "data",
+          "has_more"
+        ],
+        "title": "ListResponse[InternalStationOut]",
+        "type": "object"
+      },
+      "ListResponse_OrderOut_": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/OrderOut"
+            },
+            "title": "Data",
+            "type": "array"
+          },
+          "has_more": {
+            "title": "Has More",
+            "type": "boolean"
+          },
+          "object": {
+            "const": "list",
+            "default": "list",
+            "title": "Object",
+            "type": "string"
+          }
+        },
+        "required": [
+          "data",
+          "has_more"
+        ],
+        "title": "ListResponse[OrderOut]",
+        "type": "object"
+      },
+      "ListResponse_PaymentOut_": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/PaymentOut"
+            },
+            "title": "Data",
+            "type": "array"
+          },
+          "has_more": {
+            "title": "Has More",
+            "type": "boolean"
+          },
+          "object": {
+            "const": "list",
+            "default": "list",
+            "title": "Object",
+            "type": "string"
+          }
+        },
+        "required": [
+          "data",
+          "has_more"
+        ],
+        "title": "ListResponse[PaymentOut]",
+        "type": "object"
+      },
+      "ListResponse_StaffOut_": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/StaffOut"
+            },
+            "title": "Data",
+            "type": "array"
+          },
+          "has_more": {
+            "title": "Has More",
+            "type": "boolean"
+          },
+          "object": {
+            "const": "list",
+            "default": "list",
+            "title": "Object",
+            "type": "string"
+          }
+        },
+        "required": [
+          "data",
+          "has_more"
+        ],
+        "title": "ListResponse[StaffOut]",
+        "type": "object"
+      },
+      "LoginIn": {
+        "additionalProperties": false,
+        "properties": {
+          "email": {
+            "format": "email",
+            "title": "Email",
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Password",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "LoginIn",
+        "type": "object"
+      },
+      "LoginOut": {
+        "properties": {
+          "expires_in": {
+            "title": "Expires In",
+            "type": "integer"
+          },
+          "permissions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Permissions",
+            "type": "array"
+          },
+          "staff": {
+            "$ref": "#/components/schemas/StaffOut"
+          },
+          "token": {
+            "title": "Token",
+            "type": "string"
+          }
+        },
+        "required": [
+          "token",
+          "expires_in",
+          "staff",
+          "permissions"
+        ],
+        "title": "LoginOut",
+        "type": "object"
+      },
+      "MeOut": {
+        "properties": {
+          "permissions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Permissions",
+            "type": "array"
+          },
+          "staff": {
+            "$ref": "#/components/schemas/StaffOut"
+          }
+        },
+        "required": [
+          "staff",
+          "permissions"
+        ],
+        "title": "MeOut",
+        "type": "object"
+      },
+      "MerchantSettingsIn": {
+        "additionalProperties": false,
+        "properties": {
+          "auto_capture": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Auto Capture"
+          },
+          "webhook_url": {
+            "anyOf": [
+              {
+                "maxLength": 500,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Webhook Url"
+          }
+        },
+        "title": "MerchantSettingsIn",
+        "type": "object"
+      },
+      "NetbankingIn": {
+        "additionalProperties": false,
+        "properties": {
+          "bank_code": {
+            "maxLength": 16,
+            "minLength": 2,
+            "title": "Bank Code",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bank_code"
+        ],
+        "title": "NetbankingIn",
+        "type": "object"
+      },
+      "OrderCreateIn": {
+        "additionalProperties": false,
+        "properties": {
+          "amount": {
+            "description": "Minor units (paise / cents)",
+            "title": "Amount",
+            "type": "integer"
+          },
+          "currency": {
+            "default": "INR",
+            "enum": [
+              "INR",
+              "USD"
+            ],
+            "title": "Currency",
+            "type": "string"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "receipt": {
+            "anyOf": [
+              {
+                "maxLength": 40,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Receipt"
+          }
+        },
+        "required": [
+          "amount"
+        ],
+        "title": "OrderCreateIn",
+        "type": "object"
+      },
+      "OrderOut": {
+        "properties": {
+          "amount": {
+            "title": "Amount",
+            "type": "integer"
+          },
+          "amount_paid": {
+            "title": "Amount Paid",
+            "type": "integer"
+          },
+          "attempts": {
+            "title": "Attempts",
+            "type": "integer"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "livemode": {
+            "title": "Livemode",
+            "type": "boolean"
+          },
+          "notes": {
+            "additionalProperties": true,
+            "title": "Notes",
+            "type": "object"
+          },
+          "object": {
+            "const": "order",
+            "default": "order",
+            "title": "Object",
+            "type": "string"
+          },
+          "receipt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Receipt"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "livemode",
+          "amount",
+          "amount_paid",
+          "currency",
+          "receipt",
+          "notes",
+          "status",
+          "attempts",
+          "created_at"
+        ],
+        "title": "OrderOut",
+        "type": "object"
+      },
+      "PaymentCreateIn": {
+        "additionalProperties": false,
+        "properties": {
+          "capture": {
+            "anyOf": [
+              {
+                "enum": [
+                  "automatic",
+                  "manual"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Capture"
+          },
+          "card": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CardIn"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "email": {
+            "anyOf": [
+              {
+                "format": "email",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Email"
+          },
+          "method": {
+            "enum": [
+              "card",
+              "upi",
+              "netbanking"
+            ],
+            "title": "Method",
+            "type": "string"
+          },
+          "netbanking": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NetbankingIn"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "order_id": {
+            "title": "Order Id",
+            "type": "string"
+          },
+          "upi": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UpiIn"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "order_id",
+          "method"
+        ],
+        "title": "PaymentCreateIn",
+        "type": "object"
+      },
+      "PaymentEventOut": {
+        "properties": {
+          "applied": {
+            "title": "Applied",
+            "type": "boolean"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "title": "Payload",
+            "type": "object"
+          },
+          "sequence": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sequence"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "source",
+          "type",
+          "sequence",
+          "applied",
+          "note",
+          "payload",
+          "created_at"
+        ],
+        "title": "PaymentEventOut",
+        "type": "object"
+      },
+      "PaymentOut": {
+        "properties": {
+          "amount": {
+            "title": "Amount",
+            "type": "integer"
+          },
+          "authorized_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Authorized At"
+          },
+          "bank_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bank Code"
+          },
+          "capture_mode": {
+            "title": "Capture Mode",
+            "type": "string"
+          },
+          "captured_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Captured At"
+          },
+          "card": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CardOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Email"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "error_description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Description"
+          },
+          "failed_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failed At"
+          },
+          "fee": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fee"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "livemode": {
+            "title": "Livemode",
+            "type": "boolean"
+          },
+          "method": {
+            "title": "Method",
+            "type": "string"
+          },
+          "object": {
+            "const": "payment",
+            "default": "payment",
+            "title": "Object",
+            "type": "string"
+          },
+          "order_id": {
+            "title": "Order Id",
+            "type": "string"
+          },
+          "risk": {
+            "$ref": "#/components/schemas/RiskOut"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "tax": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tax"
+          },
+          "vpa": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vpa"
+          }
+        },
+        "required": [
+          "id",
+          "order_id",
+          "livemode",
+          "amount",
+          "currency",
+          "method",
+          "status",
+          "capture_mode",
+          "card",
+          "vpa",
+          "bank_code",
+          "email",
+          "fee",
+          "tax",
+          "error_code",
+          "error_description",
+          "risk",
+          "created_at",
+          "authorized_at",
+          "captured_at",
+          "failed_at"
+        ],
+        "title": "PaymentOut",
+        "type": "object"
+      },
+      "PaymentStatus": {
+        "enum": [
+          "created",
+          "pending",
+          "authorized",
+          "captured",
+          "failed"
+        ],
+        "title": "PaymentStatus",
+        "type": "string"
+      },
+      "ReasonIn": {
+        "additionalProperties": false,
+        "properties": {
+          "reason": {
+            "maxLength": 500,
+            "minLength": 3,
+            "title": "Reason",
+            "type": "string"
+          }
+        },
+        "required": [
+          "reason"
+        ],
+        "title": "ReasonIn",
+        "type": "object"
+      },
+      "ReconcileOut": {
+        "properties": {
+          "discrepancies": {
+            "items": {
+              "$ref": "#/components/schemas/DiscrepancyOut"
+            },
+            "title": "Discrepancies",
+            "type": "array"
+          },
+          "object": {
+            "const": "ledger_reconciliation",
+            "default": "ledger_reconciliation",
+            "title": "Object",
+            "type": "string"
+          },
+          "ok": {
+            "title": "Ok",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "ok",
+          "discrepancies"
+        ],
+        "title": "ReconcileOut",
+        "type": "object"
+      },
+      "RiskOut": {
+        "properties": {
+          "decision": {
+            "title": "Decision",
+            "type": "string"
+          },
+          "reasons": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Reasons",
+            "type": "array"
+          },
+          "review_status": {
+            "title": "Review Status",
+            "type": "string"
+          },
+          "score": {
+            "title": "Score",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "decision",
+          "score",
+          "reasons",
+          "review_status"
+        ],
+        "title": "RiskOut",
+        "type": "object"
+      },
+      "RiskReviewIn": {
+        "additionalProperties": false,
+        "properties": {
+          "action": {
+            "enum": [
+              "approve",
+              "reject"
+            ],
+            "title": "Action",
+            "type": "string"
+          },
+          "note": {
+            "default": "",
+            "maxLength": 500,
+            "title": "Note",
+            "type": "string"
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "title": "RiskReviewIn",
+        "type": "object"
+      },
+      "StaffCreateIn": {
+        "additionalProperties": false,
+        "properties": {
+          "email": {
+            "format": "email",
+            "title": "Email",
+            "type": "string"
+          },
+          "full_name": {
+            "maxLength": 200,
+            "minLength": 2,
+            "title": "Full Name",
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 200,
+            "minLength": 12,
+            "title": "Password",
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "ops",
+              "finance",
+              "security",
+              "admin"
+            ],
+            "title": "Role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "full_name",
+          "role",
+          "password"
+        ],
+        "title": "StaffCreateIn",
+        "type": "object"
+      },
+      "StaffOut": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "full_name": {
+            "title": "Full Name",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "last_login_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Login At"
+          },
+          "object": {
+            "const": "staff_user",
+            "default": "staff_user",
+            "title": "Object",
+            "type": "string"
+          },
+          "role": {
+            "title": "Role",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "full_name",
+          "role",
+          "status",
+          "last_login_at",
+          "created_at"
+        ],
+        "title": "StaffOut",
+        "type": "object"
+      },
+      "StaffSettingsIn": {
+        "additionalProperties": false,
+        "properties": {
+          "auto_capture": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Auto Capture"
+          },
+          "fee_plan": {
+            "anyOf": [
+              {
+                "enum": [
+                  "standard",
+                  "growth",
+                  "enterprise"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fee Plan"
+          },
+          "max_payment_amount": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Payment Amount"
+          },
+          "rate_limit_burst": {
+            "anyOf": [
+              {
+                "maximum": 10000.0,
+                "minimum": 1.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rate Limit Burst"
+          },
+          "rate_limit_per_sec": {
+            "anyOf": [
+              {
+                "maximum": 10000.0,
+                "minimum": 1.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rate Limit Per Sec"
+          },
+          "settlement_schedule": {
+            "anyOf": [
+              {
+                "enum": [
+                  "T+1",
+                  "T+2",
+                  "T+3"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Settlement Schedule"
+          },
+          "webhook_url": {
+            "anyOf": [
+              {
+                "maxLength": 500,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Webhook Url"
+          }
+        },
+        "title": "StaffSettingsIn",
+        "type": "object"
+      },
+      "StationCreateIn": {
+        "additionalProperties": false,
+        "properties": {
+          "business_category": {
+            "description": "ISO 18245 MCC",
+            "pattern": "^[0-9]{4}$",
+            "title": "Business Category",
+            "type": "string"
+          },
+          "default_currency": {
+            "$ref": "#/components/schemas/Currency",
+            "default": "INR"
+          },
+          "display_name": {
+            "maxLength": 100,
+            "minLength": 2,
+            "title": "Display Name",
+            "type": "string"
+          },
+          "email": {
+            "format": "email",
+            "title": "Email",
+            "type": "string"
+          },
+          "legal_name": {
+            "maxLength": 200,
+            "minLength": 2,
+            "title": "Legal Name",
+            "type": "string"
+          },
+          "settings": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StaffSettingsIn"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "legal_name",
+          "display_name",
+          "email",
+          "business_category"
+        ],
+        "title": "StationCreateIn",
+        "type": "object"
+      },
+      "StationCreatedOut": {
+        "properties": {
+          "station": {
+            "$ref": "#/components/schemas/InternalStationOut"
+          },
+          "test_api_key": {
+            "$ref": "#/components/schemas/ApiKeyWithSecretOut"
+          }
+        },
+        "required": [
+          "station",
+          "test_api_key"
+        ],
+        "title": "StationCreatedOut",
+        "type": "object"
+      },
+      "StationOut": {
+        "properties": {
+          "business_category": {
+            "title": "Business Category",
+            "type": "string"
+          },
+          "country": {
+            "title": "Country",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "default_currency": {
+            "title": "Default Currency",
+            "type": "string"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "kyc_status": {
+            "title": "Kyc Status",
+            "type": "string"
+          },
+          "legal_name": {
+            "title": "Legal Name",
+            "type": "string"
+          },
+          "live_enabled": {
+            "title": "Live Enabled",
+            "type": "boolean"
+          },
+          "object": {
+            "const": "station",
+            "default": "station",
+            "title": "Object",
+            "type": "string"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/StationSettingsOut"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "legal_name",
+          "display_name",
+          "email",
+          "business_category",
+          "country",
+          "default_currency",
+          "status",
+          "kyc_status",
+          "live_enabled",
+          "settings",
+          "created_at"
+        ],
+        "title": "StationOut",
+        "type": "object"
+      },
+      "StationSettingsOut": {
+        "properties": {
+          "auto_capture": {
+            "title": "Auto Capture",
+            "type": "boolean"
+          },
+          "fee_plan": {
+            "title": "Fee Plan",
+            "type": "string"
+          },
+          "max_payment_amount": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Payment Amount"
+          },
+          "rate_limit_burst": {
+            "title": "Rate Limit Burst",
+            "type": "integer"
+          },
+          "rate_limit_per_sec": {
+            "title": "Rate Limit Per Sec",
+            "type": "integer"
+          },
+          "settlement_schedule": {
+            "title": "Settlement Schedule",
+            "type": "string"
+          },
+          "webhook_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Webhook Url"
+          }
+        },
+        "required": [
+          "settlement_schedule",
+          "fee_plan",
+          "webhook_url",
+          "auto_capture",
+          "max_payment_amount",
+          "rate_limit_per_sec",
+          "rate_limit_burst"
+        ],
+        "title": "StationSettingsOut",
+        "type": "object"
+      },
+      "TrialBalanceOut": {
+        "properties": {
+          "balanced": {
+            "title": "Balanced",
+            "type": "boolean"
+          },
+          "credits": {
+            "title": "Credits",
+            "type": "integer"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "debits": {
+            "title": "Debits",
+            "type": "integer"
+          },
+          "livemode": {
+            "title": "Livemode",
+            "type": "boolean"
+          },
+          "object": {
+            "const": "trial_balance",
+            "default": "trial_balance",
+            "title": "Object",
+            "type": "string"
+          }
+        },
+        "required": [
+          "currency",
+          "livemode",
+          "debits",
+          "credits",
+          "balanced"
+        ],
+        "title": "TrialBalanceOut",
+        "type": "object"
+      },
+      "UpiIn": {
+        "additionalProperties": false,
+        "properties": {
+          "vpa": {
+            "maxLength": 320,
+            "minLength": 3,
+            "title": "Vpa",
+            "type": "string"
+          }
+        },
+        "required": [
+          "vpa"
+        ],
+        "title": "UpiIn",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "description": "Public API for MintRail Stations. Base URL: https://api.mintrail.example",
+    "title": "MintRail Platform API",
+    "version": "2026-11-01"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/healthz": {
+      "get": {
+        "operationId": "liveness_healthz_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Liveness",
+        "tags": [
+          "health"
+        ]
+      }
+    },
+    "/internal/junction/v1/callbacks": {
+      "post": {
+        "operationId": "receive_callback_internal_junction_v1_callbacks_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Junction-Signature",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Junction-Signature"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JunctionCallbackAck"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Receive Callback",
+        "tags": [
+          "junction"
+        ]
+      }
+    },
+    "/internal/v1/api_keys/{key_id}/revoke": {
+      "post": {
+        "operationId": "revoke_api_key_internal_v1_api_keys__key_id__revoke_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "key_id",
+            "required": true,
+            "schema": {
+              "title": "Key Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiKeyOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Revoke Api Key",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/audit_log": {
+      "get": {
+        "operationId": "audit_log_internal_v1_audit_log_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 200,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "starting_after",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Starting After"
+            }
+          },
+          {
+            "in": "query",
+            "name": "target_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Target Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "staff_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Staff Id"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResponse_AuditEntryOut_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Audit Log",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/auth/login": {
+      "post": {
+        "operationId": "login_internal_v1_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Login",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/auth/logout": {
+      "post": {
+        "operationId": "logout_internal_v1_auth_logout_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Logout",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/auth/me": {
+      "get": {
+        "operationId": "me_internal_v1_auth_me_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MeOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Me",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/ledger/reconcile": {
+      "get": {
+        "operationId": "reconcile_internal_v1_ledger_reconcile_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReconcileOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Reconcile",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/ledger/trial_balance": {
+      "get": {
+        "operationId": "trial_balance_internal_v1_ledger_trial_balance_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "currency",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Currency",
+              "default": "INR"
+            }
+          },
+          {
+            "in": "query",
+            "name": "livemode",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Livemode",
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrialBalanceOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Trial Balance",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/payments/review_queue": {
+      "get": {
+        "operationId": "review_queue_internal_v1_payments_review_queue_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResponse_PaymentOut_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Review Queue",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/payments/{payment_id}": {
+      "get": {
+        "operationId": "get_payment_internal_v1_payments__payment_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "payment_id",
+            "required": true,
+            "schema": {
+              "title": "Payment Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalPaymentOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Payment",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/payments/{payment_id}/risk_review": {
+      "post": {
+        "operationId": "risk_review_internal_v1_payments__payment_id__risk_review_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "payment_id",
+            "required": true,
+            "schema": {
+              "title": "Payment Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RiskReviewIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalPaymentOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Risk Review",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/risk/blocklist": {
+      "get": {
+        "operationId": "list_blocklist_internal_v1_risk_blocklist_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResponse_BlocklistOut_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Blocklist",
+        "tags": [
+          "railyard"
+        ]
+      },
+      "post": {
+        "operationId": "add_blocklist_internal_v1_risk_blocklist_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlocklistIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlocklistOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Add Blocklist",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/risk/blocklist/{entry_id}/deactivate": {
+      "post": {
+        "operationId": "remove_blocklist_internal_v1_risk_blocklist__entry_id__deactivate_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "entry_id",
+            "required": true,
+            "schema": {
+              "title": "Entry Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlocklistOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Remove Blocklist",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/staff": {
+      "get": {
+        "operationId": "list_staff_internal_v1_staff_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResponse_StaffOut_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Staff",
+        "tags": [
+          "railyard"
+        ]
+      },
+      "post": {
+        "operationId": "create_staff_internal_v1_staff_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StaffCreateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StaffOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Staff",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/staff/{staff_id}/disable": {
+      "post": {
+        "operationId": "disable_staff_internal_v1_staff__staff_id__disable_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "staff_id",
+            "required": true,
+            "schema": {
+              "title": "Staff Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StaffOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Disable Staff",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/stations": {
+      "get": {
+        "operationId": "list_stations_internal_v1_stations_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "starting_after",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Starting After"
+            }
+          },
+          {
+            "in": "query",
+            "name": "kyc_status",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/KycStatus"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Kyc Status"
+            }
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 100,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Q"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResponse_InternalStationOut_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Stations",
+        "tags": [
+          "railyard"
+        ]
+      },
+      "post": {
+        "operationId": "create_station_internal_v1_stations_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StationCreateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StationCreatedOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Station",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/stations/{station_id}": {
+      "get": {
+        "operationId": "get_station_internal_v1_stations__station_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "station_id",
+            "required": true,
+            "schema": {
+              "title": "Station Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalStationOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Station",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/stations/{station_id}/api_keys": {
+      "get": {
+        "operationId": "list_api_keys_internal_v1_stations__station_id__api_keys_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "station_id",
+            "required": true,
+            "schema": {
+              "title": "Station Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResponse_ApiKeyOut_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Api Keys",
+        "tags": [
+          "railyard"
+        ]
+      },
+      "post": {
+        "operationId": "create_api_key_internal_v1_stations__station_id__api_keys_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "station_id",
+            "required": true,
+            "schema": {
+              "title": "Station Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiKeyCreateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiKeyWithSecretOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Api Key",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/stations/{station_id}/kyc/reject": {
+      "post": {
+        "operationId": "kyc_reject_internal_v1_stations__station_id__kyc_reject_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "station_id",
+            "required": true,
+            "schema": {
+              "title": "Station Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReasonIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalStationOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Kyc Reject",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/stations/{station_id}/kyc/reopen": {
+      "post": {
+        "operationId": "kyc_reopen_internal_v1_stations__station_id__kyc_reopen_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "station_id",
+            "required": true,
+            "schema": {
+              "title": "Station Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalStationOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Kyc Reopen",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/stations/{station_id}/kyc/verify": {
+      "post": {
+        "operationId": "kyc_verify_internal_v1_stations__station_id__kyc_verify_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "station_id",
+            "required": true,
+            "schema": {
+              "title": "Station Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalStationOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Kyc Verify",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/stations/{station_id}/reactivate": {
+      "post": {
+        "operationId": "reactivate_internal_v1_stations__station_id__reactivate_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "station_id",
+            "required": true,
+            "schema": {
+              "title": "Station Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalStationOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Reactivate",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/stations/{station_id}/settings": {
+      "patch": {
+        "operationId": "update_settings_internal_v1_stations__station_id__settings_patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "station_id",
+            "required": true,
+            "schema": {
+              "title": "Station Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StaffSettingsIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalStationOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Update Settings",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/internal/v1/stations/{station_id}/suspend": {
+      "post": {
+        "operationId": "suspend_internal_v1_stations__station_id__suspend_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "station_id",
+            "required": true,
+            "schema": {
+              "title": "Station Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReasonIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalStationOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Suspend",
+        "tags": [
+          "railyard"
+        ]
+      }
+    },
+    "/readyz": {
+      "get": {
+        "operationId": "readiness_readyz_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Readiness",
+        "tags": [
+          "health"
+        ]
+      }
+    },
+    "/v1/balance": {
+      "get": {
+        "description": "What MintRail owes the Station (merchant_balance), per currency, for the key's mode.",
+        "operationId": "retrieve_balance_v1_balance_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "currency",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Currency"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Currency"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Key-Id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Key-Id"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Signature",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Signature"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Retrieve Balance",
+        "tags": [
+          "station"
+        ]
+      }
+    },
+    "/v1/orders": {
+      "get": {
+        "operationId": "list_orders_v1_orders_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "starting_after",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Starting After"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Key-Id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Key-Id"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Signature",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Signature"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResponse_OrderOut_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Orders",
+        "tags": [
+          "orders"
+        ]
+      },
+      "post": {
+        "operationId": "create_order_v1_orders_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Key-Id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Key-Id"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Signature",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Signature"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderCreateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Order",
+        "tags": [
+          "orders"
+        ]
+      }
+    },
+    "/v1/orders/{order_id}": {
+      "get": {
+        "operationId": "get_order_v1_orders__order_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "order_id",
+            "required": true,
+            "schema": {
+              "title": "Order Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Key-Id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Key-Id"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Signature",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Signature"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Order",
+        "tags": [
+          "orders"
+        ]
+      }
+    },
+    "/v1/orders/{order_id}/payments": {
+      "get": {
+        "operationId": "list_order_payments_v1_orders__order_id__payments_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "order_id",
+            "required": true,
+            "schema": {
+              "title": "Order Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Key-Id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Key-Id"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Signature",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Signature"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResponse_PaymentOut_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Order Payments",
+        "tags": [
+          "orders"
+        ]
+      }
+    },
+    "/v1/payments": {
+      "get": {
+        "operationId": "list_payments_v1_payments_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "starting_after",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Starting After"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/PaymentStatus"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Key-Id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Key-Id"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Signature",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Signature"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResponse_PaymentOut_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Payments",
+        "tags": [
+          "payments"
+        ]
+      },
+      "post": {
+        "operationId": "create_payment_v1_payments_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "MintRail-Test-Scenario",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Test-Scenario"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Key-Id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Key-Id"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Signature",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Signature"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentCreateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Payment",
+        "tags": [
+          "payments"
+        ]
+      }
+    },
+    "/v1/payments/{payment_id}": {
+      "get": {
+        "operationId": "get_payment_v1_payments__payment_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "payment_id",
+            "required": true,
+            "schema": {
+              "title": "Payment Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Key-Id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Key-Id"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Signature",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Signature"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Payment",
+        "tags": [
+          "payments"
+        ]
+      }
+    },
+    "/v1/payments/{payment_id}/capture": {
+      "post": {
+        "operationId": "capture_payment_v1_payments__payment_id__capture_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "payment_id",
+            "required": true,
+            "schema": {
+              "title": "Payment Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Key-Id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Key-Id"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Signature",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Signature"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CaptureIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Capture Payment",
+        "tags": [
+          "payments"
+        ]
+      }
+    },
+    "/v1/station": {
+      "get": {
+        "operationId": "retrieve_station_v1_station_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Key-Id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Key-Id"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Signature",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Signature"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StationOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Retrieve Station",
+        "tags": [
+          "station"
+        ]
+      }
+    },
+    "/v1/station/settings": {
+      "patch": {
+        "operationId": "update_settings_v1_station_settings_patch",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Key-Id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Key-Id"
+            }
+          },
+          {
+            "in": "header",
+            "name": "MintRail-Signature",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Mintrail-Signature"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantSettingsIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StationOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Update Settings",
+        "tags": [
+          "station"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "steps": [
+    {
+      "body": {
+        "service": "junction",
+        "status": "ok"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "request": {
+        "method": "GET",
+        "path": "junction:/healthz"
+      },
+      "status": 200,
+      "step": "health"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "unauthorized",
+          "message": "invalid Junction API key"
+        }
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "request": {
+        "body": {
+          "amount": 500,
+          "currency": "INR",
+          "instrument": "card:411111:1111",
+          "livemode": false,
+          "merchant_ref": "mer_1",
+          "method": "card",
+          "payment_id": "pay_parity_http",
+          "scenario": "timeout"
+        },
+        "method": "POST",
+        "path": "junction:/v1/authorizations"
+      },
+      "status": 401,
+      "step": "no key"
+    }
+  ],
+  "notes": {},
+  "db": {
+    "stations": [],
+    "api_keys": [],
+    "staff_users": [
+      {
+        "email": "admin@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "admin",
+        "status": "active"
+      },
+      {
+        "email": "finance@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "finance",
+        "status": "active"
+      },
+      {
+        "email": "ops@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "ops",
+        "status": "active"
+      },
+      {
+        "email": "security@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "security",
+        "status": "active"
+      }
+    ],
+    "staff_sessions": [],
+    "staff_audit_log": [],
+    "orders": [],
+    "payments": [],
+    "payment_events": {},
+    "idempotency_keys": [],
+    "rate_limit_state": [],
+    "conductor_blocklist": [],
+    "junction_authorizations": [],
+    "jobs": [],
+    "ledger_accounts": [],
+    "ledger_transactions": []
+  }
+}

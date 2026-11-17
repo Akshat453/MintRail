@@ -1,0 +1,118 @@
+{
+  "steps": [
+    {
+      "body": {
+        "error": {
+          "code": "MR_AUTHENTICATION_REQUIRED",
+          "message": "Railyard session token required",
+          "request_id": "<req:1>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "www-authenticate": "Bearer",
+        "x-request-id": "<req:1>"
+      },
+      "request": {
+        "method": "GET",
+        "path": "/internal/v1/stations"
+      },
+      "status": 401,
+      "step": "no token"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "MR_AUTHENTICATION_REQUIRED",
+          "message": "Railyard session is invalid or expired",
+          "request_id": "<req:2>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "www-authenticate": "Bearer",
+        "x-request-id": "<req:2>"
+      },
+      "request": {
+        "method": "GET",
+        "path": "/internal/v1/stations"
+      },
+      "status": 401,
+      "step": "garbage token"
+    },
+    {
+      "body": {
+        "error": {
+          "code": "MR_AUTHENTICATION_REQUIRED",
+          "message": "Authorization header must use the Bearer scheme",
+          "request_id": "<req:3>"
+        }
+      },
+      "headers": {
+        "content-type": "application/json",
+        "mintrail-version": "2026-11-01",
+        "www-authenticate": "Bearer",
+        "x-request-id": "<req:3>"
+      },
+      "request": {
+        "method": "GET",
+        "path": "/internal/v1/stations"
+      },
+      "status": 401,
+      "step": "wrong scheme"
+    }
+  ],
+  "notes": {},
+  "db": {
+    "stations": [],
+    "api_keys": [],
+    "staff_users": [
+      {
+        "email": "admin@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "admin",
+        "status": "active"
+      },
+      {
+        "email": "finance@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "finance",
+        "status": "active"
+      },
+      {
+        "email": "ops@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "ops",
+        "status": "active"
+      },
+      {
+        "email": "security@parity.mintrail.example",
+        "failed_logins": 0,
+        "locked": false,
+        "logged_in": false,
+        "role": "security",
+        "status": "active"
+      }
+    ],
+    "staff_sessions": [],
+    "staff_audit_log": [],
+    "orders": [],
+    "payments": [],
+    "payment_events": {},
+    "idempotency_keys": [],
+    "rate_limit_state": [],
+    "conductor_blocklist": [],
+    "junction_authorizations": [],
+    "jobs": [],
+    "ledger_accounts": [],
+    "ledger_transactions": []
+  }
+}

@@ -1,0 +1,154 @@
+name: mintrail
+
+x-app: &app
+  build:
+    context: .
+    dockerfile: infra/docker/Dockerfile
+  env_file: .env
+  environment:
+    MINTRAIL_DATABASE_URL: postgres://${POSTGRES_USER:-mintrail}:${POSTGRES_PASSWORD:-mintrail}@postgres:5432/${POSTGRES_DB:-mintrail}
+    MINTRAIL_JUNCTION_URL: http://junction:8100
+    MINTRAIL_JUNCTION_CALLBACK_URL: http://api:8000/internal/junction/v1/callbacks
+    MINTRAIL_JUNCTION_LATENCY_SCALE: ${MINTRAIL_JUNCTION_LATENCY_SCALE:-0.2}
+  depends_on:
+    postgres:
+      condition: service_healthy
+    migrate:
+      condition: service_completed_successfully
+
+x-health: &health
+  interval: 5s
+  timeout: 3s
+  retries: 20
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-mintrail}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-mintrail}
+      POSTGRES_DB: ${POSTGRES_DB:-mintrail}
+    ports: ["${MINTRAIL_PG_PORT:-5432}:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  # Drizzle migrations (adopts M1/Alembic databases) + bootstrap Railyard admin.
+  migrate:
+    <<: *app
+    command: ["node", "api/dist/main-migrate.js"]
+    restart: "no"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  api:
+    <<: *app
+    command: ["node", "api/dist/main-server.js"]
+    environment:
+      MINTRAIL_DATABASE_URL: postgres://${POSTGRES_USER:-mintrail}:${POSTGRES_PASSWORD:-mintrail}@postgres:5432/${POSTGRES_DB:-mintrail}
+      MINTRAIL_JUNCTION_URL: http://junction:8100
+      MINTRAIL_JUNCTION_LATENCY_SCALE: ${MINTRAIL_JUNCTION_LATENCY_SCALE:-0.2}
+      PORT: "8000"
+    ports: ["${MINTRAIL_API_PORT:-8000}:8000"]
+    healthcheck:
+      <<: *health
+      test: ["CMD", "node", "-e", "fetch('http://localhost:8000/healthz').then(r=>process.exit(r.ok?0:1),()=>process.exit(1))"]
+
+  junction:
+    <<: *app
+    command: ["node", "junction/dist/main-server.js"]
+    environment:
+      MINTRAIL_DATABASE_URL: postgres://${POSTGRES_USER:-mintrail}:${POSTGRES_PASSWORD:-mintrail}@postgres:5432/${POSTGRES_DB:-mintrail}
+      MINTRAIL_JUNCTION_LATENCY_SCALE: ${MINTRAIL_JUNCTION_LATENCY_SCALE:-0.2}
+      PORT: "8100"
+    ports: ["${MINTRAIL_JUNCTION_PORT:-8100}:8100"]
+    healthcheck:
+      <<: *health
+      test: ["CMD", "node", "-e", "fetch('http://localhost:8100/healthz').then(r=>process.exit(r.ok?0:1),()=>process.exit(1))"]
+
+  payments-worker:
+    <<: *app
+    command: ["node", "api/dist/main-worker.js"]
+
+  junction-worker:
+    <<: *app
+    command: ["node", "junction/dist/main-worker.js"]
+
+  ledger-worker:
+    <<: *app
+    command: ["node", "ledger/dist/main.js"]
+
+  # ---------------------------------------------------------------- M2
+  # Signal: webhook service (internal API) + delivery worker (outbox LISTEN/NOTIFY + polling).
+  signal:
+    <<: *app
+    command: ["node", "signal/dist/main-server.js"]
+    ports: ["${MINTRAIL_SIGNAL_PORT:-8200}:8200"]
+    healthcheck:
+      <<: *health
+      test: ["CMD", "node", "-e", "fetch('http://localhost:8200/healthz').then(r=>process.exit(r.ok?0:1),()=>process.exit(1))"]
+
+  signal-worker:
+    <<: *app
+    command: ["node", "signal/dist/main-worker.js"]
+    # Lets local webhook receivers on the host (e.g. the SDK example) get deliveries.
+    extra_hosts: ["host.docker.internal:host-gateway"]
+
+  # Depot: settlement engine (internal API) + worker (daily runs, bank credits, reconciliation).
+  depot:
+    <<: *app
+    command: ["node", "depot/dist/main-server.js"]
+    ports: ["${MINTRAIL_DEPOT_PORT:-8300}:8300"]
+    healthcheck:
+      <<: *health
+      test: ["CMD", "node", "-e", "fetch('http://localhost:8300/healthz').then(r=>process.exit(r.ok?0:1),()=>process.exit(1))"]
+
+  depot-worker:
+    <<: *app
+    command: ["node", "depot/dist/main-worker.js"]
+    environment:
+      MINTRAIL_DATABASE_URL: postgres://${POSTGRES_USER:-mintrail}:${POSTGRES_PASSWORD:-mintrail}@postgres:5432/${POSTGRES_DB:-mintrail}
+      MINTRAIL_JUNCTION_URL: http://junction:8100
+      MINTRAIL_DEPOT_SCHEDULER_ENABLED: ${MINTRAIL_DEPOT_SCHEDULER_ENABLED:-true}
+
+  # Next.js apps: server-side calls to the Platform API; sessions in httpOnly cookies.
+  dashboard:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.ui
+      args: { APP: dashboard }
+    environment:
+      MINTRAIL_UI_API_URL: http://api:8000
+      MINTRAIL_COOKIE_SECURE: ${MINTRAIL_COOKIE_SECURE:-false}
+      PORT: "3000"
+    ports: ["${MINTRAIL_DASHBOARD_PORT:-3000}:3000"]
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      <<: *health
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/healthz').then(r=>process.exit(r.ok?0:1),()=>process.exit(1))"]
+
+  railyard:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.ui
+      args: { APP: railyard }
+    environment:
+      MINTRAIL_UI_API_URL: http://api:8000
+      MINTRAIL_COOKIE_SECURE: ${MINTRAIL_COOKIE_SECURE:-false}
+      PORT: "3100"
+    ports: ["${MINTRAIL_RAILYARD_PORT:-3100}:3100"]
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      <<: *health
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3100/healthz').then(r=>process.exit(r.ok?0:1),()=>process.exit(1))"]
+
+volumes:
+  pgdata:
