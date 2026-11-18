@@ -3,28 +3,28 @@
   "hooks": {
     "beforeShellExecution": [
       {
-        "timeout": 120,
+        "timeout": 660,
         "failClosed": true,
         "command": "agw hook cursor beforeShellExecution"
       }
     ],
     "beforeMCPExecution": [
       {
-        "timeout": 120,
+        "timeout": 660,
         "failClosed": true,
         "command": "agw hook cursor beforeMCPExecution"
       }
     ],
     "beforeReadFile": [
       {
-        "timeout": 120,
+        "timeout": 660,
         "failClosed": true,
         "command": "agw hook cursor beforeReadFile"
       }
     ],
     "preToolUse": [
       {
-        "timeout": 120,
+        "timeout": 660,
         "failClosed": true,
         "command": "agw hook cursor preToolUse",
         "matcher": "Write|Delete|Grep|Task|MCP:.*"

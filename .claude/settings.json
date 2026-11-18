@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "timeout": 120,
+            "timeout": 660,
             "command": "agw hook claude_code PreToolUse",
             "onFailure": "block"
           }
