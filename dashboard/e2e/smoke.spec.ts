@@ -36,6 +36,11 @@ test("payments: filter, open a captured payment, issue a partial refund", async 
   page.once("dialog", (d) => d.accept());
   await form.getByRole("button", { name: "Issue refund" }).click();
   await expect(page.getByRole("status")).toContainText("Refund rfd_");
+  // MR-13: the Refunds tab must show the new refund immediately (no cached list).
+  const refundId = (await page.getByRole("status").textContent())?.match(/rfd_\w+/)?.[0];
+  expect(refundId).toBeTruthy();
+  await page.goto("/refunds");
+  await expect(page.locator("tbody")).toContainText(refundId!);
 });
 
 test("settlements list and CSV report", async ({ page }) => {

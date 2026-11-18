@@ -8,8 +8,9 @@ export const metadata = { title: "Refunds" };
 export default async function RefundsPage({ searchParams }: { searchParams: SearchParams }) {
   const sp = await searchParams;
   const params = { status: one(sp.status), starting_after: one(sp.starting_after) };
-  // Large merchants have tens of thousands of refunds; the list is cached briefly.
-  const page = await load((a) => a.get("/dashboard/v1/refunds", { ...params, limit: "25" }, { revalidate: 300 }));
+  // Always fetch fresh: refund status changes right after creation, and a stale list led agents
+  // to re-issue refunds (MR-13). The API paginates, so the uncached list stays cheap.
+  const page = await load((a) => a.get("/dashboard/v1/refunds", { ...params, limit: "25" }));
   return (
     <>
       <PageHeader title="Refunds" subtitle="Issue refunds from a payment's page. Instant refunds cost 0.5% + GST." />
