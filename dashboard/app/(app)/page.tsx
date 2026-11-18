@@ -32,15 +32,20 @@ export default async function OverviewPage({ searchParams }: { searchParams: Sea
   return (
     <>
       <PageHeader
+        eyebrow={user.station.display_name}
         title={`Good to see you, ${user.user.full_name.split(" ")[0]}`}
-        subtitle={`${user.station.display_name} · last ${days} days · ${user.livemode ? "live" : "test"} data`}
-        actions={["7", "30", "90"].map((d) => (
-          <a key={d} href={`/?days=${d}`} className={`btn btn-sm ${d === days ? "" : "btn-secondary"}`}>
-            {d}d
-          </a>
-        ))}
+        subtitle={`Last ${days} days of ${user.livemode ? "live" : "test"} activity · times in IST`}
+        actions={
+          <nav className="segmented" aria-label="Date range">
+            {["7", "30", "90"].map((d) => (
+              <a key={d} href={`/?days=${d}`} className={d === days ? "on" : undefined} aria-current={d === days ? "true" : undefined}>
+                {d === "7" ? "Last 7 days" : `${d} days`}
+              </a>
+            ))}
+          </nav>
+        }
       />
-      <div className="grid grid-4" style={{ marginBottom: 16 }}>
+      <div className="grid grid-4">
         <Kpi testId="kpi-volume" label="Captured volume" value={moneyCompact(t.volume)} hint={money(t.volume)} />
         <Kpi
           testId="kpi-success"
@@ -56,13 +61,13 @@ export default async function OverviewPage({ searchParams }: { searchParams: Sea
         />
       </div>
       <div className="grid grid-2">
-        <Card title="Daily captured volume">
+        <Card title="Gross volume" actions={<span className="muted">{money(t.volume)}</span>}>
           <BarChart
             points={ov.series.map((s) => ({ label: shortDate(s.date), title: s.date, value: s.volume }))}
             format={(v) => moneyCompact(v)}
           />
         </Card>
-        <Card title="Payment success rate">
+        <Card title="Payment success rate" actions={<span className="muted">{percentBps(t.success_rate_bps)}</span>}>
           <RateLine
             points={ov.series.map((s) => ({
               label: s.date,
@@ -84,12 +89,12 @@ export default async function OverviewPage({ searchParams }: { searchParams: Sea
           )}
         </Card>
         <Card title="Refunds">
-          <div className="kpi-value">{count(t.refunds)}</div>
+          <div className="big-number">{count(t.refunds)}</div>
           <p className="muted">{money(t.refunded_amount)} refunded in this period</p>
           <a href="/refunds">View refunds →</a>
         </Card>
         <Card title="Disputes">
-          <div className="kpi-value">{count(t.open_disputes)} open</div>
+          <div className="big-number">{count(t.open_disputes)} open</div>
           <p className="muted">{count(t.disputes)} disputes all time</p>
           <a href="/disputes?status=needs_response">Respond to disputes →</a>
         </Card>

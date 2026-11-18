@@ -112,8 +112,8 @@ export default [
       await c.settle();
       const list = await c.rcall("needs response", m, "GET", "/v1/disputes?status=needs_response");
       const d = (list.body as { data: { id: string }[] }).data[0]!;
-      await c.rupload("disguised file", m, `/v1/disputes/${d.id}/evidence`, [
-        ["invoice.pdf", Buffer.from("MZ not a pdf"), "application/pdf"],
+      await c.rupload("word document", m, `/v1/disputes/${d.id}/evidence`, [
+        ["invoice.docx", Buffer.from("PK word document"), "application/vnd.openxmlformats-officedocument.wordprocessingml.document"],
       ]);
       await c.rupload("pdf + statement", m, `/v1/disputes/${d.id}/evidence`, [["invoice.pdf", PDF, "application/pdf"]], {
         kind: "shipping_proof",

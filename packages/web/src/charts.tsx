@@ -15,13 +15,16 @@ export function BarChart({ points, height = 180, format }: { points: Point[]; he
   const tick = (i: number) => i === 0 || i === points.length - 1 || i % Math.ceil(points.length / 6) === 0;
   return (
     <svg className="chart" viewBox={`0 0 ${W} ${height + 24}`} role="img" aria-label="Daily volume">
+      {[0.25, 0.5, 0.75].map((f) => (
+        <line key={f} x1="0" x2={W} y1={Math.round(8 + (height - 8) * f)} y2={Math.round(8 + (height - 8) * f)} className="chart-grid" />
+      ))}
       <line x1="0" x2={W} y1={height} y2={height} className="chart-axis" />
       {points.map((p, i) => {
         const h = Math.round((Number((p.value * 1000n) / max) / 1000) * (height - 8));
         const x = i * (bw + gap);
         return (
           <g key={p.label}>
-            <rect x={x} y={height - h} width={bw} height={h} rx="2" className="chart-bar">
+            <rect x={x} y={height - h} width={bw} height={h} rx="3" className="chart-bar">
               <title>{`${p.title ?? p.label}: ${format(p.value)}`}</title>
             </rect>
             {tick(i) && (
@@ -52,8 +55,16 @@ export function RateLine({ points, height = 120, floorBps = 8000n }: { points: P
   const d = points
     .map((p, i) => `${i === 0 ? "M" : "L"}${(i * step).toFixed(1)},${y(p.value < 0n ? floorBps : p.value).toFixed(1)}`)
     .join(" ");
+  const area = `${d} L${W},${height} L0,${height} Z`;
   return (
     <svg className="chart" viewBox={`0 0 ${W} ${height}`} role="img" aria-label="Success rate">
+      <defs>
+        <linearGradient id="mr-area" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stopColor="#0a8f6c" stopOpacity="0.18" />
+          <stop offset="1" stopColor="#0a8f6c" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <path d={area} className="chart-area" />
       <line x1="0" x2={W} y1={y(9_000n)} y2={y(9_000n)} className="chart-grid" />
       <text x="4" y={y(9_000n) - 4} className="chart-label">
         90%

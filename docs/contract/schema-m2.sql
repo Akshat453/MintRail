@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict b5YTwxYgacKv3L83JXoCkbL9B7gfDr2pbTgPi4sKrjNyYbwgTtcza5KKiLPDWLp
+\restrict rcJBiVFTkiK45SLS7aws40EnO4UVbw63KaW6eFq6Z7mgOMqI5Caqod32CbdgZ49
 
 -- Dumped from database version 16.14
 -- Dumped by pg_dump version 16.14
@@ -150,6 +150,7 @@ CREATE TABLE public.api_keys (
     label character varying(100),
     scopes character varying(32)[] NOT NULL,
     signing_key_enc bytea,
+    expires_at timestamp with time zone,
     CONSTRAINT ck_api_keys_ck_api_keys_valid_mode CHECK (((mode)::text = ANY ((ARRAY['test'::character varying, 'live'::character varying])::text[]))),
     CONSTRAINT ck_api_keys_ck_api_keys_valid_status CHECK (((status)::text = ANY ((ARRAY['active'::character varying, 'revoked'::character varying])::text[])))
 );
@@ -2230,5 +2231,5 @@ ALTER TABLE ONLY public.webhook_delivery_attempts
 -- PostgreSQL database dump complete
 --
 
-\unrestrict b5YTwxYgacKv3L83JXoCkbL9B7gfDr2pbTgPi4sKrjNyYbwgTtcza5KKiLPDWLp
+\unrestrict rcJBiVFTkiK45SLS7aws40EnO4UVbw63KaW6eFq6Z7mgOMqI5Caqod32CbdgZ49
 

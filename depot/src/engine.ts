@@ -52,6 +52,7 @@ import {
   type Station,
 } from "@mintrail/api";
 import {
+  GST_RATE_BPS,
   LedgerService,
   M2StationAccount,
   m2StationAccount,
@@ -107,6 +108,18 @@ export function totals(entries: Entry[]): { gross: bigint; fees: bigint; tax: bi
     t.amount += e.amount;
   }
   return t;
+}
+
+/**
+ * Settlement invoices above this many lines are issued as one consolidated tax
+ * invoice: GST is charged on the invoice's total fee rather than line by line.
+ */
+export const CONSOLIDATED_INVOICE_LINES = 1_000;
+
+export function consolidatedTotals(entries: Entry[], currency: Currency): { gross: bigint; fees: bigint; tax: bigint; amount: bigint } {
+  const t = totals(entries);
+  const tax = Money.of(t.fees, currency).applyBps(GST_RATE_BPS, "half_even").amount;
+  return { gross: t.gross, fees: t.fees, tax, amount: t.gross - t.fees - tax };
 }
 
 export class SettlementEngine {
@@ -261,7 +274,7 @@ export class SettlementEngine {
       }
     }
 
-    const t = totals(entries);
+    const t = entries.length > CONSOLIDATED_INVOICE_LINES ? consolidatedTotals(entries, currency) : totals(entries);
     // Nothing to pay out: carry everything forward — unless a chargeback recovery consumed the
     // whole batch, which is recorded as a zero-amount settlement so the items count as settled.
     if (entries.length === 0 || t.amount < 0n || (t.amount === 0n && !entries.some((e) => e.kind === "dispute_recovery"))) return null;

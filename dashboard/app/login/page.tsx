@@ -17,6 +17,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Search
             MintRail<small>Merchant dashboard</small>
           </span>
         </div>
+        <h1>Sign in to your account</h1>
         <Flash msg={one(sp.msg)} err={one(sp.err)} />
         <input type="hidden" name="csrf" value={await csrfToken()} />
         <Field label="Work email">
@@ -26,7 +27,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Search
           <input name="password" type="password" autoComplete="current-password" required />
         </Field>
         <Submit>Sign in</Submit>
-        <p className="muted" style={{ fontSize: 12, marginTop: 14 }}>
+        <p className="login-foot">
           MintRail is a fictional company. Seeded logins: <code>owner@&lt;merchant&gt;.example</code> / see{" "}
           <code>.mintrail/demo-keys.json</code>.
         </p>

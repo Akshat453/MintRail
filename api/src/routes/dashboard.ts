@@ -1,7 +1,18 @@
 /** Merchant dashboard API (/dashboard/v1): sessions, overview analytics, filtered lists, keys, reports. */
-import { and, asc, desc, eq, gte, ilike, lt, or, sql, type SQL } from "drizzle-orm";
+import { and, asc, desc, eq, gte, ilike, lt, ne, or, sql, type SQL } from "drizzle-orm";
 
-import { addDays, ErrorCode, IdPrefix, InvalidRequestError, istStartOf, NotFoundError, parseId, type Tx } from "@mintrail/shared";
+import {
+  addDays,
+  apiTime,
+  ErrorCode,
+  IdPrefix,
+  InvalidRequestError,
+  istStartOf,
+  NotFoundError,
+  parseId,
+  RateLimitedError,
+  type Tx,
+} from "@mintrail/shared";
 import { eventOut, outboxEvents } from "@mintrail/signal";
 
 import type { AppDeps } from "../deps.js";
@@ -71,9 +82,7 @@ export function dashboardRoutes(route: ReturnType<typeof makeRoute>, deps: AppDe
 
   route("get", "/dashboard/v1/payments", { dashboard: "read", query: S.DashboardPaymentQuery }, async (c) => {
     const q = c.query;
-    if (q.starting_after) parseId(q.starting_after, IdPrefix.PAYMENT, "starting_after");
     const where: SQL[] = [eq(payments.stationId, c.dash.station.id), eq(payments.livemode, c.dash.livemode)];
-    if (q.starting_after) where.push(lt(payments.id, q.starting_after));
     if (q.status) where.push(eq(payments.status, q.status));
     if (q.method) where.push(eq(payments.method, q.method));
     if (q.from) where.push(gte(payments.createdAt, istStartOf(q.from).toISOString()));
@@ -88,9 +97,19 @@ export function dashboardRoutes(route: ReturnType<typeof makeRoute>, deps: AppDe
       .select()
       .from(payments)
       .where(and(...where))
-      .orderBy(desc(payments.id))
-      .limit(q.limit + 1);
-    return { status: 200, body: list(rows.slice(0, q.limit).map(paymentOut), rows.length > q.limit) };
+      .orderBy(desc(payments.createdAt))
+      .limit(q.limit + 1)
+      .offset((q.page - 1) * q.limit);
+    // The list shows how much of each payment has been refunded.
+    const data = [];
+    for (const p of rows.slice(0, q.limit)) {
+      const [r] = await deps.db
+        .select({ refunded: sql<string>`coalesce(sum(${refunds.amount}), 0)::text` })
+        .from(refunds)
+        .where(and(eq(refunds.paymentId, p.id), ne(refunds.status, "failed")));
+      data.push({ ...paymentOut(p), amount_refunded: BigInt(r!.refunded) });
+    }
+    return { status: 200, body: { ...list(data, rows.length > q.limit), page: BigInt(q.page) } };
   });
 
   route("get", "/dashboard/v1/payments/:payment_id", { dashboard: "read" }, async (c) => {
@@ -149,6 +168,19 @@ export function dashboardRoutes(route: ReturnType<typeof makeRoute>, deps: AppDe
     }),
   );
 
+  route("post", "/dashboard/v1/api_keys/:key_id/rotate", { dashboard: "api_keys", idempotent: true }, async (c) =>
+    c.idem.run(async (tx) => {
+      const svc = stationService(deps, tx);
+      const keyId = parseId(c.params.key_id!, IdPrefix.API_KEY);
+      if (!(await svc.listKeys(c.dash.station.id)).some((k) => k.id === keyId)) throw new NotFoundError(`api key ${keyId} not found`);
+      const [row, generated, old] = await svc.rotateKey(keyId, deps.settings.api_key_rotation_grace_s);
+      return {
+        status: 201,
+        body: { ...apiKeyOut(row), secret: generated.secret, replaces: old.id, replaced_key_expires_at: apiTime(old.expiresAt) },
+      };
+    }),
+  );
+
   // ---------------------------------------------------------------- reports (CSV)
   const REPORTS = { payments: paymentsReport, refunds: refundsReport, settlements: settlementsReport, payouts: payoutsReport } as const;
   route("get", "/dashboard/v1/reports/:kind", { dashboard: "reports", query: S.ReportQuery }, async (c) => {
@@ -156,6 +188,11 @@ export function dashboardRoutes(route: ReturnType<typeof makeRoute>, deps: AppDe
     const make = REPORTS[kind];
     if (!make) throw new NotFoundError(`unknown report '${kind}'`);
     if (c.query.to < c.query.from) throw new InvalidRequestError("'to' must not be before 'from'", { param: "to" });
+    // Exports scan up to 100k rows; keep bursts of them from swamping the database.
+    if (deps.settings.rate_limiting_enabled) {
+      const decision = await deps.rateLimiter.acquire(`reports:${kind}`, 1, 10);
+      if (!decision.allowed) throw new RateLimitedError("too many report exports; try again shortly", decision.retryAfterS);
+    }
     const csv = await make(deps.db, c.dash, istStartOf(c.query.from).toISOString(), istStartOf(addDays(c.query.to, 1)).toISOString());
     return {
       status: 200,

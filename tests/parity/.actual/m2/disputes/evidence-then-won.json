@@ -65,7 +65,7 @@
       "body": {
         "error": {
           "code": "MR_INVALID_EVIDENCE",
-          "message": "invoice.pdf is not a PDF, PNG or JPEG file",
+          "message": "invoice.docx is not a PDF, PNG or JPEG file",
           "param": "files",
           "request_id": "<req:3>"
         }
@@ -82,9 +82,9 @@
           "fields": {},
           "files": [
             {
-              "bytes": 12,
-              "name": "invoice.pdf",
-              "type": "application/pdf"
+              "bytes": 16,
+              "name": "invoice.docx",
+              "type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             }
           ]
         },
@@ -92,7 +92,7 @@
         "path": "/v1/disputes/<dsp:1>/evidence"
       },
       "status": 422,
-      "step": "disguised file"
+      "step": "word document"
     },
     {
       "body": {

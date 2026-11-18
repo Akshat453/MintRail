@@ -82,7 +82,7 @@ test("the full migration chain reproduces docs/contract/schema-m2.sql (pg_dump)"
   const pool = new pg.Pool({ connectionString: url });
   const r = await runMigrations(pool, MIGRATIONS);
   await pool.end();
-  expect(r).toEqual({ adoptedFromAlembic: false, appliedCount: 3 });
+  expect(r).toEqual({ adoptedFromAlembic: false, appliedCount: 4 });
   const actual = await dump("contract_fresh");
   if (process.env.MINTRAIL_UPDATE_CONTRACT === "1") writeFileSync(`${ROOT}docs/contract/schema-m2.sql`, actual);
   expect(normalise(actual)).toEqual(normalise(readFileSync(`${ROOT}docs/contract/schema-m2.sql`, "utf8")));
@@ -107,7 +107,7 @@ test("an M1 (Alembic 0002) database is adopted in place, data untouched", async 
     "INSERT INTO public.stations (id, legal_name, display_name, email, business_category, country, default_currency, status, kyc_status, settlement_schedule, fee_plan, auto_capture, rate_limit_per_sec, rate_limit_burst) VALUES ('mer_legacy','L','L','l@x.example','5814','IN','INR','active','verified','T+2','standard',true,25,50)",
   );
   const r = await runMigrations(pool, MIGRATIONS);
-  expect(r).toEqual({ adoptedFromAlembic: true, appliedCount: 2 }); // baseline adopted, M2 migrations applied
+  expect(r).toEqual({ adoptedFromAlembic: true, appliedCount: 3 }); // baseline adopted, later migrations applied
   expect((await pool.query("SELECT id, kyc_status FROM public.stations")).rows).toEqual([{ id: "mer_legacy", kyc_status: "verified" }]);
   expect((await pool.query("SELECT count(*)::int AS n FROM public.refunds")).rows).toEqual([{ n: 0 }]);
   // Idempotent: a second run is a no-op.

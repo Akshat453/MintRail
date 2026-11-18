@@ -1,7 +1,7 @@
 /** Railyard (internal ops) endpoints under ``/internal/v1`` — staff session auth, audited. */
 import { asc, eq } from "drizzle-orm";
 
-import { type Currency, ErrorCode, IdPrefix, MintRailError, NotFoundError, parseId, type Tx } from "@mintrail/shared";
+import { apiTime, type Currency, ErrorCode, IdPrefix, MintRailError, NotFoundError, parseId, type Tx } from "@mintrail/shared";
 import { type BlocklistKind, RiskEngine } from "@mintrail/conductor";
 import { LedgerService } from "@mintrail/ledger";
 
@@ -218,6 +218,25 @@ export function railyardRoutes(route: ReturnType<typeof makeRoute>, deps: AppDep
       return k;
     });
     return { status: 200, body: apiKeyOut(key) };
+  });
+
+  route("post", "/internal/v1/api_keys/:key_id/rotate", { staff: "api_keys:manage" }, async (c) => {
+    const [row, generated, old] = await deps.db.transaction(async (tx) => {
+      const r = await stationService(deps, tx).rotateKey(
+        parseId(c.params.key_id!, IdPrefix.API_KEY),
+        deps.settings.api_key_rotation_grace_s,
+      );
+      await audit(tx, c.req).record(c.staff, "api_key.rotate", {
+        targetType: "api_key",
+        targetId: r[2].id,
+        details: { station_id: r[2].stationId, replacement: r[0].id },
+      });
+      return r;
+    });
+    return {
+      status: 201,
+      body: { ...apiKeyOut(row), secret: generated.secret, replaces: old.id, replaced_key_expires_at: apiTime(old.expiresAt) },
+    };
   });
 
   // ---------------------------------------------------------------- payments & risk

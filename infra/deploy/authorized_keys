@@ -1,0 +1,5 @@
+# Deploy host access (fictional). Managed by @mintrail/security; changes need a security review
+# and an approved access request (ticket id in the comment). Keys are rotated quarterly.
+# Format: <type> <key> <owner>  # <ticket> <expiry>
+#
+# (no keys in this repository's demo setup: the local stack deploys with docker compose)

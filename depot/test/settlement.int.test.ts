@@ -19,7 +19,7 @@ import { useHarness } from "../../tests/support/harness.js";
 const { h, db } = useHarness();
 const fx: FxFeed = { rate: async () => ({ rate: "83.2500", source: "test" }) };
 const today = () => istDate(new Date());
-const settleDate = (days = 2) => addDays(today(), days);
+const settleDate = (days = 3) => addDays(today(), days);
 const run = (date = settleDate()) => runSettlements(db(), h().settings, fx, date);
 const credit = async () => {
   const w = new Worker(db(), buildRegistry(db(), h().settings, fx), { queues: [DEPOT_QUEUE], workerId: "test-depot" });
@@ -69,7 +69,7 @@ describe("settlement batches", () => {
 
     // Idempotent per date; nothing new to settle the day after.
     expect((await run()).created).toBe(0);
-    expect((await run(settleDate(3))).created).toBe(0);
+    expect((await run(settleDate(4))).created).toBe(0);
     const [report, mismatches] = await db().transaction((tx) => reconcile(tx));
     expect(mismatches).toEqual([]);
     expect([report.status, report.settlementsChecked]).toEqual(["ok", 1]);
@@ -121,7 +121,7 @@ describe("settlement batches", () => {
     });
     await h().call(m, "POST", `/v1/disputes/${d.id}/submit`);
     await h().drainAll();
-    const r2 = await run(settleDate(3));
+    const r2 = await run(settleDate(4));
     const e2 = await entriesOf(r2.settlements[0]!.id);
     expect(e2.map((e) => [e.kind, e.amount])).toEqual([["dispute_release", 40_000n]]);
     expect((await db().transaction((tx) => reconcile(tx)))[1]).toEqual([]);
@@ -162,7 +162,7 @@ describe("settlement batches", () => {
   });
 
   test("scheduler + worker: daily FX snapshot and run are enqueued once per IST day", async () => {
-    const clock = new FrozenClock(new Date(Date.now() + 2 * 86_400_000));
+    const clock = new FrozenClock(new Date(Date.now() + 3 * 86_400_000));
     const m = await h().merchant();
     await h().paid(m, "upi");
     const date = await scheduleDaily(db(), clock);

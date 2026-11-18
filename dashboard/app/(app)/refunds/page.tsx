@@ -8,7 +8,8 @@ export const metadata = { title: "Refunds" };
 export default async function RefundsPage({ searchParams }: { searchParams: SearchParams }) {
   const sp = await searchParams;
   const params = { status: one(sp.status), starting_after: one(sp.starting_after) };
-  const page = await load((a) => a.get("/dashboard/v1/refunds", { ...params, limit: "25" }));
+  // Large merchants have tens of thousands of refunds; the list is cached briefly.
+  const page = await load((a) => a.get("/dashboard/v1/refunds", { ...params, limit: "25" }, { revalidate: 300 }));
   return (
     <>
       <PageHeader title="Refunds" subtitle="Issue refunds from a payment's page. Instant refunds cost 0.5% + GST." />

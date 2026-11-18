@@ -101,6 +101,19 @@ describe("webhooks", () => {
     expect(secs).toBeLessThanOrEqual(h().settings.signal_backoff_base_s);
   });
 
+  test("the first retry is scheduled 22.5 s out (30 s base, half fixed + half jitter)", async () => {
+    const rx = await receiver(() => 500);
+    const m = await h().merchant();
+    await h().call(m, "POST", "/v1/webhook_endpoints", { url: rx.url, enabled_events: ["payment.captured"] });
+    h().signal.opts.backoffScale = 1;
+    h().signal.opts.random = () => 0.5;
+    await h().paid(m, "card");
+    await h().drainAll();
+    const r = await db().execute<{ at: string }>(sql`SELECT extract(epoch FROM next_attempt_at)::text AS at FROM webhook_deliveries`);
+    const expected = Date.now() + 22_500;
+    expect(Math.floor(Number(r.rows[0]!.at))).toBe(Math.floor(expected / 1000));
+  });
+
   test("secret rotation: both secrets sign during the grace window; disabled endpoints get nothing", async () => {
     const rx = await receiver();
     const m = await h().merchant();

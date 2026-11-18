@@ -133,6 +133,8 @@ export interface SecretState {
   secret?: string;
   id?: string;
   error?: string;
+  /** Extra context shown next to the one-time secret (e.g. when a rotated key stops working). */
+  note?: string;
 }
 
 export async function createWebhook(_prev: SecretState, form: FormData): Promise<SecretState> {
@@ -208,6 +210,29 @@ export async function createApiKey(_prev: SecretState, form: FormData): Promise<
       { idempotencyKey: str(form, "idem") },
     );
     return { secret: k.secret, id: k.id };
+  } catch (e) {
+    return { error: message(e) };
+  }
+}
+
+export async function rotateApiKey(_prev: SecretState, form: FormData): Promise<SecretState> {
+  if (!csrfOk(form, (await cookies()).get(CSRF_COOKIE)?.value)) return { error: "Your form expired. Reload the page." };
+  try {
+    const k = await (
+      await api()
+    ).post(`/dashboard/v1/api_keys/${str(form, "key_id")}/rotate`, undefined, { idempotencyKey: str(form, "idem") });
+    const until = k.replaced_key_expires_at
+      ? new Intl.DateTimeFormat("en-IN", { timeZone: "Asia/Kolkata", dateStyle: "medium", timeStyle: "short" }).format(
+          new Date(k.replaced_key_expires_at),
+        )
+      : null;
+    return {
+      secret: k.secret,
+      id: k.id,
+      note: until
+        ? `The old key ${k.replaces} keeps working until ${until} IST, then stops.`
+        : `The old key ${k.replaces} stops working now.`,
+    };
   } catch (e) {
     return { error: message(e) };
   }

@@ -28,8 +28,8 @@ export function parseRate(rate: string): string {
 export function convert(amount: Money, to: Currency, rate: string): Money {
   const r = new D(parseRate(rate));
   const scale = new D(10).pow(exponentOf(to) - exponentOf(amount.currency as Currency));
-  const minor = new D(amount.amount.toString()).mul(r).mul(scale).toDecimalPlaces(0, Decimal.ROUND_HALF_EVEN);
-  return Money.of(BigInt(minor.toFixed(0)), to);
+  const minor = new D(amount.amount.toString()).mul(r).mul(scale);
+  return Money.of(BigInt(Math.round(minor.toNumber())), to);
 }
 
 /** Multiply two rates (e.g. for cross rates), keeping 10 fractional digits, half-even. */

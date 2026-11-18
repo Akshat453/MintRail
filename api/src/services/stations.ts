@@ -346,6 +346,25 @@ export class StationService {
     return [row!, generated];
   }
 
+  /**
+   * Replace a key: a new key with the same mode, scopes and label is issued now and
+   * the old one keeps working for ``graceS`` seconds so clients can switch over.
+   */
+  async rotateKey(keyId: string, graceS: number): Promise<[ApiKey, GeneratedKey, ApiKey]> {
+    const [old] = await this.tx.select().from(apiKeys).where(eq(apiKeys.id, keyId)).for("update");
+    if (!old) throw new NotFoundError(`api key ${keyId} not found`);
+    if (old.status !== "active") throw new ConflictError(`api key ${keyId} is ${old.status}`);
+    if (old.expiresAt !== null) throw new ConflictError(`api key ${keyId} has already been rotated`);
+    const station = await this.get(old.stationId);
+    const [created, generated] = await this.issue(station, old.mode as KeyMode, old.scopes, old.label);
+    const [expiring] = await this.tx
+      .update(apiKeys)
+      .set({ expiresAt: new Date(this.clock.now().getTime() + graceS * 1000).toISOString() })
+      .where(eq(apiKeys.id, old.id))
+      .returning();
+    return [created, generated, expiring!];
+  }
+
   async listKeys(stationId: string): Promise<ApiKey[]> {
     await this.get(stationId);
     return this.tx.select().from(apiKeys).where(eq(apiKeys.stationId, stationId)).orderBy(apiKeys.id);

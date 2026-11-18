@@ -1,6 +1,8 @@
 "use client";
 /** The few interactive bits: pending buttons and one-time secret reveal (secrets never touch the URL). */
 import { usePathname } from "next/navigation";
+
+import { Icon } from "@mintrail/web/icons";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import type { ReactNode } from "react";
@@ -59,6 +61,7 @@ export function SecretForm({
           <div className="flash flash-ok">
             {what} created ({state.id}). Copy it now — MintRail will not show it again.
           </div>
+          {state.note && <div className="callout">{state.note}</div>}
           <div className="secret">{state.secret}</div>
           <a href="" className="btn btn-secondary btn-sm">
             Done
@@ -71,15 +74,28 @@ export function SecretForm({
   );
 }
 
-export function NavLinks({ items }: { items: [string, string][] }) {
+/** Sidebar navigation. Items are [href, label, icon]; a string item starts a new section. */
+export function NavLinks({ items }: { items: ([string, string, string] | string)[] }) {
   const path = usePathname();
   return (
     <nav className="nav">
-      {items.map(([href, label]) => (
-        <a key={href} href={href} className={(href === "/" ? path === "/" : path.startsWith(href)) ? "active" : undefined}>
-          {label}
-        </a>
-      ))}
+      {items.map((item) =>
+        typeof item === "string" ? (
+          <div key={item} className="nav-label">
+            {item}
+          </div>
+        ) : (
+          <a
+            key={item[0]}
+            href={item[0]}
+            className={(item[0] === "/" ? path === "/" : path.startsWith(item[0])) ? "active" : undefined}
+            aria-current={(item[0] === "/" ? path === "/" : path.startsWith(item[0])) ? "page" : undefined}
+          >
+            <Icon name={item[2]} />
+            {item[1]}
+          </a>
+        ),
+      )}
     </nav>
   );
 }

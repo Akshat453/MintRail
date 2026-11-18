@@ -9,7 +9,8 @@
     "./server": "./src/server.ts",
     "./ui": "./src/ui.tsx",
     "./charts": "./src/charts.tsx",
-    "./styles.css": "./src/styles.css"
+    "./styles.css": "./src/styles.css",
+    "./icons": "./src/icons.tsx"
   },
   "scripts": {
     "typecheck": "tsc --noEmit -p tsconfig.json"

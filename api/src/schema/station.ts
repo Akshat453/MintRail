@@ -59,6 +59,8 @@ export const apiKeys = pgTable(
     label: varchar("label", { length: 100 }),
     scopes: varchar("scopes", { length: 32 }).array().notNull(),
     signingKeyEnc: bytea("signing_key_enc"),
+    // M3: set on the old key when it is rotated (grace window for clients to switch).
+    expiresAt: ts("expires_at"),
   },
   (t) => [
     primaryKey({ name: "pk_api_keys", columns: [t.id] }),

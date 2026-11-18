@@ -35,7 +35,8 @@ export class ApiError extends Error {
 }
 
 export interface ApiClient {
-  get<T = any>(path: string, query?: Record<string, string | undefined | null>): Promise<T>;
+  /** ``revalidate``: serve from Next's data cache for that many seconds (slow, rarely-changing lists). */
+  get<T = any>(path: string, query?: Record<string, string | undefined | null>, opts?: { revalidate?: number }): Promise<T>;
   post<T = any>(path: string, body?: unknown, opts?: { idempotencyKey?: string }): Promise<T>;
   patch<T = any>(path: string, body: unknown): Promise<T>;
   del<T = any>(path: string): Promise<T>;
@@ -59,9 +60,17 @@ export function apiClient(opts: { baseUrl: string; token?: string | null; mode?:
   const call = async <T>(
     method: string,
     path: string,
-    init: { body?: string | FormData; query?: Record<string, string | undefined | null>; headers?: Record<string, string> } = {},
+    init: {
+      body?: string | FormData;
+      query?: Record<string, string | undefined | null>;
+      headers?: Record<string, string>;
+      revalidate?: number;
+    } = {},
   ): Promise<T> => {
-    const res = await fetch(url(path, init.query), { method, headers: headers(init.headers), body: init.body, cache: "no-store" });
+    const caching: RequestInit & { next?: { revalidate: number } } = init.revalidate
+      ? { next: { revalidate: init.revalidate } }
+      : { cache: "no-store" };
+    const res = await fetch(url(path, init.query), { method, headers: headers(init.headers), body: init.body, ...caching });
     const text = await res.text();
     if (res.status >= 400) {
       let err: { code?: string; message?: string; param?: string | null } = {};
@@ -75,7 +84,7 @@ export function apiClient(opts: { baseUrl: string; token?: string | null; mode?:
     return (text ? parseJson<T>(text) : undefined) as T;
   };
   return {
-    get: (path, query) => call("GET", path, { query }),
+    get: (path, query, opts) => call("GET", path, { query, revalidate: opts?.revalidate }),
     post: (path, body, o) =>
       call("POST", path, {
         body: body === undefined ? undefined : stringifyJson(body),

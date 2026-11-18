@@ -83,6 +83,7 @@
         "data": [
           {
             "amount": 80000,
+            "amount_refunded": 0,
             "authorized_at": "<ts>",
             "bank_code": null,
             "capture_mode": "automatic",
@@ -112,7 +113,8 @@
           }
         ],
         "has_more": false,
-        "object": "list"
+        "object": "list",
+        "page": 1
       },
       "headers": {
         "content-type": "application/json",

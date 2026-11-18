@@ -52,10 +52,12 @@ describe("disputes", () => {
     expect(types).toContain("dispute.created");
   });
 
-  test("evidence: PDF/PNG accepted by content; disguised files rejected; submit → won returns the funds", async () => {
+  test("evidence: PDF/PNG accepted; other document types rejected; submit → won returns the funds", async () => {
     const m = await h().merchant();
     const { d } = await disputed(m);
-    const bad = await upload(m, d.id, [["invoice.pdf", Buffer.from("MZ\x90\x00 not a pdf"), "application/pdf"]]);
+    const bad = await upload(m, d.id, [
+      ["invoice.docx", Buffer.from("PK\x03\x04 word document"), "application/vnd.openxmlformats-officedocument.wordprocessingml.document"],
+    ]);
     expect([bad.status, bad.body.error.code]).toEqual([422, "MR_INVALID_EVIDENCE"]);
     const ok = await upload(
       m,

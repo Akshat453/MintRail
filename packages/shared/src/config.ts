@@ -84,6 +84,9 @@ export const SettingsSchema = z
     /** Off only for deterministic harness runs (parity), where settlements are triggered explicitly. */
     depot_scheduler_enabled: bool.default(true),
 
+    /** How long a rotated API key keeps working so clients can deploy its replacement. */
+    api_key_rotation_grace_s: int(0).default(24 * 3600),
+
     // ---- M2: dashboard sessions
     dashboard_session_ttl_s: int(60).default(12 * 3600),
 

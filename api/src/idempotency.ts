@@ -98,6 +98,10 @@ export class Idempotency {
       const result = await this.db.transaction(async (tx): Promise<bigint | Reply | null> => {
         const existing = await this.find(tx);
         if (existing) {
+          // A stored client error is final for this key (ADR-0009): replay it as-is.
+          if (existing.status === "completed" && (existing.responseStatus ?? 200) >= 400) {
+            return { status: existing.responseStatus!, body: existing.responseBody, headers: { [REPLAYED_HEADER]: "true" } };
+          }
           if (existing.requestDigest !== this.digest) {
             throw new ConflictError(`${HEADER} was already used for a different request`, {
               code: ErrorCode.IDEMPOTENCY_KEY_REUSED,

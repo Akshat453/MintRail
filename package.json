@@ -1,7 +1,7 @@
 {
   "name": "mintrail",
   "private": true,
-  "description": "MintRail payments platform (fictional) \u2014 backend monorepo",
+  "description": "MintRail payments platform (fictional) — backend monorepo",
   "type": "module",
   "packageManager": "pnpm@12.21.0",
   "engines": {
@@ -22,7 +22,8 @@
     "db:migrate": "node --conditions=development --import tsx packages/shared/src/main-migrate.ts",
     "seed": "node --conditions=development --import tsx scripts/seed.ts",
     "demo": "node --conditions=development --import tsx scripts/demo.ts",
-    "demo:m2": "node --conditions=development --import tsx scripts/demo-m2.ts"
+    "demo:m2": "node --conditions=development --import tsx scripts/demo-m2.ts",
+    "seed:issues": "node --conditions=development --import tsx scripts/seed-github-issues.ts"
   },
   "devDependencies": {
     "@types/node": "22.20.5",
@@ -49,6 +50,7 @@
     "drizzle-orm": "0.45.4",
     "@mintrail/depot": "workspace:*",
     "@mintrail/signal": "workspace:*",
-    "@mintrail/node": "workspace:*"
+    "@mintrail/node": "workspace:*",
+    "@octokit/rest": "22.0.1"
   }
 }

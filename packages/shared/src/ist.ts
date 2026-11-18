@@ -15,15 +15,20 @@ export const istStartOf = (date: string): Date => DateTime.fromISO(date, { zone:
 /** ``date`` ± ``days`` (calendar arithmetic in IST). */
 export const addDays = (date: string, days: number): string => DateTime.fromISO(date, { zone: IST }).plus({ days }).toISODate()!;
 
+/** IST is a fixed UTC+05:30 (no daylight saving). */
+const IST_OFFSET = { hours: 5, minutes: 30 };
+
 /**
  * The instant at which business day ``date`` closes, for a daily cutoff of
  * ``cutoffHour``:00 IST. With cutoff 0 the day closes at the next midnight;
  * with cutoff 18 it closes at 18:00 IST on ``date`` itself (later activity
- * belongs to the next business day).
+ * belongs to the next business day). Returned in UTC, which is how Postgres
+ * compares the timestamptz columns it is checked against.
  */
 export function businessDayEnd(date: string, cutoffHour: number): Date {
   const day = DateTime.fromISO(date, { zone: IST }).startOf("day");
-  return (cutoffHour === 0 ? day.plus({ days: 1 }) : day.set({ hour: cutoffHour })).toJSDate();
+  const end = cutoffHour === 0 ? day.plus({ days: 1 }) : day.set({ hour: cutoffHour });
+  return end.minus(IST_OFFSET).toUTC().toJSDate();
 }
 
 /** The business day an instant belongs to, for the same cutoff rule. */

@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { ErrorCode, MintRailError } from "@mintrail/shared";
 
 import { parseCsv, toCsv } from "../src/csv.js";
-import { sniffContentType } from "../src/services/disputes.js";
+import { evidenceType } from "../src/services/disputes.js";
 import { type PayoutInput, validatePayout } from "../src/services/payouts.js";
 import { major } from "../src/services/settlements.js";
 
@@ -55,14 +55,19 @@ describe("validatePayout", () => {
   });
 });
 
-describe("sniffContentType", () => {
-  test("magic bytes decide, not names", () => {
-    expect(sniffContentType(Buffer.from("%PDF-1.7 ..."))).toBe("application/pdf");
-    expect(sniffContentType(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 0]))).toBe("image/png");
-    expect(sniffContentType(Buffer.from([0xff, 0xd8, 0xff, 0xe0]))).toBe("image/jpeg");
-    expect(sniffContentType(Buffer.from("MZ\x90\x00"))).toBeNull();
-    expect(sniffContentType(Buffer.from("<html>"))).toBeNull();
-    expect(sniffContentType(Buffer.alloc(0))).toBeNull();
+describe("evidenceType", () => {
+  test("PDF, PNG and JPEG with matching extensions", () => {
+    expect(evidenceType({ originalname: "Invoice-1042.PDF", mimetype: "application/pdf" })).toBe("application/pdf");
+    expect(evidenceType({ originalname: "courier.png", mimetype: "image/png" })).toBe("image/png");
+    expect(evidenceType({ originalname: "chat.jpeg", mimetype: "image/jpeg" })).toBe("image/jpeg");
+    expect(evidenceType({ originalname: "chat.jpg", mimetype: "image/jpeg" })).toBe("image/jpeg");
+  });
+  test("other types, or a type that doesn't match the extension, are refused", () => {
+    expect(
+      evidenceType({ originalname: "notes.docx", mimetype: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" }),
+    ).toBeNull();
+    expect(evidenceType({ originalname: "invoice.pdf", mimetype: "image/png" })).toBeNull();
+    expect(evidenceType({ originalname: "run.exe", mimetype: "application/octet-stream" })).toBeNull();
   });
 });
 

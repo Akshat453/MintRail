@@ -8,7 +8,7 @@
  * cannot be settled out meanwhile) and returned if it fails. Instant refunds
  * cost ``refund_instant_fee_bps`` of the amount plus 18% GST, charged to the
  * merchant. Total refunds (non-failed) + open/lost disputes never exceed the
- * captured amount: the payment row is locked while this is checked.
+ * captured amount.
  */
 import { and, desc, eq, inArray, lt, ne, sql } from "drizzle-orm";
 
@@ -41,7 +41,7 @@ import { emit } from "@mintrail/signal";
 import { refundOut } from "../http/out.js";
 import { type JunctionClient, JunctionRejectedError } from "../junction-client.js";
 import { disputes, type Payment, payments, type Refund, refunds, type RefundStatus } from "../schema/index.js";
-import { QUEUE, SCENARIO_RE, validateNotes } from "./payments.js";
+import { PaymentService, QUEUE, SCENARIO_RE, validateNotes } from "./payments.js";
 import type { Principal } from "./stations.js";
 
 export const JOB_REFUND_SUBMIT = "payments.refund_submit";
@@ -90,12 +90,7 @@ export class RefundService {
         throw new InvalidRequestError("test scenarios are only available in test mode", { code: ErrorCode.SCENARIO_NOT_ALLOWED });
       if (!SCENARIO_RE.test(req.scenario)) throw new InvalidRequestError("malformed test scenario", { param: "MintRail-Test-Scenario" });
     }
-    const [p] = await this.tx
-      .select()
-      .from(payments)
-      .where(and(eq(payments.id, paymentId), eq(payments.stationId, principal.station.id), eq(payments.livemode, principal.livemode)))
-      .for("update");
-    if (!p) throw new NotFoundError(`payment ${paymentId} not found`, { code: ErrorCode.PAYMENT_NOT_FOUND });
+    const p = await new PaymentService(this.tx, this.settings).getPayment(principal, paymentId);
     if (p.status !== "captured") {
       throw new ConflictError(`payment is ${p.status}; only captured payments can be refunded`, { code: ErrorCode.PAYMENT_NOT_REFUNDABLE });
     }

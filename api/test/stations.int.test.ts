@@ -163,6 +163,20 @@ describe("API keys", () => {
     expect((await h().staff("POST", `/internal/v1/stations/${m.stationId}/api_keys`, { scopes: ["refunds:write"] })).status).toBe(201);
   });
 
+  test("rotate: a replacement is issued and the old key keeps working during the grace window", async () => {
+    const m = await h().merchant();
+    const r = await h().staff("POST", `/internal/v1/api_keys/${m.keyId}/rotate`, undefined, "security");
+    expect([r.status, r.body.replaces, r.body.secret]).toEqual([201, m.keyId, expect.stringMatching(/^mr_test_/)]);
+    expect(Date.parse(r.body.replaced_key_expires_at) - Date.now()).toBeGreaterThan(23 * 3600 * 1000);
+    const fresh = { ...m, keyId: r.body.id, secret: r.body.secret };
+    expect((await h().call(fresh, "GET", "/v1/station")).status).toBe(200);
+    expect((await h().call(m, "GET", "/v1/station")).status).toBe(200);
+    expect((await h().staff("POST", `/internal/v1/api_keys/${m.keyId}/rotate`, undefined, "security")).status).toBe(409);
+    expect((await h().staff("POST", `/internal/v1/api_keys/${m.keyId}/rotate`, undefined, "ops")).status).toBe(403);
+    const audit = (await h().staff("GET", "/internal/v1/audit_log?limit=5")).body.data.map((a: { action: string }) => a.action);
+    expect(audit).toContain("api_key.rotate");
+  });
+
   test("revoke", async () => {
     const m = await h().merchant();
     expect((await h().staff("POST", `/internal/v1/api_keys/${m.keyId}/revoke`)).body.status).toBe("revoked");

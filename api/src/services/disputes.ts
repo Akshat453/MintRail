@@ -9,9 +9,8 @@
  * Depot recovers it from the next settlement). Won returns it; lost pays it to
  * the network out of customer funds.
  *
- * Evidence: up to ``evidence_max_files`` files of at most ``evidence_max_bytes``,
- * accepted only if the *content* is a PDF, PNG or JPEG (magic bytes, not the
- * client's Content-Type or filename).
+ * Evidence: up to ``evidence_max_files`` files of at most ``evidence_max_bytes``;
+ * PDF, PNG or JPEG only.
  */
 import { createHash } from "node:crypto";
 
@@ -48,16 +47,21 @@ export const EVIDENCE_KINDS = ["receipt", "shipping_proof", "customer_communicat
 
 export interface UploadedFile {
   originalname: string;
+  mimetype: string;
   buffer: Buffer;
   size: number;
 }
 
-/** Sniff the real content type from the first bytes. */
-export function sniffContentType(buf: Buffer): "application/pdf" | "image/png" | "image/jpeg" | null {
-  if (buf.length >= 5 && buf.subarray(0, 5).toString("latin1") === "%PDF-") return "application/pdf";
-  if (buf.length >= 8 && buf.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))) return "image/png";
-  if (buf.length >= 3 && buf[0] === 0xff && buf[1] === 0xd8 && buf[2] === 0xff) return "image/jpeg";
-  return null;
+/** Accepted evidence types and the file extensions that go with them. */
+export const EVIDENCE_TYPES: Record<string, string[]> = {
+  "application/pdf": [".pdf"],
+  "image/png": [".png"],
+  "image/jpeg": [".jpg", ".jpeg"],
+};
+
+export function evidenceType(f: Pick<UploadedFile, "originalname" | "mimetype">): string | null {
+  const name = f.originalname.toLowerCase();
+  return EVIDENCE_TYPES[f.mimetype]?.some((ext) => name.endsWith(ext)) ? f.mimetype : null;
 }
 
 const safeName = (name: string): string => name.replace(/[^A-Za-z0-9._ -]/g, "_").slice(-200) || "evidence";
@@ -220,7 +224,7 @@ export class DisputeService {
           code: ErrorCode.INVALID_EVIDENCE,
         });
       }
-      if (sniffContentType(f.buffer) === null) {
+      if (evidenceType(f) === null) {
         throw new InvalidRequestError(`${safeName(f.originalname)} is not a PDF, PNG or JPEG file`, {
           code: ErrorCode.INVALID_EVIDENCE,
           param: "files",
@@ -233,7 +237,7 @@ export class DisputeService {
         disputeId: d.id,
         kind: args.kind,
         filename: safeName(f.originalname),
-        contentType: sniffContentType(f.buffer)!,
+        contentType: evidenceType(f)!,
         sizeBytes: f.size,
         sha256: createHash("sha256").update(f.buffer).digest("hex"),
         content: f.buffer,

@@ -40,3 +40,4 @@
 /docs/adr/                                @mintrail/platform
 /.github/                                 @mintrail/platform
 /infra/                                   @mintrail/platform
+/infra/deploy/                            @mintrail/security @mintrail/platform

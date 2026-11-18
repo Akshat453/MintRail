@@ -46,6 +46,8 @@ describe("dashboard sessions", () => {
     const dev = await h().dashboardLogin(m.stationId, "developer");
     const key = await h().dash(dev, "POST", "/dashboard/v1/api_keys", { label: "CI key" });
     expect([key.status, key.body.secret]).toEqual([201, expect.stringMatching(/^mr_test_/)]);
+    const rotated = await h().dash(dev, "POST", `/dashboard/v1/api_keys/${key.body.id}/rotate`);
+    expect([rotated.status, rotated.body.replaces]).toEqual([201, key.body.id]);
     expect((await h().dash(dev, "POST", `/dashboard/v1/api_keys/${key.body.id}/revoke`)).body.status).toBe("revoked");
     expect((await h().dash(dev, "GET", "/dashboard/v1/reports/payments?from=2026-01-01&to=2026-12-31")).status).toBe(403);
   });
@@ -69,6 +71,10 @@ describe("dashboard data", () => {
     const failed = (await h().dash(owner, "GET", "/dashboard/v1/payments?status=failed")).body.data;
     expect(failed.map((p: { error_code: string }) => p.error_code)).toEqual(["insufficient_funds"]);
     expect((await h().dash(owner, "GET", "/dashboard/v1/payments?method=upi")).body.data).toHaveLength(1);
+    const pg1 = (await h().dash(owner, "GET", "/dashboard/v1/payments?limit=2")).body;
+    const pg2 = (await h().dash(owner, "GET", "/dashboard/v1/payments?limit=2&page=2")).body;
+    expect([pg1.data.length, pg1.has_more, pg2.data.length, pg2.has_more, pg2.page]).toEqual([2, true, 1, false, 2n]);
+    expect(pg1.data.find((p: { id: string }) => p.id === card.id)?.amount_refunded ?? 0n).toBe(0n);
     expect((await h().dash(owner, "GET", `/dashboard/v1/payments?q=${card.id}`)).body.data.map((p: { id: string }) => p.id)).toEqual([
       card.id,
     ]);

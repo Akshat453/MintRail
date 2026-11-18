@@ -1,6 +1,7 @@
 /** Presentational building blocks (server components; no client JS). */
 import type { ReactNode } from "react";
 
+import { Icon } from "./icons";
 import { label as humanize } from "./index";
 
 const TONE: Record<string, string> = {
@@ -40,8 +41,20 @@ const TONE: Record<string, string> = {
   sev4: "muted",
 };
 
+const TONE_ICON: Record<string, string | undefined> = { ok: "ok", bad: "alert", warn: "clock", info: "clock" };
+const TERMINAL = new Set(["failed", "rejected", "lost"]);
+
+const sentence = (s: string): string => (s ? s[0]!.toUpperCase() + s.slice(1) : s);
+
 export function Badge({ status }: { status: string }) {
-  return <span className={`badge badge-${TONE[status] ?? "muted"}`}>{humanize(status)}</span>;
+  const tone = TONE[status] ?? "muted";
+  const icon = TERMINAL.has(status) ? "x" : TONE_ICON[tone];
+  return (
+    <span className={`badge badge-${tone}`}>
+      {icon && <Icon name={icon} size={12} />}
+      {sentence(humanize(status))}
+    </span>
+  );
 }
 
 export function Card({
@@ -78,10 +91,21 @@ export function Kpi({ label, value, hint, testId }: { label: string; value: Reac
   );
 }
 
-export function PageHeader({ title, subtitle, actions }: { title: string; subtitle?: ReactNode; actions?: ReactNode }) {
+export function PageHeader({
+  title,
+  subtitle,
+  actions,
+  eyebrow,
+}: {
+  title: ReactNode;
+  subtitle?: ReactNode;
+  actions?: ReactNode;
+  eyebrow?: ReactNode;
+}) {
   return (
     <div className="page-head">
       <div>
+        {eyebrow && <div className="eyebrow">{eyebrow}</div>}
         <h1>{title}</h1>
         {subtitle && <p className="muted">{subtitle}</p>}
       </div>
@@ -98,13 +122,15 @@ export function Flash({ msg, err }: { msg?: string | null; err?: string | null }
   if (err)
     return (
       <div className="flash flash-err" role="alert">
-        {err}
+        <Icon name="alert" />
+        <span>{err}</span>
       </div>
     );
   if (msg)
     return (
       <div className="flash flash-ok" role="status">
-        {msg}
+        <Icon name="ok" />
+        <span>{msg}</span>
       </div>
     );
   return null;
@@ -153,8 +179,19 @@ export function Pager({
   };
   return (
     <nav className="pager">
-      {params.starting_after ? <a href={q({ starting_after: undefined })}>← First page</a> : <span />}
-      {hasMore && lastId ? <a href={q({ starting_after: lastId })}>Next page →</a> : <span className="muted">End of list</span>}
+      <span>{hasMore ? "Showing a page of results" : "End of list"}</span>
+      <span className="row">
+        {params.starting_after && (
+          <a className="btn btn-secondary btn-sm" href={q({ starting_after: undefined })}>
+            First page
+          </a>
+        )}
+        {hasMore && lastId && (
+          <a className="btn btn-secondary btn-sm" href={q({ starting_after: lastId })}>
+            Next <Icon name="arrow" size={14} />
+          </a>
+        )}
+      </span>
     </nav>
   );
 }
@@ -162,3 +199,74 @@ export function Pager({
 export function Mono({ children }: { children: ReactNode }) {
   return <code className="mono">{children}</code>;
 }
+
+const href = (basePath: string, params: Record<string, string | undefined>): string => {
+  const s = new URLSearchParams();
+  for (const [k, v] of Object.entries(params)) if (v) s.set(k, v);
+  const t = s.toString();
+  return `${basePath}${t ? `?${t}` : ""}`;
+};
+
+/** Numbered pagination links (``page=N``), keeping the current filters. */
+export function PageNumbers({
+  basePath,
+  params,
+  page,
+  hasMore,
+  shown,
+}: {
+  basePath: string;
+  params: Record<string, string | undefined>;
+  page: number;
+  hasMore: boolean;
+  shown: number;
+}) {
+  const at = (n: number) => href(basePath, { ...params, page: n > 1 ? String(n) : undefined });
+  return (
+    <nav className="pager" aria-label="Pagination">
+      <span>
+        Page {page}
+        {shown > 0 && ` · ${shown} result${shown === 1 ? "" : "s"}`}
+      </span>
+      <span className="row">
+        {page > 1 && (
+          <a className="btn btn-secondary btn-sm" href={at(page - 1)}>
+            Previous
+          </a>
+        )}
+        {hasMore && (
+          <a className="btn btn-secondary btn-sm" href={at(page + 1)}>
+            Next <Icon name="arrow" size={14} />
+          </a>
+        )}
+      </span>
+    </nav>
+  );
+}
+
+/** Underlined filter tabs that set one query parameter (e.g. status). */
+export function Tabs({
+  basePath,
+  param,
+  value,
+  options,
+  keep = {},
+}: {
+  basePath: string;
+  param: string;
+  value: string | undefined;
+  options: [string, string][];
+  keep?: Record<string, string | undefined>;
+}) {
+  return (
+    <nav className="tabs">
+      {options.map(([v, text]) => (
+        <a key={v || "all"} href={href(basePath, { ...keep, [param]: v || undefined })} className={(value ?? "") === v ? "on" : undefined}>
+          {text}
+        </a>
+      ))}
+    </nav>
+  );
+}
+
+export { Icon } from "./icons";
