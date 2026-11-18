@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeShellExecution": [
+      {
+        "timeout": 120,
+        "failClosed": true,
+        "command": "agw hook cursor beforeShellExecution"
+      }
+    ],
+    "beforeMCPExecution": [
+      {
+        "timeout": 120,
+        "failClosed": true,
+        "command": "agw hook cursor beforeMCPExecution"
+      }
+    ],
+    "beforeReadFile": [
+      {
+        "timeout": 120,
+        "failClosed": true,
+        "command": "agw hook cursor beforeReadFile"
+      }
+    ],
+    "preToolUse": [
+      {
+        "timeout": 120,
+        "failClosed": true,
+        "command": "agw hook cursor preToolUse",
+        "matcher": "Write|Delete|Grep|Task|MCP:.*"
+      }
+    ],
+    "postToolUse": [
+      {
+        "command": "agw hook cursor postToolUse"
+      }
+    ],
+    "afterShellExecution": [
+      {
+        "command": "agw hook cursor afterShellExecution"
+      }
+    ],
+    "afterMCPExecution": [
+      {
+        "command": "agw hook cursor afterMCPExecution"
+      }
+    ],
+    "sessionStart": [
+      {
+        "command": "agw hook cursor sessionStart"
+      }
+    ],
+    "sessionEnd": [
+      {
+        "command": "agw hook cursor sessionEnd"
+      }
+    ]
+  }
+}

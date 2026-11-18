@@ -21,5 +21,5 @@ Arjun Rao (finance, ledger lead), Meera Iyer (security), Kabir Shah (ops, intern
 (ops, contractor), plus the bootstrap admin.
 
 ```bash
-pnpm --filter @mintrail/railyard dev     # http://localhost:3100
+pnpm --filter @mintrail/railyard dev     # http://localhost:13100
 ```

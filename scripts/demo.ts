@@ -11,7 +11,7 @@ import { signRequest } from "@mintrail/api";
 import { loadSettings, Money, parseJson, stringifyJson, type Currency } from "@mintrail/shared";
 
 const env = loadSettings();
-const baseUrl = process.env.MINTRAIL_DEMO_API_URL ?? "http://localhost:8000";
+const baseUrl = process.env.MINTRAIL_DEMO_API_URL ?? "http://localhost:18000";
 
 // biome-ignore lint: demo JSON
 type J = any;

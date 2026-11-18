@@ -58,7 +58,7 @@ one verifies. Deliveries are at least once, so dedupe on `event.id`.
 ## Example and tests
 
 ```bash
-MINTRAIL_API_KEY=mr_test_… MINTRAIL_API_URL=http://localhost:8000 pnpm --filter @mintrail/node example
+MINTRAIL_API_KEY=mr_test_… MINTRAIL_API_URL=http://localhost:18000 pnpm --filter @mintrail/node example
 pnpm vitest run --project integration sdk-node    # against a running Platform (the integration harness)
 ```
 

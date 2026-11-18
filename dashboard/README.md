@@ -20,7 +20,7 @@ Roles: `owner`/`admin` (everything), `developer` (keys and webhooks), `viewer` (
 Test/live mode is a toggle; live requires verified KYC.
 
 ```bash
-pnpm --filter @mintrail/dashboard dev    # http://localhost:3000, API at MINTRAIL_UI_API_URL (default :8000)
+pnpm --filter @mintrail/dashboard dev    # http://localhost:13000, API at MINTRAIL_UI_API_URL (default :8000)
 make test-ui                             # Playwright smoke against the running, seeded stack
 ```
 

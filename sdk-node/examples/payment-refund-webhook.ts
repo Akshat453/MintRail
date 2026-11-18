@@ -1,7 +1,7 @@
 /**
  * @mintrail/node example: a payment, a refund, and verified webhooks — end to end.
  *
- *   MINTRAIL_API_KEY=mr_test_…  MINTRAIL_API_URL=http://localhost:8000  pnpm --filter @mintrail/node example
+ *   MINTRAIL_API_KEY=mr_test_…  MINTRAIL_API_URL=http://localhost:18000  pnpm --filter @mintrail/node example
  *
  * Starts a tiny webhook receiver, registers it as an endpoint, makes a ₹499 UPI
  * payment, refunds ₹100 of it, and waits until MintRail has delivered
@@ -21,7 +21,7 @@ if (!apiKey) {
   console.error("Set MINTRAIL_API_KEY to a test key (make seed writes some to .mintrail/demo-keys.json).");
   process.exit(2);
 }
-const mr = new MintRail({ apiKey, baseUrl: process.env.MINTRAIL_API_URL ?? "http://localhost:8000" });
+const mr = new MintRail({ apiKey, baseUrl: process.env.MINTRAIL_API_URL ?? "http://localhost:18000" });
 const hookHost = process.env.MINTRAIL_WEBHOOK_HOST ?? "host.docker.internal";
 const WANT = ["payment.captured", "refund.created", "refund.processed"] as const;
 const rupees = (paise: bigint) => `₹${paise / 100n}.${String(paise % 100n).padStart(2, "0")}`;

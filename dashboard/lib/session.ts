@@ -9,7 +9,7 @@ import { ApiError, apiClient, CSRF_COOKIE } from "@mintrail/web/server";
 
 export const SESSION_COOKIE = "mr_dash_session";
 export const MODE_COOKIE = "mr_mode";
-export const API_URL = process.env.MINTRAIL_UI_API_URL ?? "http://localhost:8000";
+export const API_URL = process.env.MINTRAIL_UI_API_URL ?? "http://localhost:18000";
 
 export interface Me {
   user: { id: string; email: string; full_name: string; role: string };

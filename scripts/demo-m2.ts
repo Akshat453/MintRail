@@ -6,7 +6,7 @@
  *      each verified with the endpoint's signing secret (Signal delivers to this host).
  *   3. Depot reconciles every settlement against the ledger (seeded data included).
  *
- * Env: MINTRAIL_DEMO_API_URL (default http://localhost:8000), MINTRAIL_DEPOT_PORT (8300).
+ * Env: MINTRAIL_DEMO_API_URL (default http://localhost:18000), MINTRAIL_DEPOT_PORT (18300).
  */
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
@@ -14,8 +14,8 @@ import { fileURLToPath } from "node:url";
 import { getSettings, parseJson, stringifyJson } from "@mintrail/shared";
 
 const settings = getSettings();
-const apiUrl = process.env.MINTRAIL_DEMO_API_URL ?? "http://localhost:8000";
-const depotUrl = `http://localhost:${process.env.MINTRAIL_DEPOT_PORT ?? "8300"}`;
+const apiUrl = process.env.MINTRAIL_DEMO_API_URL ?? "http://localhost:18000";
+const depotUrl = `http://localhost:${process.env.MINTRAIL_DEPOT_PORT ?? "18300"}`;
 const bold = (s: string) => `\x1b[1m${s}\x1b[0m`;
 
 async function http(method: string, url: string, body?: unknown, headers: Record<string, string> = {}): Promise<any> {

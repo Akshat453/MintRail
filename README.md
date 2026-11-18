@@ -42,14 +42,22 @@ make test              # unit + integration (Testcontainers) + Playwright smoke 
 make demo              # M1 demo + SDK payment → refund → verified webhooks + clean reconciliation
 ```
 
-| What         | Where                                     | Sign in                                                           |
-| ------------ | ----------------------------------------- | ----------------------------------------------------------------- |
-| Platform API | <http://localhost:8000> (`/openapi.json`) | `mr_test_…` keys in `.mintrail/demo-keys.json`                    |
-| Dashboard    | <http://localhost:3000>                   | `owner@kesari-threads.example` (any `owner@<slug>.example`)       |
-| Railyard     | <http://localhost:3100>                   | `riya@` / `arjun@` / `meera@` / `kabir@` / `dev@mintrail.example` |
+| What         | Where                                      | Sign in                                                           |
+| ------------ | ------------------------------------------ | ----------------------------------------------------------------- |
+| Platform API | <http://localhost:18000> (`/openapi.json`) | `mr_test_…` keys in `.mintrail/demo-keys.json`                    |
+| Dashboard    | <http://localhost:13000>                   | `owner@kesari-threads.example` (any `owner@<slug>.example`)       |
+| Railyard     | <http://localhost:13100>                   | `riya@` / `arjun@` / `meera@` / `kabir@` / `dev@mintrail.example` |
 
-Seeded passwords are in `.mintrail/demo-keys.json` (git-ignored, local only). If ports are
-taken locally, set the `MINTRAIL_*_PORT` variables (and the matching URLs) in `.env`.
+Seeded passwords are in `.mintrail/demo-keys.json` (git-ignored, local only).
+
+To start from scratch instead, run `make fresh` (wipes every merchant and demo login, keeps only
+the bootstrap Railyard admin from `.env`) and create your own account at
+<http://localhost:13000/signup>. `make seed` brings the demo data back (the UI, parity and
+planted-bug tests need it).
+
+Host ports use the 1xxxx range (Postgres 15432, API 18000, Junction 18100, Signal 18200,
+Depot 18300, Dashboard 13000, Railyard 13100) so MintRail can run next to other local stacks.
+If one is still taken, change the `MINTRAIL_*_PORT` variables (and the matching URLs) in `.env`.
 
 Test-mode outcomes are controlled with `MintRail-Test-Scenario` (e.g. `decline:insufficient_funds`,
 `refund_fail`, `payout_fail`) or magic instruments; see [junction/README.md](junction/README.md).

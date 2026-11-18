@@ -98,6 +98,19 @@ export const SettlementRunIn = z.strictObject({ date: optional(isoDate()) });
 
 // ---------------------------------------------------------------- dashboard
 export const DashboardLoginIn = z.strictObject({ email: emailStr(), password: z.string().min(1).max(200) });
+/** Self-serve sign-up: a new Station (test mode, KYC pending) plus its owner login. */
+export const DashboardSignupIn = z.strictObject({
+  business_name: z.string().trim().min(2).max(100),
+  legal_name: z.string().trim().min(2).max(200).optional(),
+  full_name: z.string().trim().min(2).max(200),
+  email: emailStr(),
+  password: z.string().min(12).max(200),
+  business_category: z
+    .string()
+    .trim()
+    .regex(/^[0-9]{4}$/)
+    .default("5999"),
+});
 export const OverviewQuery = z.object({
   days: laxInt().pipe(z.number().min(1).max(90)).default(30),
   currency: Literal(["INR", "USD"] as const).default("INR"),

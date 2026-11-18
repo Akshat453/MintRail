@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Field, Flash } from "@mintrail/web/ui";
 
 import { login } from "@/app/actions";
@@ -28,8 +30,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Search
         </Field>
         <Submit>Sign in</Submit>
         <p className="login-foot">
-          MintRail is a fictional company. Seeded logins: <code>owner@&lt;merchant&gt;.example</code> / see{" "}
-          <code>.mintrail/demo-keys.json</code>.
+          New to MintRail? <Link href="/signup">Create an account</Link>
         </p>
       </form>
     </main>

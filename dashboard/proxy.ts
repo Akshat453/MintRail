@@ -1,6 +1,6 @@
 /**
  * Dashboard proxy (Next.js 16's renamed middleware): sends signed-out visitors to
- * /login and makes sure every visitor has a CSRF token cookie (double-submit).
+ * /login (sign-up stays public) and makes sure every visitor has a CSRF token cookie (double-submit).
  * The cookie is also injected into this request so the first render can embed it.
  */
 import { randomBytes } from "node:crypto";
@@ -11,7 +11,7 @@ const SESSION = "mr_dash_session";
 const CSRF = "mr_csrf";
 
 export function proxy(req: NextRequest) {
-  const publicPath = req.nextUrl.pathname === "/login" || req.nextUrl.pathname.startsWith("/healthz");
+  const publicPath = req.nextUrl.pathname === "/login" || req.nextUrl.pathname === "/signup" || req.nextUrl.pathname.startsWith("/healthz");
   if (!publicPath && !req.cookies.get(SESSION)) {
     return NextResponse.redirect(new URL("/login", req.url));
   }

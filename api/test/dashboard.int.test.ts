@@ -36,6 +36,26 @@ describe("dashboard sessions", () => {
     expect((await h().dash({ Authorization: "Bearer mr_test_abc" }, "GET", "/dashboard/v1/me")).status).toBe(401);
   });
 
+  test("self-serve sign-up creates a test-mode station and owner, signs in, and rejects duplicates", async () => {
+    const email = `signup-${Date.now()}@new-merchant.example`;
+    const json = { business_name: "Asha's Bakery", full_name: "Asha Verma", email, password: "correct-horse-battery-staple" };
+    const r = await h().request("POST", "/dashboard/v1/auth/signup", { json });
+    expect([r.status, r.body.user.role, r.body.station.live_enabled, r.body.station.display_name]).toEqual([
+      201,
+      "owner",
+      false,
+      "Asha's Bakery",
+    ]);
+    const me = await h().dash({ Authorization: `Bearer ${r.body.token}` }, "GET", "/dashboard/v1/me");
+    expect([me.status, me.body.user.email, me.body.livemode]).toEqual([200, email, false]);
+    const dup = await h().request("POST", "/dashboard/v1/auth/signup", { json: { ...json, email: email.toUpperCase() } });
+    expect(dup.status).toBe(409);
+    const weak = await h().request("POST", "/dashboard/v1/auth/signup", { json: { ...json, email: `x${email}`, password: "short" } });
+    expect(weak.status).toBe(422);
+    const login = await h().request("POST", "/dashboard/v1/auth/login", { json: { email, password: json.password } });
+    expect(login.status).toBe(200);
+  });
+
   test("roles: viewers read but cannot refund; developers manage keys and webhooks", async () => {
     const m = await h().merchant();
     const p = await h().paid(m);

@@ -16,5 +16,5 @@ export default defineConfig({
     "./api/dist/schema/index.js",
   ],
   out: "./drizzle",
-  dbCredentials: { url: process.env.MINTRAIL_DATABASE_URL ?? "postgres://mintrail:mintrail@localhost:5432/mintrail" },
+  dbCredentials: { url: process.env.MINTRAIL_DATABASE_URL ?? "postgres://mintrail:mintrail@localhost:15432/mintrail" },
 });

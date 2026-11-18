@@ -55,6 +55,43 @@ export function dashboardRoutes(route: ReturnType<typeof makeRoute>, deps: AppDe
     };
   });
 
+  route("post", "/dashboard/v1/auth/signup", { body: S.DashboardSignupIn }, async (c) => {
+    if (deps.settings.rate_limiting_enabled) {
+      const decision = await deps.rateLimiter.acquire(`signup:${clientIp(c.req) ?? "unknown"}`, 0.05, 5);
+      if (!decision.allowed) throw new RateLimitedError("too many sign-ups from this address; try again shortly", decision.retryAfterS);
+    }
+    const [user, token, station] = await deps.db.transaction(async (tx) => {
+      const [created] = await stationService(deps, tx).createStation({
+        legalName: c.body.legal_name ?? c.body.business_name,
+        displayName: c.body.business_name,
+        email: c.body.email,
+        businessCategory: c.body.business_category,
+        defaultCurrency: "INR",
+        settings: {},
+      });
+      const a = auth(tx);
+      await a.createUser({
+        stationId: created.id,
+        email: c.body.email,
+        fullName: c.body.full_name,
+        role: "owner",
+        password: c.body.password,
+      });
+      const [u, t] = await a.login(c.body.email, c.body.password, { ip: clientIp(c.req), userAgent: c.req.get("user-agent") ?? null });
+      return [u, t, created] as const;
+    });
+    return {
+      status: 201,
+      body: {
+        token,
+        expires_in: deps.settings.dashboard_session_ttl_s,
+        user: dashboardUserOut(user),
+        station: stationOut(station),
+        permissions: DASHBOARD_PERMISSIONS[user.role as DashboardRole],
+      },
+    };
+  });
+
   route("post", "/dashboard/v1/auth/logout", { dashboard: "any" }, async (c) => {
     await deps.db.transaction((tx) => auth(tx).logout(c.dash.sessionId));
     return { status: 204, body: undefined };

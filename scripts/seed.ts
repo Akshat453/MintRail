@@ -5,6 +5,7 @@
  *
  *   make seed                 # idempotent: skips if already seeded
  *   make seed ARGS=--reset    # wipe all MintRail data first, then seed
+ *   make fresh                # wipe all MintRail data, keep only the bootstrap Railyard admin
  *   pnpm seed --payments 20000 --days 30   (smaller, for quick local runs)
  *
  * Deterministic: a fixed PRNG seed drives every business value and every id the
@@ -12,7 +13,7 @@
  * are always fresh CSPRNG values — they are written to .mintrail/demo-keys.json
  * (git-ignored), never printed in full.
  */
-import { chmodSync, mkdirSync, writeFileSync } from "node:fs";
+import { chmodSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 import { eq, sql } from "drizzle-orm";
@@ -44,7 +45,8 @@ const flag = (name: string, fallback: number): number => {
   const i = args.indexOf(`--${name}`);
   return i >= 0 ? Number(args[i + 1]) : fallback;
 };
-const RESET = args.includes("--reset");
+const EMPTY = args.includes("--empty");
+const RESET = EMPTY || args.includes("--reset");
 const anchorArg = args.indexOf("--anchor");
 const PAYMENTS = flag("payments", 200_000);
 const DAYS = flag("days", 90);
@@ -86,6 +88,18 @@ try {
     );
     await client.query(`TRUNCATE ${tables.map((t) => `"${t}"`).join(", ")} RESTART IDENTITY CASCADE`);
     console.log(`reset: truncated ${tables.length} tables`);
+  }
+  if (EMPTY) {
+    // Start-from-scratch mode: no merchants, no demo logins. Sign up at the dashboard's /signup.
+    rmSync(KEYS_FILE, { force: true });
+    if (settings.bootstrap_admin_email && settings.bootstrap_admin_password) {
+      await db.transaction((tx) =>
+        new StaffService(tx, settings).ensureBootstrapAdmin(settings.bootstrap_admin_email!, settings.bootstrap_admin_password!),
+      );
+      console.log(`empty: Railyard admin ${settings.bootstrap_admin_email} (password from MINTRAIL_BOOTSTRAP_ADMIN_PASSWORD in .env)`);
+    }
+    console.log("empty: no merchants. Create one at http://localhost:13000/signup");
+    process.exit(0);
   }
 
   const rng = new Rng(SEED);

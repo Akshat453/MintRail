@@ -25,28 +25,62 @@ async function guard(form: FormData, path: string): Promise<void> {
 }
 
 // ---------------------------------------------------------------- session
-export async function login(form: FormData): Promise<void> {
-  await guard(form, "/login");
-  let body: { token: string; expires_in: bigint; station: { live_enabled: boolean } };
+type SessionBody = { token: string; expires_in: bigint; station: { live_enabled: boolean } };
+
+/** POST a public auth endpoint, set the session cookies and go to the dashboard. */
+async function startSession(path: string, payload: Record<string, unknown>, from: string, fallback: string): Promise<never> {
+  let body: SessionBody;
   try {
-    const res = await fetch(`${API_URL}/dashboard/v1/auth/login`, {
+    const res = await fetch(`${API_URL}${path}`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "User-Agent": "mintrail-dashboard/1.0" },
-      body: JSON.stringify({ email: str(form, "email"), password: String(form.get("password") ?? "") }),
+      body: JSON.stringify(payload),
       cache: "no-store",
     });
     const text = await res.text();
-    const parsed = parseJson<{ error?: { message?: string } } & typeof body>(text);
-    if (!res.ok) back("/login", "err", parsed?.error?.message ?? "Sign-in failed");
+    const parsed = parseJson<{ error?: { message?: string } } & SessionBody>(text);
+    if (!res.ok) back(from, "err", parsed?.error?.message ?? fallback);
     body = parsed;
   } catch (e) {
     if ((e as { digest?: string }).digest?.startsWith("NEXT_REDIRECT")) throw e;
-    back("/login", "err", "MintRail is unreachable right now. Please try again.");
+    back(from, "err", "MintRail is unreachable right now. Please try again.");
   }
   const c = await cookies();
   c.set(SESSION_COOKIE, body!.token, sessionCookie(Number(body!.expires_in), "lax"));
   c.set(MODE_COOKIE, body!.station.live_enabled ? "live" : "test", { ...sessionCookie(Number(body!.expires_in), "lax"), httpOnly: false });
   redirect("/");
+}
+
+export async function login(form: FormData): Promise<void> {
+  await guard(form, "/login");
+  await startSession(
+    "/dashboard/v1/auth/login",
+    { email: str(form, "email"), password: String(form.get("password") ?? "") },
+    "/login",
+    "Sign-in failed",
+  );
+}
+
+export async function signup(form: FormData): Promise<void> {
+  await guard(form, "/signup");
+  const password = String(form.get("password") ?? "");
+  if (password.length < 12) back("/signup", "err", "Choose a password of at least 12 characters.");
+  if (password !== String(form.get("password_confirm") ?? "")) back("/signup", "err", "The two passwords don't match.");
+  const legal = str(form, "legal_name");
+  const category = str(form, "business_category");
+  await startSession(
+    "/dashboard/v1/auth/signup",
+    {
+      business_name: str(form, "business_name"),
+      ...(legal ? { legal_name: legal } : {}),
+      full_name: str(form, "full_name"),
+      email: str(form, "email"),
+      password,
+      ...(category ? { business_category: category } : {}),
+    },
+    "/signup",
+    "Sign-up failed",
+  );
 }
 
 export async function logout(form: FormData): Promise<void> {

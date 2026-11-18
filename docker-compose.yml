@@ -28,7 +28,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-mintrail}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-mintrail}
       POSTGRES_DB: ${POSTGRES_DB:-mintrail}
-    ports: ["${MINTRAIL_PG_PORT:-5432}:5432"]
+    ports: ["${MINTRAIL_PG_PORT:-15432}:5432"]
     volumes: [pgdata:/var/lib/postgresql/data]
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
@@ -53,7 +53,7 @@ services:
       MINTRAIL_JUNCTION_URL: http://junction:8100
       MINTRAIL_JUNCTION_LATENCY_SCALE: ${MINTRAIL_JUNCTION_LATENCY_SCALE:-0.2}
       PORT: "8000"
-    ports: ["${MINTRAIL_API_PORT:-8000}:8000"]
+    ports: ["${MINTRAIL_API_PORT:-18000}:8000"]
     healthcheck:
       <<: *health
       test: ["CMD", "node", "-e", "fetch('http://localhost:8000/healthz').then(r=>process.exit(r.ok?0:1),()=>process.exit(1))"]
@@ -65,7 +65,7 @@ services:
       MINTRAIL_DATABASE_URL: postgres://${POSTGRES_USER:-mintrail}:${POSTGRES_PASSWORD:-mintrail}@postgres:5432/${POSTGRES_DB:-mintrail}
       MINTRAIL_JUNCTION_LATENCY_SCALE: ${MINTRAIL_JUNCTION_LATENCY_SCALE:-0.2}
       PORT: "8100"
-    ports: ["${MINTRAIL_JUNCTION_PORT:-8100}:8100"]
+    ports: ["${MINTRAIL_JUNCTION_PORT:-18100}:8100"]
     healthcheck:
       <<: *health
       test: ["CMD", "node", "-e", "fetch('http://localhost:8100/healthz').then(r=>process.exit(r.ok?0:1),()=>process.exit(1))"]
@@ -87,7 +87,7 @@ services:
   signal:
     <<: *app
     command: ["node", "signal/dist/main-server.js"]
-    ports: ["${MINTRAIL_SIGNAL_PORT:-8200}:8200"]
+    ports: ["${MINTRAIL_SIGNAL_PORT:-18200}:8200"]
     healthcheck:
       <<: *health
       test: ["CMD", "node", "-e", "fetch('http://localhost:8200/healthz').then(r=>process.exit(r.ok?0:1),()=>process.exit(1))"]
@@ -102,7 +102,7 @@ services:
   depot:
     <<: *app
     command: ["node", "depot/dist/main-server.js"]
-    ports: ["${MINTRAIL_DEPOT_PORT:-8300}:8300"]
+    ports: ["${MINTRAIL_DEPOT_PORT:-18300}:8300"]
     healthcheck:
       <<: *health
       test: ["CMD", "node", "-e", "fetch('http://localhost:8300/healthz').then(r=>process.exit(r.ok?0:1),()=>process.exit(1))"]
@@ -125,7 +125,7 @@ services:
       MINTRAIL_UI_API_URL: http://api:8000
       MINTRAIL_COOKIE_SECURE: ${MINTRAIL_COOKIE_SECURE:-false}
       PORT: "3000"
-    ports: ["${MINTRAIL_DASHBOARD_PORT:-3000}:3000"]
+    ports: ["${MINTRAIL_DASHBOARD_PORT:-13000}:3000"]
     depends_on:
       api:
         condition: service_healthy
@@ -142,7 +142,7 @@ services:
       MINTRAIL_UI_API_URL: http://api:8000
       MINTRAIL_COOKIE_SECURE: ${MINTRAIL_COOKIE_SECURE:-false}
       PORT: "3100"
-    ports: ["${MINTRAIL_RAILYARD_PORT:-3100}:3100"]
+    ports: ["${MINTRAIL_RAILYARD_PORT:-13100}:3100"]
     depends_on:
       api:
         condition: service_healthy

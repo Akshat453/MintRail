@@ -4,7 +4,7 @@ PNPM ?= pnpm
 COMPOSE ?= docker compose
 SERVICES := postgres api junction payments-worker junction-worker ledger-worker signal signal-worker depot depot-worker dashboard railyard
 
-.PHONY: help install build up down logs migrate seed demo test test-unit test-integration test-ui coverage parity lint fmt typecheck ci
+.PHONY: help install build up down logs migrate seed fresh demo test test-unit test-integration test-ui coverage parity lint fmt typecheck ci
 
 help: ## Show targets
 	@grep -E '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN{FS=":.*?## "}{printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}'
@@ -33,6 +33,9 @@ migrate: .env ## Apply migrations (adopts M1 databases) + bootstrap Railyard adm
 seed: .env install ## Seed 50 merchants / ~200k payments / 90 days (ARGS=--reset to rebuild)
 	$(PNPM) seed $(ARGS)
 
+fresh: .env install ## Wipe ALL data (no demo merchants/logins); keep only the bootstrap Railyard admin. Then sign up at /signup
+	$(PNPM) seed --empty
+
 demo: .env install ## M1 demo + M2 demo (SDK: payment, refund, verified webhooks; settlement + reconciliation)
 	$(PNPM) demo
 	$(PNPM) demo:m2
@@ -49,8 +52,8 @@ test-integration: install ## Integration tests only
 
 test-ui: install ## Playwright smoke for Dashboard + Railyard against the running, seeded stack
 	cd dashboard && $(PNPM) exec playwright install chromium >/dev/null
-	cd dashboard && MINTRAIL_DASHBOARD_URL=http://localhost:$${MINTRAIL_DASHBOARD_PORT:-3000} $(PNPM) exec playwright test
-	cd railyard && MINTRAIL_RAILYARD_URL=http://localhost:$${MINTRAIL_RAILYARD_PORT:-3100} $(PNPM) exec playwright test
+	cd dashboard && MINTRAIL_DASHBOARD_URL=http://localhost:$${MINTRAIL_DASHBOARD_PORT:-13000} $(PNPM) exec playwright test
+	cd railyard && MINTRAIL_RAILYARD_URL=http://localhost:$${MINTRAIL_RAILYARD_PORT:-13100} $(PNPM) exec playwright test
 
 coverage: install ## Full suite with the 85% gate on api/ and ledger/
 	$(PNPM) coverage
@@ -58,10 +61,10 @@ coverage: install ## Full suite with the 85% gate on api/ and ledger/
 # The harness talks to a running stack in parity mode (instant Junction latency).
 parity: .env install ## Run the parity harness (M1 contract + M2 regression goldens) against `make up`
 	@echo "expects MINTRAIL_JUNCTION_LATENCY_SCALE=0 on the running stack"
-	PARITY_API_URL=http://localhost:$${MINTRAIL_API_PORT:-8000} \
-	PARITY_JUNCTION_URL=http://localhost:$${MINTRAIL_JUNCTION_PORT:-8100} \
-	PARITY_DB_URL=postgres://mintrail:mintrail@localhost:$${MINTRAIL_PG_PORT:-5432}/mintrail \
-	PARITY_DEPOT_URL=http://localhost:$${MINTRAIL_DEPOT_PORT:-8300} \
+	PARITY_API_URL=http://localhost:$${MINTRAIL_API_PORT:-18000} \
+	PARITY_JUNCTION_URL=http://localhost:$${MINTRAIL_JUNCTION_PORT:-18100} \
+	PARITY_DB_URL=postgres://mintrail:mintrail@localhost:$${MINTRAIL_PG_PORT:-15432}/mintrail \
+	PARITY_DEPOT_URL=http://localhost:$${MINTRAIL_DEPOT_PORT:-18300} \
 	$(PNPM) parity
 
 lint: install ## ESLint (incl. mintrail/no-number-money) + Prettier check

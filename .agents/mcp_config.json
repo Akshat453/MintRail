@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "agentguard": {
+      "serverUrl": "http://localhost:8088/mcp"
+    }
+  }
+}
