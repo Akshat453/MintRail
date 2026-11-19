@@ -113,8 +113,7 @@
           }
         ],
         "has_more": false,
-        "object": "list",
-        "page": 1
+        "object": "list"
       },
       "headers": {
         "content-type": "application/json",

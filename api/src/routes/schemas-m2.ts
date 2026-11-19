@@ -117,7 +117,7 @@ export const OverviewQuery = z.object({
 });
 export const DashboardPaymentQuery = z.object({
   limit: laxInt().pipe(z.number().min(1).max(100)).default(25),
-  page: laxInt().pipe(z.number().min(1).max(10_000)).default(1),
+  starting_after: optional(z.string()),
   status: optional(Literal(["created", "pending", "authorized", "captured", "failed"] as const)),
   method: optional(Literal(["card", "upi", "netbanking"] as const)),
   q: optional(z.string().max(100)),
