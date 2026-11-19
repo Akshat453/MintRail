@@ -226,8 +226,9 @@ export function dashboardRoutes(route: ReturnType<typeof makeRoute>, deps: AppDe
     if (!make) throw new NotFoundError(`unknown report '${kind}'`);
     if (c.query.to < c.query.from) throw new InvalidRequestError("'to' must not be before 'from'", { param: "to" });
     // Exports scan up to 100k rows; keep bursts of them from swamping the database.
+    // The bucket is per station: a merchant is only throttled by its own exports (MR-10).
     if (deps.settings.rate_limiting_enabled) {
-      const decision = await deps.rateLimiter.acquire(`reports:${kind}`, 1, 10);
+      const decision = await deps.rateLimiter.acquire(`reports:${c.dash.station.id}:${kind}`, 1, 10);
       if (!decision.allowed) throw new RateLimitedError("too many report exports; try again shortly", decision.retryAfterS);
     }
     const csv = await make(deps.db, c.dash, istStartOf(c.query.from).toISOString(), istStartOf(addDays(c.query.to, 1)).toISOString());

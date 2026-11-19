@@ -132,6 +132,18 @@ describe("dashboard data", () => {
     expect((await h().dash(owner, "GET", "/dashboard/v1/reports/payouts?from=2021-01-01&to=2020-01-01")).status).toBe(400);
   });
 
+  test("report export rate limit is per merchant (MR-10)", async () => {
+    const a = await h().merchant();
+    const b = await h().merchant();
+    const ownerA = await h().dashboardLogin(a.stationId);
+    const ownerB = await h().dashboardLogin(b.stationId);
+    const url = "/dashboard/v1/reports/payments?from=2026-01-01&to=2026-01-01";
+    let status = 200;
+    for (let i = 0; i < 30 && status !== 429; i++) status = (await h().dash(ownerA, "GET", url)).status;
+    expect(status).toBe(429);
+    expect((await h().dash(ownerB, "GET", url)).status).toBe(200);
+  });
+
   test("webhooks via the dashboard share the /v1 handlers", async () => {
     const m = await h().merchant();
     const owner = await h().dashboardLogin(m.stationId);
