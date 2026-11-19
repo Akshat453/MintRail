@@ -92,8 +92,11 @@ describe("dashboard data", () => {
     expect(failed.map((p: { error_code: string }) => p.error_code)).toEqual(["insufficient_funds"]);
     expect((await h().dash(owner, "GET", "/dashboard/v1/payments?method=upi")).body.data).toHaveLength(1);
     const pg1 = (await h().dash(owner, "GET", "/dashboard/v1/payments?limit=2")).body;
-    const pg2 = (await h().dash(owner, "GET", "/dashboard/v1/payments?limit=2&page=2")).body;
-    expect([pg1.data.length, pg1.has_more, pg2.data.length, pg2.has_more, pg2.page]).toEqual([2, true, 1, false, 2n]);
+    const pg2 = (await h().dash(owner, "GET", `/dashboard/v1/payments?limit=2&starting_after=${pg1.data.at(-1).id}`)).body;
+    expect([pg1.data.length, pg1.has_more, pg2.data.length, pg2.has_more]).toEqual([2, true, 1, false]);
+    const ids = [...pg1.data, ...pg2.data].map((p: { id: string }) => p.id);
+    expect(new Set(ids).size).toBe(3);
+    expect((await h().dash(owner, "GET", "/dashboard/v1/payments?starting_after=nope")).status).toBe(400);
     expect(pg1.data.find((p: { id: string }) => p.id === card.id)?.amount_refunded ?? 0n).toBe(0n);
     expect((await h().dash(owner, "GET", `/dashboard/v1/payments?q=${card.id}`)).body.data.map((p: { id: string }) => p.id)).toEqual([
       card.id,
@@ -130,6 +133,11 @@ describe("dashboard data", () => {
     expect((await h().dash(owner, "GET", "/dashboard/v1/reports/refunds?from=2020-01-01&to=2099-12-31")).text).toContain("order_cancelled");
     expect((await h().dash(owner, "GET", "/dashboard/v1/reports/nope?from=2020-01-01&to=2099-12-31")).status).toBe(404);
     expect((await h().dash(owner, "GET", "/dashboard/v1/reports/payouts?from=2021-01-01&to=2020-01-01")).status).toBe(400);
+
+    // A payment arriving between page loads must not push page-1 rows onto page 2.
+    await h().paid(m, "upi", { amount: 10_000n });
+    const pg2Again = (await h().dash(owner, "GET", `/dashboard/v1/payments?limit=2&starting_after=${pg1.data.at(-1).id}`)).body;
+    expect(pg2Again.data.map((p: { id: string }) => p.id)).toEqual(pg2.data.map((p: { id: string }) => p.id));
   });
 
   test("report export rate limit is per merchant (MR-10)", async () => {

@@ -1,5 +1,5 @@
 import { dateTime, label, money } from "@mintrail/web";
-import { Badge, Card, Empty, Field, PageHeader, PageNumbers, Tabs } from "@mintrail/web/ui";
+import { Badge, Card, Empty, Field, PageHeader, Pager, Tabs } from "@mintrail/web/ui";
 
 import { load, one, type SearchParams } from "@/lib/session";
 
@@ -28,9 +28,9 @@ export default async function PaymentsPage({ searchParams }: { searchParams: Sea
     from: one(sp.from),
     to: one(sp.to),
   };
-  const pageNo = Math.max(1, Math.min(10_000, Number.parseInt(one(sp.page) ?? "1", 10) || 1));
+  const startingAfter = one(sp.starting_after);
   const page = await load((a) =>
-    a.get<{ data: Payment[]; has_more: boolean }>("/dashboard/v1/payments", { ...params, page: String(pageNo), limit: "25" }),
+    a.get<{ data: Payment[]; has_more: boolean }>("/dashboard/v1/payments", { ...params, starting_after: startingAfter, limit: "25" }),
   );
   return (
     <>
@@ -141,7 +141,12 @@ export default async function PaymentsPage({ searchParams }: { searchParams: Sea
             </tbody>
           </table>
         )}
-        <PageNumbers basePath="/payments" params={params} page={pageNo} hasMore={page.has_more} shown={page.data.length} />
+        <Pager
+          basePath="/payments"
+          params={{ ...params, starting_after: startingAfter }}
+          lastId={page.data.at(-1)?.id}
+          hasMore={page.has_more}
+        />
       </Card>
     </>
   );

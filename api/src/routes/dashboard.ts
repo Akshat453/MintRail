@@ -1,5 +1,5 @@
 /** Merchant dashboard API (/dashboard/v1): sessions, overview analytics, filtered lists, keys, reports. */
-import { and, asc, desc, eq, gte, ilike, lt, ne, or, sql, type SQL } from "drizzle-orm";
+import { and, asc, desc, eq, gte, ilike, inArray, lt, ne, or, sql, type SQL } from "drizzle-orm";
 
 import {
   addDays,
@@ -130,23 +130,37 @@ export function dashboardRoutes(route: ReturnType<typeof makeRoute>, deps: AppDe
         or(eq(payments.id, term), eq(payments.orderId, term), ilike(payments.customerEmail, `%${term.replace(/[%_\\]/g, "\\$&")}%`))!,
       );
     }
+    // Keyset paging on the (time-ordered, unique) id, like GET /v1/payments: served by
+    // ix_payments_station_mode_id, cost doesn't grow with page depth, and new payments
+    // arriving between clicks can't shift rows across pages.
+    if (q.starting_after) where.push(lt(payments.id, parseId(q.starting_after, IdPrefix.PAYMENT, "starting_after")));
     const rows = await deps.db
       .select()
       .from(payments)
       .where(and(...where))
-      .orderBy(desc(payments.createdAt))
-      .limit(q.limit + 1)
-      .offset((q.page - 1) * q.limit);
-    // The list shows how much of each payment has been refunded.
-    const data = [];
-    for (const p of rows.slice(0, q.limit)) {
-      const [r] = await deps.db
-        .select({ refunded: sql<string>`coalesce(sum(${refunds.amount}), 0)::text` })
+      .orderBy(desc(payments.id))
+      .limit(q.limit + 1);
+    const pageRows = rows.slice(0, q.limit);
+    // The list shows how much of each payment has been refunded: one grouped query per page.
+    const refunded = new Map<string, bigint>();
+    if (pageRows.length > 0) {
+      const sums = await deps.db
+        .select({ paymentId: refunds.paymentId, refunded: sql<string>`sum(${refunds.amount})::text` })
         .from(refunds)
-        .where(and(eq(refunds.paymentId, p.id), ne(refunds.status, "failed")));
-      data.push({ ...paymentOut(p), amount_refunded: BigInt(r!.refunded) });
+        .where(
+          and(
+            inArray(
+              refunds.paymentId,
+              pageRows.map((p) => p.id),
+            ),
+            ne(refunds.status, "failed"),
+          ),
+        )
+        .groupBy(refunds.paymentId);
+      for (const r of sums) refunded.set(r.paymentId, BigInt(r.refunded));
     }
-    return { status: 200, body: { ...list(data, rows.length > q.limit), page: BigInt(q.page) } };
+    const data = pageRows.map((p) => ({ ...paymentOut(p), amount_refunded: refunded.get(p.id) ?? 0n }));
+    return { status: 200, body: list(data, rows.length > q.limit) };
   });
 
   route("get", "/dashboard/v1/payments/:payment_id", { dashboard: "read" }, async (c) => {
