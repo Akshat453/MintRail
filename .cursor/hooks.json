@@ -5,54 +5,54 @@
       {
         "timeout": 660,
         "failClosed": true,
-        "command": "agw hook cursor beforeShellExecution"
+        "command": "PATH=\"$PATH:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin\" agw hook cursor beforeShellExecution"
       }
     ],
     "beforeMCPExecution": [
       {
         "timeout": 660,
         "failClosed": true,
-        "command": "agw hook cursor beforeMCPExecution"
+        "command": "PATH=\"$PATH:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin\" agw hook cursor beforeMCPExecution"
       }
     ],
     "beforeReadFile": [
       {
         "timeout": 660,
         "failClosed": true,
-        "command": "agw hook cursor beforeReadFile"
+        "command": "PATH=\"$PATH:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin\" agw hook cursor beforeReadFile"
       }
     ],
     "preToolUse": [
       {
         "timeout": 660,
         "failClosed": true,
-        "command": "agw hook cursor preToolUse",
+        "command": "PATH=\"$PATH:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin\" agw hook cursor preToolUse",
         "matcher": "Write|Delete|Grep|Task|MCP:.*"
       }
     ],
     "postToolUse": [
       {
-        "command": "agw hook cursor postToolUse"
+        "command": "PATH=\"$PATH:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin\" agw hook cursor postToolUse"
       }
     ],
     "afterShellExecution": [
       {
-        "command": "agw hook cursor afterShellExecution"
+        "command": "PATH=\"$PATH:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin\" agw hook cursor afterShellExecution"
       }
     ],
     "afterMCPExecution": [
       {
-        "command": "agw hook cursor afterMCPExecution"
+        "command": "PATH=\"$PATH:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin\" agw hook cursor afterMCPExecution"
       }
     ],
     "sessionStart": [
       {
-        "command": "agw hook cursor sessionStart"
+        "command": "PATH=\"$PATH:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin\" agw hook cursor sessionStart"
       }
     ],
     "sessionEnd": [
       {
-        "command": "agw hook cursor sessionEnd"
+        "command": "PATH=\"$PATH:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin\" agw hook cursor sessionEnd"
       }
     ]
   }

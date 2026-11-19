@@ -7,7 +7,7 @@
           {
             "type": "command",
             "timeout": 660,
-            "command": "agw hook claude_code PreToolUse",
+            "command": "PATH=\"$PATH:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin\" agw hook claude_code PreToolUse",
             "onFailure": "block"
           }
         ]
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "agw hook claude_code PostToolUse"
+            "command": "PATH=\"$PATH:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin\" agw hook claude_code PostToolUse"
           }
         ],
         "matcher": "*"
@@ -29,7 +29,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "agw hook claude_code PostToolUseFailure"
+            "command": "PATH=\"$PATH:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin\" agw hook claude_code PostToolUseFailure"
           }
         ],
         "matcher": "*"
@@ -40,7 +40,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "agw hook claude_code SessionStart"
+            "command": "PATH=\"$PATH:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin\" agw hook claude_code SessionStart"
           }
         ]
       }
@@ -50,7 +50,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "agw hook claude_code SessionEnd"
+            "command": "PATH=\"$PATH:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin\" agw hook claude_code SessionEnd"
           }
         ]
       }
